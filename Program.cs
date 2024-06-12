@@ -12,6 +12,7 @@ using ABB.Robotics.Controllers.Discovery;
 using ABB.Robotics.Controllers.FileSystemDomain;
 using System.IO.Compression;
 using ABB.Robotics.Controllers.MotionDomain;
+using Microsoft.Win32;
 
 namespace AbbBackup
 {
@@ -22,7 +23,7 @@ namespace AbbBackup
         static private string FolderBackup;
         static private NetworkScanner scanner;
         static private uint timeoutBackup = 60;
-        static private string folderBackup = AssemblyDirectory;
+        static private string folderBackup = UNCPath(AssemblyDirectory);
 
         static private bool ScanReseau(NetworkScanner scanner)
         {
@@ -96,7 +97,7 @@ namespace AbbBackup
 
                         if (args.Length > i + 1)
                         {
-                            folderBackup = Environment.ExpandEnvironmentVariables(args[i + 1]);
+                            folderBackup = UNCPath(Environment.ExpandEnvironmentVariables(args[i + 1]));
                             Console.WriteLine($"Dossier de sauvegarde : {folderBackup}");
 
                         }
@@ -295,6 +296,24 @@ namespace AbbBackup
                 return Path.GetDirectoryName(path);
             }
         }
+
+
+            public static string UNCPath(string path)
+            {
+                if (!path.StartsWith(@"\\"))
+                {
+                    using (RegistryKey key = Registry.CurrentUser.OpenSubKey("Network\\" + path[0]))
+                    {
+                        if (key != null)
+                        {
+                            return key.GetValue("RemotePath").ToString() + path.Remove(0, 2).ToString();
+                        }
+                    }
+                }
+                return path;
+            }
+        
+
     }
 
 }
