@@ -16,304 +16,322 @@ using Microsoft.Win32;
 
 namespace AbbBackup
 {
-    internal class Program
-    {
-
-        static private uint BackupInProgressNumber = 0;
-        static private string FolderBackup;
-        static private NetworkScanner scanner;
-        static private uint timeoutBackup = 60;
-        static private string folderBackup = UNCPath(AssemblyDirectory);
-
-        static private bool ScanReseau(NetworkScanner scanner)
-        {
-            //Scan les robots présents sur le réseau
-            scanner.Scan();
-
-            //Fin du programme si pas de robot détecté
-            if (scanner.Controllers.Where(p => !p.IsVirtual).ToList().Count() == 0)
-            {
-                return false;
-            }
-            return true;
-        }
-
-        static void Main(string[] args)
-        {
-
-            //Pour quitter l'appli proprement
-            bool Cancel = false;
-            Console.CancelKeyPress += delegate (object sender, ConsoleCancelEventArgs e)
-            {
-                Console.WriteLine($"=>Quit");
-                e.Cancel = true;
-                Cancel = true;
-            };
-
-            //Gestion des arguments
-            for (int i = 0; i < args.Length; i++)
-            {
-                switch (args[i].ToLower())
-                {
-                    //Suppression des anciennes sauvegarde
-                    case "--delete":
-
-                        if (args.Length > i + 1 & int.TryParse(args[i + 1], out int limit)) { }
-
-                        if (Directory.Exists(folderBackup + "/Backup/"))
-                        {
-                            foreach (string dir in Directory.GetDirectories(folderBackup + "/Backup/"))
-                            {
-                                DateTime createdTime = new DirectoryInfo(dir).CreationTime;
-                                if (createdTime < DateTime.Now.AddDays(-limit))
-                                {
-                                    Directory.Delete(dir, true);
-                                }
-                            }
-                        }
-                        break;
-
-                    //Timeout de sauvegarde
-                    case "--timeout":
-
-                        if (args.Length > i + 1 & int.TryParse(args[i + 1], out int timeoutBackup))
-                        {
-
-
-                        }
-                        break;
-
-                    //répertoire de sauvegarde
-                    case "--folder":
-
-                        if (i != 0)
-                        {
-                            Console.WriteLine($" Erreur :");
-                            Console.WriteLine($"    Argument --folder doit être en première position");
-                            Console.ReadLine();
-                            return;
-                        }
+	internal class Program
+	{
+
+		static private uint BackupInProgressNumber = 0;
+		static private string FolderBackup;
+		static private NetworkScanner scanner;
+		static private uint timeoutBackup = 60;
+		static private string folderBackup = UNCPath(AssemblyDirectory);
+		static private string user="";
+		static private string password="";
+
+
+		static private bool ScanReseau(NetworkScanner scanner)
+		{
+			//Scan les robots présents sur le réseau
+			scanner.Scan();
+
+			//Fin du programme si pas de robot détecté
+			if (scanner.Controllers.Where(p => !p.IsVirtual).ToList().Count() == 0)
+			{
+				return false;
+			}
+			return true;
+		}
+
+		static void Main(string[] args)
+		{
+
+
+			//Pour quitter l'appli proprement
+			bool Cancel = false;
+			Console.CancelKeyPress += delegate (object sender, ConsoleCancelEventArgs e)
+			{
+				Console.WriteLine($"=>Quit");
+				e.Cancel = true;
+				Cancel = true;
+			};
+
+			//Gestion des arguments
+			for (int i = 0; i < args.Length; i++)
+			{
+				switch (args[i].ToLower())
+				{
+					//Suppression des anciennes sauvegarde
+					case "--delete":
+
+						if (args.Length > i + 1 & int.TryParse(args[i + 1], out int limit)) { }
+
+						if (Directory.Exists(folderBackup + "/Backup/"))
+						{
+							foreach (string dir in Directory.GetDirectories(folderBackup + "/Backup/"))
+							{
+								DateTime createdTime = new DirectoryInfo(dir).CreationTime;
+								if (createdTime < DateTime.Now.AddDays(-limit))
+								{
+									Directory.Delete(dir, true);
+								}
+							}
+						}
+						break;
+
+					//Timeout de sauvegarde
+					case "--timeout":
+
+						if (args.Length > i + 1 & int.TryParse(args[i + 1], out int timeoutBackup))
+						{
+
+
+						}
+						break;
+
+					//répertoire de sauvegarde
+					case "--folder":
+
+						if (i != 0)
+						{
+							Console.WriteLine($" Erreur :");
+							Console.WriteLine($"    Argument --folder doit être en première position");
+							Console.ReadLine();
+							return;
+						}
+
+
+						if (args.Length > i + 1)
+						{
+							folderBackup = UNCPath(Environment.ExpandEnvironmentVariables(args[i + 1]));
+							Console.WriteLine($"Dossier de sauvegarde : {folderBackup}");
+
+						}
+						break;
+
+					case "--user":
+						user = args[i + 1];
+						break;
+
+					case "--password":
+						password = args[i + 1];
+						break;
+
+					//Aide
+					case "--help":
+						Console.WriteLine($" Backup Robot - Application for save the robots programs");
+						Console.WriteLine($" Option : ");
+						Console.WriteLine($"    --folder <path> : backup folder");
+						Console.WriteLine($"    --timeout <number> : timeout backup");
+						Console.WriteLine($"    --delete <number> : delete the old backups after days number ");
+						Console.WriteLine($"    --user <username> : user identification ");
+						Console.WriteLine($"    --password <password> : password identification ");
+						Console.ReadLine();
+						return;
 
+					default:
+						break;
+				}
 
-                        if (args.Length > i + 1)
-                        {
-                            folderBackup = UNCPath(Environment.ExpandEnvironmentVariables(args[i + 1]));
-                            Console.WriteLine($"Dossier de sauvegarde : {folderBackup}");
+			}
 
-                        }
-                        break;
+			//Console.WriteLine($"------Backup------");
+			Console.WriteLine("-".PadRight(60, '-'));
+			Console.WriteLine("|ABB BACKUP".PadRight(59) + "|");
+			Console.WriteLine("|Copyright © SIIF 2024".PadRight(59) + "|");
+			Console.WriteLine($"|{Assembly.GetExecutingAssembly().GetName().Version.ToString().PadRight(58)}|");
+			Console.WriteLine("|Application for save the robots programs".PadRight(59) + "|");
+			Console.WriteLine("-".PadRight(60, '-'));
 
-                    //Aide
-                    case "--help":
-                        Console.WriteLine($" Backup Robot - Application for save the robots programs");
-                        Console.WriteLine($" Option : ");
-                        Console.WriteLine($"    --folder <path> : backup folder");
-                        Console.WriteLine($"    --timeout <number> : timeout backup");
-                        Console.WriteLine($"    --delete <number> : delete the old backups after days number ");
+			Console.WriteLine($"Ctrl + c for exit application");
 
-                        Console.ReadLine();
-                        return;
+			//Recherche des robots présent sur le réseau
+			scanner = new NetworkScanner();
 
-                    default:
-                        break;
-                }
+			while (!ScanReseau(scanner) & Cancel == false)
+			{
+				Console.WriteLine($"No robot deteted, retry");
+				Thread.Sleep(1000);
+			}
 
-            }
 
-            //Console.WriteLine($"------Backup------");
-            Console.WriteLine("-".PadRight(60, '-'));
-            Console.WriteLine("|ABB BACKUP".PadRight(59)+"|");
-            Console.WriteLine("|Copyright © SIIF 2024".PadRight(59) + "|");
-            Console.WriteLine($"|{Assembly.GetExecutingAssembly().GetName().Version.ToString().PadRight(58)}|");
-            Console.WriteLine("|Application for save the robots programs".PadRight(59) + "|");
-            Console.WriteLine("-".PadRight(60, '-'));
+			//Création du répertoire de sauvegarde horodaté
+			FolderBackup = folderBackup + "/Backup/" + DateTime.Now.ToString("yyyy_MM_dd HH\\hmmm\\mss\\s");
+			Directory.CreateDirectory(FolderBackup);
 
-            Console.WriteLine($"Ctrl + c for exit application");
 
-            //Recherche des robots présent sur le réseau
-            scanner = new NetworkScanner();
+			//Itération des robots détecté
+			Console.WriteLine("-".PadRight(103, '-'));
 
-            while (!ScanReseau(scanner) & Cancel == false)
-            {
-                Console.WriteLine($"No robot deteted, retry");
-                Thread.Sleep(1000);
-            }
+			foreach (ControllerInfo c in scanner.Controllers)
+			{
+				Console.WriteLine($"|{(c.Name.PadRight(16))} | {c.IPAddress.ToString().PadRight(16)} | {c.Id.PadRight(16)} | {c.VersionName.PadRight(16)} | {c.Availability.ToString().PadRight(16)}|");
+			}
+			Console.WriteLine("-".PadRight(103, '-'));
 
+			Console.WriteLine($"");
 
-            //Création du répertoire de sauvegarde horodaté
-            FolderBackup = folderBackup + "/Backup/" + DateTime.Now.ToString("yyyy_MM_dd HH\\hmmm\\mss\\s");
-            Directory.CreateDirectory(FolderBackup);
 
+			//Itération des robots détecté
+			foreach (ControllerInfo c in scanner.Controllers)
+			{
 
-            //Itération des robots détecté
-            Console.WriteLine("-".PadRight(103, '-'));
-            
-            foreach (ControllerInfo c in scanner.Controllers)
-            {
-                Console.WriteLine($"|{(c.Name.PadRight(16))} | {c.IPAddress.ToString().PadRight(16)} | {c.Id.PadRight(16)} | {c.VersionName.PadRight(16)} | {c.Availability.ToString().PadRight(16)}|");
-            }
-            Console.WriteLine("-".PadRight(103, '-'));
+				//Console.WriteLine($"{c.Name} - {c.IPAddress} - {c.Id} - Detecté");
 
-            Console.WriteLine($"");
+				//Sauvegarde uniquemet des robots réels
+				if (c.IsVirtual == false & c.Availability == Availability.Available)
+				{
 
+					DateTime date = DateTime.Now;
 
+					////Sauvegarde en cours
+					BackupInProgressNumber++;
 
+					Controller controller = null;
 
-            //Itération des robots détecté
-            foreach (ControllerInfo c in scanner.Controllers)
-            {
+					//Task t = Task.Run(() =>
+					//{
+					controller = Controller.Connect(c, ConnectionType.Standalone);
 
-                //Console.WriteLine($"{c.Name} - {c.IPAddress} - {c.Id} - Detecté");
+					//Récupération du chemin du répertoire "HOME" sur la baie robot
+					string home = controller.GetEnvironmentVariable("HOME");
 
-                //Sauvegarde uniquemet des robots réels
-                if (c.IsVirtual == false & c.Availability == Availability.Available)
-                {
+					//Ajout de la methode appeler lorsque la sauvegarde est terminé sur la baie robot
+					controller.BackupCompleted += BackupEnd;
 
-                    DateTime date = DateTime.Now;
+					Console.WriteLine($"{c.Name} - {c.IPAddress} - Start backup");
 
-                    ////Sauvegarde en cours
-                    BackupInProgressNumber++;
+					//Connection au robot avec les identifiants par défaut
+					if (user == "" || password == "")
+					{
+						controller.Logon(UserInfo.DefaultUser);
+					}
+					else
+					{
+						controller.Logon(new UserInfo(user, password));
+					}
 
-                    Controller controller = null;
+					//Demande des droits de lecture FTP
+					controller.AuthenticationSystem.DemandGrant(Grant.ReadFtp);
 
-                    //Task t = Task.Run(() =>
-                    //{
-                    controller = Controller.Connect(c, ConnectionType.Standalone);
+					//Selection du répertoire distant sur "HOME"
+					controller.FileSystem.RemoteDirectory = home;
 
-                    //Récupération du chemin du répertoire "HOME" sur la baie robot
-                    string home = controller.GetEnvironmentVariable("HOME");
+					//Suppression de l'ancienne sauvegarde
+					if (controller.FileSystem.DirectoryExists("/BACKUP"))
+					{
+						controller.FileSystem.RemoveDirectory("/BACKUP/");
+					}
 
-                    //Ajout de la methode appeler lorsque la sauvegarde est terminé sur la baie robot
-                    controller.BackupCompleted += BackupEnd;
+					Thread.Sleep(100);
 
-                    Console.WriteLine($"{c.Name} - {c.IPAddress} - Start backup");
+					//Demande de sauvegarde
+					controller.Backup(home + "/BACKUP/" + controller.Name);
 
-                    //Connection au robot avec les identifiants par défaut
-                    controller.Logon(UserInfo.DefaultUser);
 
-                    //Demande des droits de lecture FTP
-                    controller.AuthenticationSystem.DemandGrant(Grant.ReadFtp);
+					//Attente sauvegarde terminé
+					while (BackupInProgressNumber > 0)
+					{
 
-                    //Selection du répertoire distant sur "HOME"
-                    controller.FileSystem.RemoteDirectory = home;
+						Thread.Sleep(1000);
 
-                    //Suppression de l'ancienne sauvegarde
-                    if (controller.FileSystem.DirectoryExists("/BACKUP"))
-                    {
-                        controller.FileSystem.RemoveDirectory("/BACKUP/");
-                    }
+						var d = (DateTime.Now - date).TotalSeconds;
 
-                    Thread.Sleep(100);
+						if (d > timeoutBackup)
+						{
+							Console.WriteLine($"Timeout backup");
+							controller?.Dispose();
+							BackupInProgressNumber--;
+							break;
+						}
+					}
+				}
+			}
 
-                    //Demande de sauvegarde
-                    controller.Backup(home + "/BACKUP/" + controller.Name);
+			//Toutes les sauvegardes sont terminées
+			Console.WriteLine($"...Exit...");
+			Thread.Sleep(2000);
 
+		}
 
-                    //Attente sauvegarde terminé
-                    while (BackupInProgressNumber > 0)
-                    {
+		static private void BackupEnd(object sender, BackupEventArgs e)
+		{
 
-                        Thread.Sleep(1000);
+			Task.Run(() =>
+			{
 
-                        var d = (DateTime.Now - date).TotalSeconds;
+				if (e.Succeeded)
+				{
+					Controller controller = (Controller)sender;
 
-                        if (d > timeoutBackup)
-                        {
-                            Console.WriteLine($"Timeout backup");
-                            controller?.Dispose();
-                            BackupInProgressNumber--;
-                            break;
-                        }
-                    }
-                }
-            }
+					Controller c = (Controller)sender;
 
-            //Toutes les sauvegardes sont terminées
-            Console.WriteLine($"...Exit...");
-            Thread.Sleep(2000);
+					controller.Logon(UserInfo.DefaultUser);
 
-        }
+					string home = controller.GetEnvironmentVariable("HOME");
 
-        static private void BackupEnd(object sender, BackupEventArgs e)
-        {
+					controller.AuthenticationSystem.DemandGrant(Grant.ReadFtp);
 
-            Task.Run(() =>
-            {
+					controller.FileSystem.RemoteDirectory = FileSystemPath.Combine(home, "BACKUP");
 
-                if (e.Succeeded)
-                {
-                    Controller controller = (Controller)sender;
+					controller.FileSystem.LocalDirectory = FolderBackup;
 
-                    Controller c = (Controller)sender;
+					controller.FileSystem.GetDirectory(controller.Name);
 
-                    controller.Logon(UserInfo.DefaultUser);
+					//Renomme le repertoire avec l'ID
+					ControllerInfo ci = scanner.Controllers.Where(x => x.Name == controller.Name).FirstOrDefault();
 
-                    string home = controller.GetEnvironmentVariable("HOME");
+					string PathFolderBackup = FolderBackup + "\\" + controller.Name;
 
-                    controller.AuthenticationSystem.DemandGrant(Grant.ReadFtp);
 
-                    controller.FileSystem.RemoteDirectory = FileSystemPath.Combine(home, "BACKUP");
+					if (ci != null)
+					{
+						string PathFolderBackupID = FolderBackup + "\\" + ci.Id + "_" + DateTime.Now.ToString("yyyy_MM_dd_HH\\hmmm\\mss\\s");
+						ZipFile.CreateFromDirectory(PathFolderBackup, PathFolderBackupID + ".zip");
+					}
+					else
+					{
+						ZipFile.CreateFromDirectory(PathFolderBackup, PathFolderBackup + "_" + DateTime.Now.ToString("yyyy_MM_dd_HH\\hmmm\\mss\\s") + ".zip");
+					}
 
-                    controller.FileSystem.LocalDirectory = FolderBackup;
+					Directory.Delete(PathFolderBackup, true);
 
-                    controller.FileSystem.GetDirectory(controller.Name);
 
-                    //Renomme le repertoire avec l'ID
-                    ControllerInfo ci = scanner.Controllers.Where(x => x.Name == controller.Name).FirstOrDefault();
+					Console.WriteLine($"{c.Name} - Backup save in -> {PathFolderBackup} ");
 
-                    string PathFolderBackup = FolderBackup + "\\" + controller.Name;
+					BackupInProgressNumber--;
+				}
 
+			});
+		}
 
-                    if (ci != null)
-                    {
-                        string PathFolderBackupID = FolderBackup + "\\" + ci.Id + "_" + DateTime.Now.ToString("yyyy_MM_dd_HH\\hmmm\\mss\\s");
-                        ZipFile.CreateFromDirectory(PathFolderBackup, PathFolderBackupID + ".zip");
-                    }
-                    else
-                    {
-                        ZipFile.CreateFromDirectory(PathFolderBackup, PathFolderBackup + "_" + DateTime.Now.ToString("yyyy_MM_dd_HH\\hmmm\\mss\\s") + ".zip");
-                    }
 
-                    Directory.Delete(PathFolderBackup, true);
+		public static string AssemblyDirectory
+		{
+			get
+			{
+				string codeBase = Assembly.GetExecutingAssembly().Location;// .CodeBase;
+				UriBuilder uri = new UriBuilder(codeBase);
+				string path = Uri.UnescapeDataString(uri.Path);
+				return Path.GetDirectoryName(path);
+			}
+		}
 
 
-                    Console.WriteLine($"{c.Name} - Backup save in -> {PathFolderBackup} ");
+		public static string UNCPath(string path)
+		{
+			if (!path.StartsWith(@"\\"))
+			{
+				using (RegistryKey key = Registry.CurrentUser.OpenSubKey("Network\\" + path[0]))
+				{
+					if (key != null)
+					{
+						return key.GetValue("RemotePath").ToString() + path.Remove(0, 2).ToString();
+					}
+				}
+			}
+			return path;
+		}
 
-                    BackupInProgressNumber--;
-                }
 
-            });
-        }
-
-
-        public static string AssemblyDirectory
-        {
-            get
-            {
-                string codeBase = Assembly.GetExecutingAssembly().Location;// .CodeBase;
-                UriBuilder uri = new UriBuilder(codeBase);
-                string path = Uri.UnescapeDataString(uri.Path);
-                return Path.GetDirectoryName(path);
-            }
-        }
-
-
-            public static string UNCPath(string path)
-            {
-                if (!path.StartsWith(@"\\"))
-                {
-                    using (RegistryKey key = Registry.CurrentUser.OpenSubKey("Network\\" + path[0]))
-                    {
-                        if (key != null)
-                        {
-                            return key.GetValue("RemotePath").ToString() + path.Remove(0, 2).ToString();
-                        }
-                    }
-                }
-                return path;
-            }
-        
-
-    }
+	}
 
 }
