@@ -21441,8 +21441,20 @@
             <param name="path">Path of directory.</param>
             <param name="includes">What to include from backup.</param>
             <param name="ignores">What errors to ignore.</param>
-            <param name="includeControllerSettings">Internal use only</param>
-            <param name="includeSafetySettings">Internal use only</param>
+            <param name="includeControllerSettings">Internal use only, available from RW 6.03.01</param>
+            <param name="includeSafetySettings">Internal use only, available from RW 6.05</param>
+            <returns>True if restore will complete successfully.</returns>
+        </member>
+        <member name="M:Adapters.ControllerAdapter.CheckRestore(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Checks for possible mismatches and other problems with a backup.
+            </summary>
+            <param name="path">Path of directory.</param>
+            <param name="includes">What to include from backup.</param>
+            <param name="ignores">What errors to ignore.</param>
+            <param name="includeControllerSettings">Internal use only, available from RW 6.03.01</param>
+            <param name="includeSafetySettings">Internal use only, available from RW 6.05</param>
+            <param name="includeUasSettings">Internal use only, available from RW 7.15</param>
             <returns>True if restore will complete successfully.</returns>
         </member>
         <member name="M:Adapters.ControllerAdapter.CreateQueue(System.String,System.Int16,System.Int16)">
@@ -21629,8 +21641,25 @@
             <param name="include">Defines what to restore from the backup.</param>
             <param name="ignore">Defines what mismatches between current system and backup to ignore.</param>
             <param name="removeBackup">Flag to indicate if the backup folder shall be removed.</param>
-            <param name="includeControllerSettings">Internal use only</param>
-            <param name="includeSafetySettings">Internal use only</param>
+            <param name="includeControllerSettings">Internal use only, available from RW 6.03.01</param>
+            <param name="includeSafetySettings">Internal use only, available from RW 6.05</param>
+            <remarks>
+            Requires mastership of Rapid and Configuration domains. 
+            Requires UAS_RESTORE grant. 
+            Requires Auto mode.
+            </remarks>
+        </member>
+        <member name="M:Adapters.ControllerAdapter.Restore(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>        
+            Performs a Restore operation of a controller system.
+            </summary>
+            <param name="path">Path to the backup.</param>
+            <param name="include">Defines what to restore from the backup.</param>
+            <param name="ignore">Defines what mismatches between current system and backup to ignore.</param>
+            <param name="removeBackup">Flag to indicate if the backup folder shall be removed.</param>
+            <param name="includeControllerSettings">Internal use only, available from RW 6.03.01</param>
+            <param name="includeSafetySettings">Internal use only, available from RW 6.05</param>
+            <param name="includeUasSettings">Internal use only, available from RW 7.15</param>
             <remarks>
             Requires mastership of Rapid and Configuration domains. 
             Requires UAS_RESTORE grant. 

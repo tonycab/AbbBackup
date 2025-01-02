@@ -40,3 +40,23 @@ C:\Users\alecabellec\Desktop\Projet C#\Sauvegarde robot\AbbBackup\obj\Debug\AbbB
 C:\Users\alecabellec\Desktop\Projet C#\Sauvegarde robot\AbbBackup\obj\Debug\AbbBackup.csproj.CopyComplete
 C:\Users\alecabellec\Desktop\Projet C#\Sauvegarde robot\AbbBackup\obj\Debug\AbbBackup.exe
 C:\Users\alecabellec\Desktop\Projet C#\Sauvegarde robot\AbbBackup\obj\Debug\AbbBackup.pdb
+C:\Users\alecabellec\source\repos\tonycab\AbbBackup\bin\Debug\AbbBackup.exe.config
+C:\Users\alecabellec\source\repos\tonycab\AbbBackup\bin\Debug\AbbBackup.exe
+C:\Users\alecabellec\source\repos\tonycab\AbbBackup\bin\Debug\AbbBackup.pdb
+C:\Users\alecabellec\source\repos\tonycab\AbbBackup\bin\Debug\ABB.Robotics.Controllers.PC.xml
+C:\Users\alecabellec\source\repos\tonycab\AbbBackup\bin\Debug\Microsoft.Extensions.Configuration.xml
+C:\Users\alecabellec\source\repos\tonycab\AbbBackup\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.xml
+C:\Users\alecabellec\source\repos\tonycab\AbbBackup\bin\Debug\Microsoft.Extensions.Configuration.CommandLine.xml
+C:\Users\alecabellec\source\repos\tonycab\AbbBackup\bin\Debug\Microsoft.Extensions.Primitives.xml
+C:\Users\alecabellec\source\repos\tonycab\AbbBackup\bin\Debug\System.Buffers.xml
+C:\Users\alecabellec\source\repos\tonycab\AbbBackup\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\alecabellec\source\repos\tonycab\AbbBackup\bin\Debug\System.Memory.xml
+C:\Users\alecabellec\source\repos\tonycab\AbbBackup\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\alecabellec\source\repos\tonycab\AbbBackup\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\alecabellec\source\repos\tonycab\AbbBackup\bin\Debug\System.ValueTuple.xml
+C:\Users\alecabellec\source\repos\tonycab\AbbBackup\obj\Debug\AbbBackup.csproj.AssemblyReference.cache
+C:\Users\alecabellec\source\repos\tonycab\AbbBackup\obj\Debug\AbbBackup.csproj.CoreCompileInputs.cache
+C:\Users\alecabellec\source\repos\tonycab\AbbBackup\obj\Debug\AbbBackup.csproj.Fody.CopyLocal.cache
+C:\Users\alecabellec\source\repos\tonycab\AbbBackup\obj\Debug\AbbBackup.csproj.Up2Date
+C:\Users\alecabellec\source\repos\tonycab\AbbBackup\obj\Debug\AbbBackup.exe
+C:\Users\alecabellec\source\repos\tonycab\AbbBackup\obj\Debug\AbbBackup.pdb
