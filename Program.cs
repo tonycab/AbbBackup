@@ -33,6 +33,9 @@ namespace AbbBackup
 			//Scan les robots présents sur le réseau
 			scanner.Scan();
 
+			
+			Thread.Sleep(2000);
+
 			//Fin du programme si pas de robot détecté
 			if (scanner.Controllers.Where(p => !p.IsVirtual).ToList().Count() == 0)
 			{
