@@ -27,11 +27,20 @@ Ouvrir l'invite de commande Windows et se placer dans le répertoire contenant l
 
 ### EXEMPLE 1
 
+Cet exemple sauvegarde les robots présents sur le réseau 
+* cmd
+  ```sh
+  C:\>AbbBackup.exe
+  ```
+
+### EXEMPLE 2
+
 Cet exemple sauvegarde les robots présents sur le réseau dans un répertoire "Backup" placé sur le bureau Windows. Les sauvegardes de plus de 365 jours sont supprimées
 * cmd
   ```sh
   C:\>AbbBackup.exe --folder "%UserProfile%\Desktop" --delete 365 --timeout 180
   ```
+### EXEMPLE 3
 
 Cet exemple permet d'ajouter un fichier contenant les identifiants de connexion UAS 
 * cmd
