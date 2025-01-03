@@ -34,8 +34,9 @@ namespace AbbBackup
         {
             //Scan les robots présents sur le réseau
             scanner.Scan();
+            Console.WriteLine($"Search robots");
 
-            Thread.Sleep(2000);
+            Thread.Sleep(5000);
 
             //Fin du programme si pas de robot détecté
             if (scanner.Controllers.Where(p => !p.IsVirtual).ToList().Count() == 0)
@@ -47,8 +48,6 @@ namespace AbbBackup
 
         static void Main(string[] args)
         {
-
-
             //Pour quitter l'appli
             bool Cancel = false;
             Console.CancelKeyPress += delegate (object sender, ConsoleCancelEventArgs e)
