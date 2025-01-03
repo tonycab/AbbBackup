@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
 # -- AbbBackup --
 
 ## A Propos du projet
@@ -31,16 +33,16 @@ Cet exemple permet d'ajouter un fichier contenant les identifiants de connexion
 
 * xml
   ```xml
-   <?xml version="1.0" encoding="utf-8"?>
-    <BackupList>
-      <RobotList>
-        <Robot>
-         <Guid>34fbabb1-ac2e-4336-a740-94dc73ab760d</Guid>
-         <User>Default User</User>
-         <Password>robotics</Password>
-       </Robot>
-     </RobotList>
-   </BackupList>
+  <?xml version="1.0" encoding="utf-8"?>
+<BackupList>
+  <RobotList>
+    <Robot>
+      <Guid>34fbabb1-ac2e-4336-a740-94dc73ab760d</Guid>
+      <User>Default User</User>
+      <Password>robotics</Password>
+    </Robot>
+  </RobotList>
+</BackupList>
   ```
 
 
@@ -62,3 +64,9 @@ a.lecabellec@siif.fr
 
 <p align="right">(<a href="#readme-top">Back to top</a>)</p>
 
+=======
+# AbbBackup
+>>>>>>> 633584ffded7d283a2cc4bb5a05081fcb0c01c08
+=======
+# AbbBackup
+>>>>>>> 633584ffded7d283a2cc4bb5a05081fcb0c01c08
