@@ -23,11 +23,8 @@ sauvegarde périodiquement en utilisant le planificateur de tache Windows.
 
 ## 1-TELECHARGER
 
-<<<<<<< HEAD
 [Télécharger => AbbBackup.exe](https://github.com/tonycab/AbbBackup/raw/refs/heads/main/bin/Release/AbbBackup.exe)
-=======
-[Télécharger => AbbBackup.exe](https://github.com/tonycab/AbbBackup/tree/main/bin/Release/AbbRobot.exe)
->>>>>>> 2ec26da7cd2b157143c02da6e2f73eb1215bab4e
+
 
 ## 2-COMMENCER
 
