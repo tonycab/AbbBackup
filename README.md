@@ -21,10 +21,16 @@ sauvegarde périodiquement en utilisant le planificateur de tache Windows.
 
 <!-- COMMENCER -->
 
-## COMMENCER
+## 1-TELECHARGER
+
+[AbbRobot.exe](https://github.com/tonycab/AbbBackup/tree/main/bin/Release/AbbRobot.exe)
+
+## 2-COMMENCER
 
 Ouvrir l'invite de commande Windows et se placer dans le répertoire contenant l'exécutable "AbbBackup.exe" 
 
+
+## 3-EXEMPLES
 ### EXEMPLE 1
 
 Cet exemple sauvegarde les robots présents sur le réseau 
