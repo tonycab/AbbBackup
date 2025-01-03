@@ -16,7 +16,7 @@ AbbBackup est une application Windows en invite de commande pour réaliser la sa
 L'application permet de sauvegarder les robots présents sur le réseau. Il est possible d'exécuter la 
 sauvegarde périodiquement en utilisant le planificateur de tache Windows.
 
-[!IMPORTANT]
+[!WARNING]
 Uniquement les robots réels sont sauvegardés. Les robots virtuels sont ignorés
 
 
@@ -67,8 +67,10 @@ Cet exemple permet d'ajouter un fichier contenant les identifiants de connexion 
   	</RobotList>
      </BackupList>
   ```
-[!CAUTION]
-Le mot de passe n'est crypté
+  
+  [!WARNING]
+  Le mot de passe n'est crypté.
+
 
 
 ## Amélioration à faire
