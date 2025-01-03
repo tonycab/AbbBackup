@@ -15,6 +15,7 @@ AbbBackup est un application Windows en invite de commande pour réaliser la sau
 L'application permet de sauvegarder plusieurs robots. Il est possible d'exécuter la 
 sauvegarde périodiquement en utilisant le planificateur de tache Windows.
 
+!!! Uniquement les robots réels sont sauvegardés. Les robots virtuels sont ignorés
 
 
 <!-- COMMENCER -->
