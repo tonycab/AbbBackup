@@ -3,9 +3,9 @@
 ## A Propos du projet
 
 
-AbbBackup est un application Windows en invite de commande pour rÃ©aliser la sauvegarde de robots IRC5 ABB.
-L'application permet de sauvegarder plusieurs robots tr s rapidement. Il est possible d'exÃ©cuter la 
-sauvegarde pÃ©riodiquement en utilisant le planificateur de tache Windows.
+AbbBackup est un application Windows en invite de commande pour réaliser la sauvegarde de robots IRC5 ABB.
+L'application permet de sauvegarder plusieurs robots tr s rapidement. Il est possible d'exécuter la 
+sauvegarde périodiquement en utilisant le planificateur de tache Windows.
 
 
 
@@ -13,11 +13,11 @@ sauvegarde pÃ©riodiquement en utilisant le planificateur de tache Windows.
 
 ## COMMENCER
 
-Ouvrir l'invite de commande Windows et se placer dans le rÃ©pertoire contenant l'exÃ©cutable "AbbBackup.exe" 
+Ouvrir l'invite de commande Windows et se placer dans le répertoire contenant l'exécutable "AbbBackup.exe" 
 
 ### EXEMPLE 1
 
-Cet exemple sauvegarde les robots prÃ©sents sur le r seau dans un rÃ©pertoire "Backup" placÃ© sur le bureau Windows. Les sauvegardes de plus de 365 jours sont supprimÃ©es
+Cet exemple sauvegarde les robots présents sur le r seau dans un répertoire "Backup" placé sur le bureau Windows. Les sauvegardes de plus de 365 jours sont supprimées
 * cmd
   ```sh
   C:\>AbbBackup.exe --folder "%UserProfile%\Desktop" --delete 365 --timeout 180
