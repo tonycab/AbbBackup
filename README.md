@@ -1,7 +1,6 @@
 <a id="readme-top"></a>
 # Abb Backup
 
-
 <!-- LOGO -->
 <div align="center">
   <a href="https://github.com/tonycab/AbbBackup">
@@ -9,28 +8,33 @@
   </a>
 </div>
 
-
-## A Propos du projet
+## LE PROJET
 
 AbbBackup est une application Windows en invite de commande pour réaliser la sauvegarde de robots IRC5 ABB.
 L'application permet de sauvegarder les robots présents sur le réseau. Il est possible d'exécuter la 
 sauvegarde périodiquement en utilisant le planificateur de tache Windows.
 
-[!WARNING]
-Uniquement les robots réels sont sauvegardés. Les robots virtuels sont ignorés
+> [!NOTE]
+> L'application utilise PC SDK ABB ➡️ https://developercenter.robotstudio.com/
 
+> [!WARNING]
+> Uniquement les robots réels sont sauvegardés. Les robots virtuels sont ignorés
 
-<!-- COMMENCER -->
+<!-- COMMENCER --> 
 
-## 1-TELECHARGER
+## 1 - TELECHARGER
 
-[Télécharger => AbbRobot.exe](https://github.com/tonycab/AbbBackup/releases/download/v1.1.0.0/AbbBackup.exe)
+[➡️Download (AbbRobot)⬅️](https://github.com/tonycab/AbbBackup/releases/download/v1.1.0.0/AbbBackup.exe)
 
-## 2-COMMENCER
+## 2 - COMMENCER
+
+Exécuter l'application
+
+***ou***
 
 Ouvrir l'invite de commande Windows et se placer dans le répertoire contenant l'exécutable "AbbBackup.exe" 
 
-## 3-EXEMPLES
+## 3 - EXEMPLES
 ### EXEMPLE 1
 
 Cet exemple sauvegarde les robots présents sur le réseau 
@@ -54,7 +58,7 @@ Cet exemple permet d'ajouter un fichier contenant les identifiants de connexion 
   C:\>AbbBackup.exe --folder "%UserProfile%\Desktop" --delete 365 --timeout 180 --list "fileRobot.xml"
   ```
 
-* xml
+* fileRobot.xml
   ```xml
   <?xml version="1.0" encoding="utf-8"?>
      <BackupList>
@@ -68,9 +72,8 @@ Cet exemple permet d'ajouter un fichier contenant les identifiants de connexion 
      </BackupList>
   ```
   
-  [!WARNING]
-  Le mot de passe n'est crypté.
-
+> [!CAUTION]
+> Le mot de passe n'est pas crypté.
 
 
 ## Amélioration à faire
