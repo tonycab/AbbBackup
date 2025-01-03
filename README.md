@@ -4,7 +4,7 @@
 <!-- LOGO -->
 <div align="center">
   <a href="https://github.com/tonycab/AbbBackup">
-    <img src="logo.png" alt="Logo" width="80" height="80">
+    <img src="Logo.png" alt="Logo" width="80" height="80">
   </a>
 </div>
 
