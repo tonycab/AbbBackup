@@ -1,10 +1,11 @@
-# AbbBackup
+<a id="readme-top"><h1> AbbBackup</h1></a>
+# Abb Backup
 
 
 <!-- LOGO -->
 <div align="center">
   <a href="https://github.com/tonycab/AbbBackup">
-    <img src="Logo.png" alt="Logo" width="80" height="80">
+    <img src="Logo.png" alt="Logo" width="120" height="120">
   </a>
 </div>
 
