@@ -1,13 +1,11 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 # -- AbbBackup --
 
 ## A Propos du projet
 
 
-AbbBackup est un application Windows en invite de commande pour rÃ©aliser la sauvegarde de robots IRC5 ABB.
-L'application permet de sauvegarder plusieurs robots trÃ¨s rapidement. Il est possible d'exÃ©cuter la 
-sauvegarde pÃ©riodiquement en utilisant le planificateur de tache Windows.
+AbbBackup est un application Windows en invite de commande pour réaliser la sauvegarde de robots IRC5 ABB.
+L'application permet de sauvegarder plusieurs robots très rapidement. Il est possible d'exécuter la 
+sauvegarde périodiquement en utilisant le planificateur de tache Windows.
 
 
 
@@ -15,11 +13,11 @@ sauvegarde pÃ©riodiquement en utilisant le planificateur de tache Windows.
 
 ## COMMENCER
 
-Ouvrir l'invite de commande Windows et se placer dans le rÃ©pertoire contenant l'exÃ©cutable "AbbBackup.exe" 
+Ouvrir l'invite de commande Windows et se placer dans le répertoire contenant l'exécutable "AbbBackup.exe" 
 
 ### EXEMPLE 1
 
-Cet exemple sauvegarde les robots prÃ©sents sur le rÃ©seau dans un rÃ©pertoire "Backup" placÃ© sur le bureau Windows. Les sauvegardes de plus de 365 jours sont supprimÃ©es
+Cet exemple sauvegarde les robots présents sur le réseau dans un répertoire "Backup" placé sur le bureau Windows. Les sauvegardes de plus de 365 jours sont supprimées
 * cmd
   ```sh
   C:\>AbbBackup.exe --folder "%UserProfile%\Desktop" --delete 365 --timeout 180
@@ -33,6 +31,7 @@ Cet exemple permet d'ajouter un fichier contenant les identifiants de connexion
 
 * xml
   ```xml
+<<<<<<<<< Temporary merge branch 1
   <?xml version="1.0" encoding="utf-8"?>
 <BackupList>
   <RobotList>
@@ -43,6 +42,18 @@ Cet exemple permet d'ajouter un fichier contenant les identifiants de connexion
     </Robot>
   </RobotList>
 </BackupList>
+=========
+   <?xml version="1.0" encoding="utf-8"?>
+    <BackupList>
+      <RobotList>
+        <Robot>
+         <Guid>34fbabb1-ac2e-4336-a740-94dc73ab760d</Guid>
+         <User>Default User</User>
+         <Password>robotics</Password>
+       </Robot>
+     </RobotList>
+   </BackupList>
+>>>>>>>>> Temporary merge branch 2
   ```
 
 
@@ -64,9 +75,3 @@ a.lecabellec@siif.fr
 
 <p align="right">(<a href="#readme-top">Back to top</a>)</p>
 
-=======
-# AbbBackup
->>>>>>> 633584ffded7d283a2cc4bb5a05081fcb0c01c08
-=======
-# AbbBackup
->>>>>>> 633584ffded7d283a2cc4bb5a05081fcb0c01c08
