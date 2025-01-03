@@ -1,10 +1,18 @@
-# -- AbbBackup --
+# AbbBackup
+
+
+<!-- LOGO -->
+<div align="center">
+  <a href="https://github.com/tonycab/AbbBackup">
+    <img src="dessin.svg" alt="Logo" width="80" height="80">
+  </a>
+</div>
+
 
 ## A Propos du projet
 
-
 AbbBackup est un application Windows en invite de commande pour réaliser la sauvegarde de robots IRC5 ABB.
-L'application permet de sauvegarder plusieurs robots tr s rapidement. Il est possible d'exécuter la 
+L'application permet de sauvegarder plusieurs robots. Il est possible d'exécuter la 
 sauvegarde périodiquement en utilisant le planificateur de tache Windows.
 
 
@@ -17,13 +25,13 @@ Ouvrir l'invite de commande Windows et se placer dans le répertoire contenant l
 
 ### EXEMPLE 1
 
-Cet exemple sauvegarde les robots présents sur le r seau dans un répertoire "Backup" placé sur le bureau Windows. Les sauvegardes de plus de 365 jours sont supprimées
+Cet exemple sauvegarde les robots présents sur le réseau dans un répertoire "Backup" placé sur le bureau Windows. Les sauvegardes de plus de 365 jours sont supprimées
 * cmd
   ```sh
   C:\>AbbBackup.exe --folder "%UserProfile%\Desktop" --delete 365 --timeout 180
   ```
 
-Cet exemple permet d'ajouter un fichier contenant les identifiants de connexion 
+Cet exemple permet d'ajouter un fichier contenant les identifiants de connexion UAS 
 * cmd
   ```sh
   C:\>AbbBackup.exe --folder "%UserProfile%\Desktop" --delete 365 --timeout 180 --list "fileRobot.xml"
@@ -46,8 +54,7 @@ Cet exemple permet d'ajouter un fichier contenant les identifiants de connexion
 
 
 
-<!-- ROADMAP -->
-## Roadmap
+## Amélioration à faire
 
 - [x] Suppression des sauvegardes anciennes
 - [x] Ajout de la gestion de connexion
@@ -55,7 +62,6 @@ Cet exemple permet d'ajouter un fichier contenant les identifiants de connexion
 - [ ] Sauvegarde uniquement des robots contenu dans une liste
 
 
-<!-- CONTACT -->
 ## Contact
 
 a.lecabellec@siif.fr
