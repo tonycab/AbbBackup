@@ -10,9 +10,12 @@
 
 ## LE PROJET
 
-AbbBackup est une application Windows en invite de commande pour réaliser la sauvegarde de robots IRC5 ABB.
-L'application permet de sauvegarder les robots présents sur le réseau. Il est possible d'exécuter la 
-sauvegarde périodiquement en utilisant le planificateur de tache Windows.
+AbbBackup est une application Windows pour réaliser la sauvegarde des robots IRC5 ABB.
+L'application permet de sauvegarder les robots présents sur le réseau. Très pratique lorsque vos installations
+comportent de nombreux robots.
+
+😊 Pensez à utiliser le planificateur de taches windows pour sauvegarder vos robots prériodiquement.
+
 
 > [!NOTE]
 > L'application utilise PC SDK ABB ➡️ https://developercenter.robotstudio.com/
@@ -24,7 +27,10 @@ sauvegarde périodiquement en utilisant le planificateur de tache Windows.
 
 ## 1 - TELECHARGER
 
-[➡️Download (AbbRobot)⬅️](https://github.com/tonycab/AbbBackup/releases/download/v1.1.0.0/AbbBackup.exe)
+Télecharger et installer PC SDK ABB ➡️ [PC SDK ABB](https://developercenter.robotstudio.com/pc-sdk/download)
+
+
+Télecharger➡️ [AbbRobot.exe](https://github.com/tonycab/AbbBackup/releases/download/v1.1.0.0/AbbBackup.exe)
 
 ## 2 - COMMENCER
 
@@ -83,6 +89,9 @@ Cet exemple permet d'ajouter un fichier contenant les identifiants de connexion 
 - [x] Zip des sauvegardes
 - [ ] Sauvegarde uniquement des robots contenu dans une liste
 
+## INFORMATION
+> [!CAUTION]
+> PC SDK ABB utilise une liaison FTP pour télécharger le programme. 
 
 ## Contact
 
