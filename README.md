@@ -3,12 +3,13 @@
 # AbbBackup
 
 <!-- LOGO -->
+<!--
 <div align="center">
   <a href="https://github.com/tonycab/AbbBackup">
     <img src="Logo.png" alt="Logo" width="120" height="120">
   </a>
 </div>
-
+-->
 
 AbbBackup est une application Windows pour réaliser la sauvegarde des robots IRC5 ABB.
 L'application permet de sauvegarder les robots présents sur le réseau. Très pratique lorsque vos installations
