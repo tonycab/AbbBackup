@@ -8741,10 +8741,39 @@
             </summary>
             <exclude/>
         </member>
+        <member name="T:ABB.Robotics.Controllers.RestoreIncludeSafetySettings">
+            <summary>
+            Flags to control what safety settings that shall be included during a restore operation.
+            </summary>
+        </member>
+        <member name="F:ABB.Robotics.Controllers.RestoreIncludeSafetySettings.None">
+            <summary>
+            Do not include safety settings.
+            </summary>
+        </member>
+        <member name="F:ABB.Robotics.Controllers.RestoreIncludeSafetySettings.Include">
+            <summary>
+            Include safety settings.
+            </summary>
+        </member>
+        <member name="T:ABB.Robotics.Controllers.RestoreIncludeUasSettings">
+            <summary>
+            Flags to control what UAS settings that shall be included during a restore operation.
+            </summary>
+        </member>
+        <member name="F:ABB.Robotics.Controllers.RestoreIncludeUasSettings.None">
+            <summary>
+            Do not include UAS settings.
+            </summary>
+        </member>
+        <member name="F:ABB.Robotics.Controllers.RestoreIncludeUasSettings.Include">
+            <summary>
+            Include safety settings.
+            </summary>
+        </member>
         <member name="T:ABB.Robotics.Controllers.RestoreIgnores">
             <summary>
-            Enum to control what kind of mismatch errors that can be ignored during 
-            a restore operations.
+            Flags to control what kind of mismatch errors that can be ignored during a restore operation.
             </summary>
         </member>
         <member name="F:ABB.Robotics.Controllers.RestoreIgnores.None">
@@ -8762,9 +8791,136 @@
             Ignore template id.
             </summary>
         </member>
+        <member name="F:ABB.Robotics.Controllers.RestoreIgnores.TamperedId">
+            <summary>
+            Ignore file changes.
+            </summary>
+            <remarks>
+            Supported from RobotWare 7.16.
+            </remarks>
+        </member>
+        <member name="F:ABB.Robotics.Controllers.RestoreIgnores.UasId">
+            <summary>
+            Ignore user grants.
+            </summary>
+            <remarks>
+            Supported from RobotWare 7.16.
+            </remarks>
+        </member>
+        <member name="F:ABB.Robotics.Controllers.RestoreIgnores.PassphraseId">
+            <summary>
+            Ignore passphrase.</summary>
+            <remarks>
+            Supported from RobotWare 7.16.
+            </remarks>
+        </member>
         <member name="F:ABB.Robotics.Controllers.RestoreIgnores.All">
             <summary>
             Ignore all errors.
+            </summary>
+        </member>
+        <member name="T:ABB.Robotics.Controllers.RestoreMismatches">
+            <summary>
+            Specifies mismatches or inconsistencies in a backup.
+            </summary>
+        </member>
+        <member name="F:ABB.Robotics.Controllers.RestoreMismatches.None">
+            <summary>
+            No mismatch.
+            </summary>
+        </member>
+        <member name="F:ABB.Robotics.Controllers.RestoreMismatches.SystemId">
+            <summary>
+            Mismatch in system ID.
+            </summary>
+        </member>
+        <member name="F:ABB.Robotics.Controllers.RestoreMismatches.TemplateId">
+            <summary>
+            Mismatch in Products ID.
+            </summary>
+        </member>
+        <member name="F:ABB.Robotics.Controllers.RestoreMismatches.TamperedId">
+            <summary>
+            One or more files in the backup have been changed, added or removed. An event log message is generated for every difference.
+            </summary>
+            <remarks>
+            Supported from RobotWare 7.16.
+            </remarks>
+        </member>
+        <member name="F:ABB.Robotics.Controllers.RestoreMismatches.UasId">
+            <summary>
+            The user does not have grants to restore the complete backup.
+            </summary>
+            <remarks>
+            Supported from RobotWare 7.16.
+            </remarks>
+        </member>
+        <member name="F:ABB.Robotics.Controllers.RestoreMismatches.PassphraseId">
+            <summary>
+            The backup is made from a system with different passphrase.
+            </summary>
+            <remarks>
+            Supported from RobotWare 7.16.
+            </remarks>
+        </member>
+        <member name="T:ABB.Robotics.Controllers.RestoreResult">
+            <summary>
+            Specifies the result of a check restore operation.
+            </summary>
+        </member>
+        <member name="F:ABB.Robotics.Controllers.RestoreResult.Success">
+            <summary>
+            No errors or inconsistencies in the backup.
+            </summary>
+        </member>
+        <member name="F:ABB.Robotics.Controllers.RestoreResult.Mismatch">
+            <summary>
+            One or more mismatches or inconsistencies in the backup.
+            See <see cref="P:ABB.Robotics.Controllers.RestoreInfo.Mismatches"/> for details.
+            </summary>
+        </member>
+        <member name="F:ABB.Robotics.Controllers.RestoreResult.IncompleteBackup">
+            <summary>
+            One or more required files is missing.
+            <see cref="P:ABB.Robotics.Controllers.RestoreInfo.Data"/> may contain additional information.
+            </summary>
+        </member>
+        <member name="F:ABB.Robotics.Controllers.RestoreResult.SafetyError">
+            <summary>
+            The safety configuration is invalid.
+            <see cref="P:ABB.Robotics.Controllers.RestoreInfo.Data"/> may contain additional information.
+            </summary>
+        </member>
+        <member name="F:ABB.Robotics.Controllers.RestoreResult.CfgError">
+            <summary>
+            The system configuration is invalid.
+            <see cref="P:ABB.Robotics.Controllers.RestoreInfo.Data"/> may contain additional information.
+            </summary>
+        </member>
+        <member name="F:ABB.Robotics.Controllers.RestoreResult.OtherError">
+            <summary>
+            Other error.
+            <see cref="P:ABB.Robotics.Controllers.RestoreInfo.Data"/> may contain additional information.
+            </summary>
+        </member>
+        <member name="T:ABB.Robotics.Controllers.RestoreInfo">
+            <summary>
+            Contains information about the result of a check restore operation.
+            </summary>
+        </member>
+        <member name="P:ABB.Robotics.Controllers.RestoreInfo.Result">
+            <summary>
+            Gets the result of the operation.
+            </summary>
+        </member>
+        <member name="P:ABB.Robotics.Controllers.RestoreInfo.Mismatches">
+            <summary>
+            Gets additional information when <see cref="P:ABB.Robotics.Controllers.RestoreInfo.Result"/> is <see cref="F:ABB.Robotics.Controllers.RestoreResult.Mismatch"/>.
+            </summary>
+        </member>
+        <member name="P:ABB.Robotics.Controllers.RestoreInfo.Data">
+            <summary>
+            Gets additional data provided by the controller.
             </summary>
         </member>
         <member name="T:ABB.Robotics.Controllers.CapiConfig">
@@ -9960,6 +10116,18 @@
             </summary>
             <exclude/>
         </member>
+        <member name="M:ABB.Robotics.Controllers.Controller.CheckRestore2(System.String,ABB.Robotics.Controllers.RestoreIncludes,ABB.Robotics.Controllers.RestoreIgnores,ABB.Robotics.Controllers.RestoreIncludeSafetySettings,ABB.Robotics.Controllers.RestoreIncludeUasSettings)">
+            <summary>
+            Checks for possible mismatches and other problems with a backup.
+            </summary>
+            <param name="path">Path to the backup.</param>
+            <param name="includes">What to include from backup.</param>
+            <param name="ignores">What errors to ignore.</param>
+            <param name="includeSafetySettings">Include safety settings. Supported from RobotWare 6.05.</param>
+            <param name="includeUasSettings">Include UAS settings. Supported from RobotWare 7.15.</param>
+            <returns>A <see cref="T:ABB.Robotics.Controllers.RestoreInfo"/> object with information about the operation.</returns>
+            <remarks>This method is supported for all RobotWare versions, but provides additional functionality for 7.17 and later.</remarks>
+        </member>
         <member name="M:ABB.Robotics.Controllers.Controller.GetEnvironmentVariable(System.String)">
             <summary>
             Gets the value of an environment variable.
@@ -10084,6 +10252,25 @@
             ABB internal use only
             </summary>
             <exclude/>
+        </member>
+        <member name="M:ABB.Robotics.Controllers.Controller.Restore(System.String,ABB.Robotics.Controllers.RestoreIncludes,ABB.Robotics.Controllers.RestoreIgnores,ABB.Robotics.Controllers.RestoreIncludeSafetySettings,ABB.Robotics.Controllers.RestoreIncludeUasSettings,System.Boolean)">
+            <summary>
+            Performs a Restore operation of a controller system.
+            </summary>
+            <param name="path">Path to the backup.</param>
+            <param name="includes">Defines what to restore from the backup.</param>
+            <param name="ignores">Defines what mismatches between current system and backup to ignore.</param>
+            <param name="includeSafetySettings">Include safety settings. Supported from RobotWare 6.05.</param>
+            <param name="includeUasSettings">Include UAS settings. Supported from RobotWare 7.15.</param>
+            <param name="removeBackup">Flag to indicate if the backup folder shall be removed.</param>
+            <remarks>
+            Requires mastership of Rapid and Configuration domains. 
+            Requires UAS_RESTORE grant. 
+            Requires Auto mode.
+            
+            On a Virtual Controller the restore operation will delete the content of the temporary folder (TEMP)$.
+            <see cref="M:ABB.Robotics.Controllers.Controller.Restart"/>
+            </remarks>
         </member>
         <member name="M:ABB.Robotics.Controllers.Controller.CheckAvailability(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{ABB.Robotics.Controllers.MastershipResource},System.Boolean,System.Boolean,System.Boolean)">
             <summary>
@@ -10394,12 +10581,12 @@
         </member>
         <member name="T:ABB.Robotics.Controllers.ControllerUserInfo">
             <summary>
-            Defines all user properties in the internal impl.	
+            Defines all user properties in the internal implementation.	
             </summary>	
         </member>
         <member name="M:ABB.Robotics.Controllers.ControllerUserInfo.HidePassword">
             <summary>
-            Hides the current password for external acess.
+            Hides the current password for external access.
             </summary>
         </member>
         <member name="M:ABB.Robotics.Controllers.ControllerUserInfo.GetHiddenPassword">
@@ -18732,7 +18919,7 @@
             <param name="mode">The start mode.</param>
             <param name="waitForReconnect">set to true to wait until the controller is restarted and connected again.</param>
         </member>
-        <member name="M:ControllerAPI.Internal.ControllerInternal.Restore(System.String,ABB.Robotics.Controllers.RestoreIncludes,ABB.Robotics.Controllers.RestoreIgnores,ABB.Robotics.Controllers.RestoreIncludeControllerSettings,System.Boolean)">
+        <member name="M:ControllerAPI.Internal.ControllerInternal.Restore(System.String,ABB.Robotics.Controllers.RestoreIncludes,ABB.Robotics.Controllers.RestoreIgnores,ABB.Robotics.Controllers.RestoreIncludeControllerSettings,ABB.Robotics.Controllers.RestoreIncludeSafetySettings,ABB.Robotics.Controllers.RestoreIncludeUasSettings,System.Boolean)">
             <exclude/>
         </member>
         <member name="T:ControllerAPI.Internal.ControllerManager">
@@ -21434,29 +21621,6 @@
             Checks if the current user has RMMP.
             </summary>        
         </member>
-        <member name="M:Adapters.ControllerAdapter.CheckRestore(System.String,System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Checks for possible mismatches and other problems with a backup.
-            </summary>
-            <param name="path">Path of directory.</param>
-            <param name="includes">What to include from backup.</param>
-            <param name="ignores">What errors to ignore.</param>
-            <param name="includeControllerSettings">Internal use only, available from RW 6.03.01</param>
-            <param name="includeSafetySettings">Internal use only, available from RW 6.05</param>
-            <returns>True if restore will complete successfully.</returns>
-        </member>
-        <member name="M:Adapters.ControllerAdapter.CheckRestore(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Checks for possible mismatches and other problems with a backup.
-            </summary>
-            <param name="path">Path of directory.</param>
-            <param name="includes">What to include from backup.</param>
-            <param name="ignores">What errors to ignore.</param>
-            <param name="includeControllerSettings">Internal use only, available from RW 6.03.01</param>
-            <param name="includeSafetySettings">Internal use only, available from RW 6.05</param>
-            <param name="includeUasSettings">Internal use only, available from RW 7.15</param>
-            <returns>True if restore will complete successfully.</returns>
-        </member>
         <member name="M:Adapters.ControllerAdapter.CreateQueue(System.String,System.Int16,System.Int16)">
             <summary>
             Creates a queue on the controller.
@@ -21632,39 +21796,6 @@
             <summary>
             Restart the controller with given Restart Mode
             </summary>    
-        </member>
-        <member name="M:Adapters.ControllerAdapter.Restore(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean)">
-            <summary>        
-            Performs a Restore operation of a controller system.
-            </summary>
-            <param name="path">Path to the backup.</param>
-            <param name="include">Defines what to restore from the backup.</param>
-            <param name="ignore">Defines what mismatches between current system and backup to ignore.</param>
-            <param name="removeBackup">Flag to indicate if the backup folder shall be removed.</param>
-            <param name="includeControllerSettings">Internal use only, available from RW 6.03.01</param>
-            <param name="includeSafetySettings">Internal use only, available from RW 6.05</param>
-            <remarks>
-            Requires mastership of Rapid and Configuration domains. 
-            Requires UAS_RESTORE grant. 
-            Requires Auto mode.
-            </remarks>
-        </member>
-        <member name="M:Adapters.ControllerAdapter.Restore(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean)">
-            <summary>        
-            Performs a Restore operation of a controller system.
-            </summary>
-            <param name="path">Path to the backup.</param>
-            <param name="include">Defines what to restore from the backup.</param>
-            <param name="ignore">Defines what mismatches between current system and backup to ignore.</param>
-            <param name="removeBackup">Flag to indicate if the backup folder shall be removed.</param>
-            <param name="includeControllerSettings">Internal use only, available from RW 6.03.01</param>
-            <param name="includeSafetySettings">Internal use only, available from RW 6.05</param>
-            <param name="includeUasSettings">Internal use only, available from RW 7.15</param>
-            <remarks>
-            Requires mastership of Rapid and Configuration domains. 
-            Requires UAS_RESTORE grant. 
-            Requires Auto mode.
-            </remarks>
         </member>
         <member name="M:Adapters.ControllerAdapter.CheckAvailability(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{ABB.Robotics.Controllers.MastershipResource},System.Boolean,System.Boolean,System.Boolean)">
             <summary>

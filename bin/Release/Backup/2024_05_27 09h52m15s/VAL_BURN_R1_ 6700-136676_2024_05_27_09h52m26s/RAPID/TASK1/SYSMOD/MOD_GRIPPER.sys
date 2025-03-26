@@ -1,0 +1,49 @@
+MODULE MOD_GRIPPER(SYSMODULE)
+
+    PROC Gripper_Open(\num Time)
+        VAR num tp:=2;
+
+        IF OpMode()=OP_AUTO OR UIYesNo(["Valider l'ouverture de la pince"]) THEN
+            IF Present(Time) tp:=time;
+            WaitRob\inpos;
+            !Reset Fermeture_Pince_1;
+            !Set Ouverture_Pince_1;
+            
+            Reset Fermeture_Pince_2;
+            Set Ouverture_Pince_2;
+            WaitTime tp;
+        ENDIF
+
+    ENDPROC
+
+
+    PROC Gripper_Close(\num Time)
+        VAR num tp:=2;
+        IF OpMode()=OP_AUTO OR UIYesNo(["Valider la fermeture de la pince"]) THEN
+            IF Present(Time) tp:=time;
+            WaitRob\inpos;
+            !reSet Ouverture_Pince_1;
+            !set Fermeture_Pince_1;
+            
+            reSet Ouverture_Pince_2;
+            set Fermeture_Pince_2;
+            WaitTime tp;
+            
+        endif
+    ENDPROC
+
+    PROC Gripper_Close_Nowait()
+        VAR num tp:=2;
+        IF OpMode()=OP_AUTO OR UIYesNo(["Valider la fermeture de la pince"]) THEN
+
+            !reSet Ouverture_Pince_1;
+            !set Fermeture_Pince_1;
+            
+            reSet Ouverture_Pince_2;
+            set Fermeture_Pince_2;
+           
+            
+        endif
+    ENDPROC   
+    
+ENDMODULE

@@ -14,6 +14,7 @@ using System.IO.Compression;
 using ABB.Robotics.Controllers.MotionDomain;
 using Microsoft.Win32;
 using System.Reflection.Emit;
+using AbbBackup.Backup;
 
 namespace AbbBackup
 {
@@ -28,7 +29,7 @@ namespace AbbBackup
         static private string fileRobot = UNCPath(AssemblyDirectory);
         static private string user = "";
         static private string password = "";
-        static private RobotList robots = new RobotList();
+        static private RobotParamsList robots;
 
         static private  bool ScanReseau(NetworkScanner scanner)
         {
@@ -48,6 +49,9 @@ namespace AbbBackup
 
         static void Main(string[] args)
         {
+
+       
+
             //Pour quitter l'appli
             bool Cancel = false;
             Console.CancelKeyPress += delegate (object sender, ConsoleCancelEventArgs e)
@@ -93,13 +97,13 @@ namespace AbbBackup
                     //répertoire de sauvegarde
                     case "--folder":
 
-                        if (i != 0)
-                        {
-                            Console.WriteLine($" Erreur :");
-                            Console.WriteLine($"    Argument --folder doit être en première position");
-                            Console.ReadLine();
-                            return;
-                        }
+                        //if (i != 0)
+                        //{
+                        //    Console.WriteLine($" Erreur :");
+                        //    Console.WriteLine($"    Argument --folder doit être en première position");
+                        //    Console.ReadLine();
+                        //    return;
+                        //}
 
 
                         if (args.Length > i + 1)
@@ -127,7 +131,9 @@ namespace AbbBackup
 
                             try
                             {
-                                robots = RobotList.LoadToXml(fileRobot);
+                                robots = RobotParamsList.LoadToXml(fileRobot);
+                                robots.ForEach((p) => Console.WriteLine($"Robot {p.IP}" ));
+
                             }
                             catch (Exception ex)
                             {
@@ -136,6 +142,45 @@ namespace AbbBackup
 
                         }
                         break;
+
+                    case "--createxml":
+
+                        if (args.Length > i + 1)
+                        {
+                            fileRobot = UNCPath(Environment.ExpandEnvironmentVariables(args[i + 1]));
+                            Console.WriteLine($"Fichier UAS : {fileRobot}");
+
+
+                            if (File.Exists(fileRobot))
+                            {
+                                robots = RobotParamsList.LoadToXml(fileRobot);
+                            }
+                            else
+                            {
+                                robots = new RobotParamsList();
+                            }
+
+                            //Recherche des robots présent sur le réseau
+                            scanner = new NetworkScanner();
+
+                            while (!ScanReseau(scanner))
+                            {
+                                Console.WriteLine($"No robot deteted, retry");
+                                Thread.Sleep(1000);
+                            }
+
+                            foreach (ControllerInfo c in scanner.Controllers)
+                            {
+                                if (c.IsVirtual == false & c.Availability == Availability.Available)
+                                {
+                                    robots.Add(new RobotParams() { Id = c.SystemId,  IP = c.IPAddress.ToString(), NameFileBackup = c.Name});
+                                    Console.WriteLine($"Robot {c.Name} add in list");
+                                }
+                            }
+                             if (robots.Count > 0) robots.SaveFromXml(fileRobot);
+                        }
+
+                        return;
 
 
                     //Aide
@@ -148,6 +193,7 @@ namespace AbbBackup
                         Console.WriteLine($"    --user <username> : user identification ");
                         Console.WriteLine($"    --password <password> : password identification ");
                         Console.WriteLine($"    --list <path> : file.xml UAS descriptor");
+                        Console.WriteLine($"    --createxml <path> : create file.xml UAS descriptor");
                         Console.ReadLine();
                         return;
 
@@ -173,14 +219,33 @@ namespace AbbBackup
 
             while (!ScanReseau(scanner) & Cancel == false)
             {
-                Console.WriteLine($"No robot deteted, retry");
+                Console.WriteLine($"No robot detected, retry");
                 Thread.Sleep(1000);
             }
+
+
+            var robotsasauvegarder = robots.Join(scanner.Controllers, outerKeySelector: r => r.Id, innerKeySelector: c => c.SystemId, resultSelector: (Params, controller) => new { Params ,controller }).ToList();
+
+
+            BackupCreator backupCreator = new BackupCreator();
+
+            //Itération des robots détecté pour la sauvegarde
+            foreach (var c in robotsasauvegarder)
+            {
+                BackupController backupController = backupCreator.Factory(c.controller, c.Params);
+                backupController.BackupStart += (p) => Console.WriteLine($"{p.robotparam.IP} - Start backup");
+                backupController.BackupCompleted += (p,e) => Console.WriteLine($"{p.robotparam.NameFileBackup} - Backup completed");
+                backupController.StartBackup();
+
+            }
+
+
 
             if (Cancel == true) goto Label;
 
             //Création du répertoire de sauvegarde horodaté
-            FolderBackup = folderBackup + "/Backup/" + DateTime.Now.ToString("yyyy_MM_dd HH\\hmmm\\mss\\s");
+            var dateBackup = DateTime.Now.ToString("yyyy_MM_dd HH\\hmmm\\mss\\s");
+            FolderBackup = folderBackup + "/Backup/" + dateBackup;
             Directory.CreateDirectory(FolderBackup);
 
 
@@ -199,6 +264,21 @@ namespace AbbBackup
             //Itération des robots détecté pour la sauvegarde
             foreach (ControllerInfo c in scanner.Controllers)
             {
+                    
+                //Recherche des identifiants dans un fichier xml
+                var r =  robots.Where((ro)=>ro.IP == c.IPAddress.ToString() ).Select((p)=>p).FirstOrDefault();
+
+                if (robots != null & r == null)
+                {
+                    continue;
+                }
+                
+                if (r != null)
+                {
+                    FolderBackup = r.FolderBackup + "/Backup/" + dateBackup;
+                    Directory.CreateDirectory(FolderBackup);
+                }
+             
 
                 //Sauvegarde uniquemet des robots réels
                 if (c.IsVirtual == false & c.Availability == Availability.Available)
@@ -222,8 +302,7 @@ namespace AbbBackup
 
                     Console.WriteLine($"{c.Name} - {c.IPAddress} - Start backup");
 
-                    //Recherche des identifiants dans un fichier xml
-                    var r =  robots.Where((ro)=>ro.Id == c.SystemId ).Select((p)=>p).FirstOrDefault();
+               
 
                     //Connection avec les identifiants du fichier xml
                     if (r != null)

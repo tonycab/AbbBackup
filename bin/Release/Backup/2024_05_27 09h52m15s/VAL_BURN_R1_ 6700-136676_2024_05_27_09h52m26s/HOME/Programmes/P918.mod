@@ -1,0 +1,1 @@
+Error: Une exception a été levée par l'initialiseur de type pour 'PerTypeValues`1'.

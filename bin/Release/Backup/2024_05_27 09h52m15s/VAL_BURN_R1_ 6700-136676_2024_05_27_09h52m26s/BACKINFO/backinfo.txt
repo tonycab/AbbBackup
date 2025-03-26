@@ -1,0 +1,66 @@
+#
+# Generated backup file, do not edit.
+#
+# Originally at: /hd0a/TEMP/backup.063883
+# 2024-05-27  08:52:56
+#
+>>SYSTEM_ID:
+6700-136676
+
+>>PRODUCTS_ID:
+RobotWare Version: 6.15.05.00
+FlexPendantSxTPU4Software Version: 1.5.0 
+
+  RobotWare Base
+  888-3 PROFINET Device
+  608-1 World Zones
+  611-1 Path Recovery
+  613-1 Collision Detection
+  616-1 PC Interface
+  617-1 FlexPendant Interface
+  623-1 Multitasking
+  996-1 Safety Module
+  1125-1 SafeMove Basic
+  Motor Commutation
+  Service Info System
+  Pendelum Calibration
+  Drive System IRB 460/640/660/760/4600/66xx/6700
+  IRB 6700-235/2.65
+  Axis Calibration
+  FlexPendant SxTPU4 Software
+
+>>HOME:
+All public files and directories
+
+>>SYSPAR:
+SYS.cfg
+PROC.cfg
+MMC.cfg
+EIO.cfg
+SIO.cfg
+MOC.cfg
+
+
+>>TASK1: (T_ROB1,,)
+SYSMOD/MOD_VISION3D_LIB1.sys @ 
+SYSMOD/MOD_CALCWOBJPART.sys @ 
+SYSMOD/user.sys @ 
+SYSMOD/MOD_VISION3D_LIB2.sys @ 
+SYSMOD/MOD_VISION3D.sys @ 
+PROGMOD/MAINMODULE.mod @ 
+SYSMOD/MOD_LASER.sys @ 
+SYSMOD/MOD_GRIPPER.sys @ 
+SYSMOD/MOD_CHANGER.sys @ 
+SYSMOD/MOD_EXCHANGE.sys @ 
+PROGMOD/LINAMAR_CHATEAUROUX_R2_ECHO.mod @ 
+SYSMOD/DATAROB1.sys @ 
+SYSMOD/MOD_CALIB.sys @ 
+SYSMOD/MOD_DEFTOOL.sys @ 
+PROGMOD/CALIBMODULE.mod @ 
+PROGMOD/TATRA.mod @ 
+
+>>TASK2: (SC_CBC,,)
+SYSMOD/user.sys @ 
+
+
+>>EOF:

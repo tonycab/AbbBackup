@@ -1,0 +1,1870 @@
+MODULE MOD_LASER(SYSMODULE)
+    !-------------------------------------------------------------
+    !Module Laser V6.0
+    !
+    !Author : Le Cabellec Anthony
+    !
+    !---------------- Recalage Fonction---------------------------
+    ! - Module PLC_FAULT
+    !---------------- Recalage Fonction---------------------------
+    ! - Recalage laser 3 pts
+    ! - Recalage laser 2 pts
+    ! - Recalage laser 1 pts;
+    ! - Recalage laser circle
+    ! - Recalage laser angular
+    ! - CheckObject
+    !-------------------Other function----------------------------
+    ! - Open shutter laser (no position sensor)
+    ! - CalibOffsetLaser
+    ! - CheckLaserValue
+    !-------------------------------------------------------------
+
+
+    !Data
+    RECORD RECALAGEDATA3PT
+        num Tolerance;
+        num ReferenceX1;
+        num ReferenceX2;
+        num ReferenceY1;
+        num MeasureX1;
+        num MeasureX2;
+        num MeasureY1;
+        num StateMeasureX1;
+        num StateMeasureX2;
+        num StateMeasureY1;
+        robtarget X1;
+        robtarget X2;
+        robtarget Y1;
+        pose FrameReference;
+        pose FrameRecalage;
+        string Class;
+    ENDRECORD
+
+    !*******************************************************************************************************************************
+    RECORD RECALAGEDATA2PT
+        num Tolerance;
+        num ReferenceX1;
+        num ReferenceX2;
+        num MeasureX1;
+        num MeasureX2;
+        num StateMeasureX1;
+        num StateMeasureX2;
+        robtarget X1;
+        robtarget X2;
+        pose FrameReference;
+        pose FrameRecalage;
+        string Class;
+    ENDRECORD
+
+    !*******************************************************************************************************************************
+    RECORD RECALAGEDATA1PT
+        num tolerance;
+        num ReferenceX1;
+        num MeasureX1;
+        num StateMeasureX1;
+        robtarget X1;
+        pose FrameReference;
+        pose FrameRecalage;
+        string Class;
+    ENDRECORD
+
+    !*******************************************************************************************************************************
+    RECORD RECALAGEDATACIRCLE
+        num Tolerance;
+        num ReferenceP1;
+        num ReferenceP2;
+        num ReferenceP3;
+        num ReferenceP4;
+        num MeasureP1;
+        num MeasureP2;
+        num MeasureP3;
+        num MeasureP4;
+        num StateMeasureP1;
+        num StateMeasureP2;
+        num StateMeasureP3;
+        num StateMeasureP4;
+        robtarget P1;
+        robtarget P2;
+        robtarget P3;
+        robtarget P4;
+        pose FrameReference;
+        pose FrameRecalage;
+        string Class;
+    ENDRECORD
+
+    !*******************************************************************************************************************************
+    RECORD RECALAGEDATAANGULAR
+        num Tolerance;
+        num Reference;
+        num Measure;
+        num MeasureFirst;
+        num StateMeasure;
+        pose FrameReference;
+        pose FrameRecalage;
+        string Class;
+    ENDRECORD
+
+    !*******************************************************************************************************************************
+    RECORD CHECKOBJECTDATA
+        num Tolerance;
+        num Mode;
+        num Reference;
+        num Measure;
+        num StateMeasure;
+        string Class;
+    ENDRECORD
+    
+    !*******************************************************************************************************************************
+    !Various
+    LOCAL ALIAS num Level;
+    VAR iodev IOfileLog;
+
+    !State des measures
+    CONST num NOMEASURE:=0;
+    CONST num MEASUREOK:=1;
+    CONST num MEASUREERROR:=2;
+
+    !Parametres et signaux à renseigner
+    LOCAL CONST Level Laser_low:=100;
+    LOCAL CONST Level Laser_high:=595;
+    LOCAL CONST num NbDecimal:=100;
+    LOCAL CONST num CheckLaserValueTolerance:=0.5;
+    LOCAL CONST num LaserKm0:=162;
+    LOCAL CONST num LaserKm0Pointe:=52;
+    LOCAL CONST num DefaultTolerance:=10;
+
+    !Text Anglais/Francais/Autre
+    LOCAL CONST num Langage:=2;
+    LOCAL CONST string Message1{3}:=["Mesure hors tolerence                                ","Measure out of tolerence                             ",""];
+    LOCAL CONST string Message2{3}:=["Recalage hors-tolerance                              ","Readjustment  out of olerance                        ",""];
+    LOCAL CONST string Message3{3}:=["Acquiter pour faire une nouvelle tentative de mesure ","Acknowledge the message for retry                    ",""];
+    LOCAL CONST string Message4{3}:=["Voulez-vous enregistre la measure en référence       ","do you want to save the measurement as a reference ? ",""];
+    LOCAL CONST string Message5{3}:=["Distance du recalage trop grande                     ","Registration distance too large                      ",""];
+    LOCAL CONST string Message6{3}:=["","",""];
+    LOCAL CONST string Message7{3}:=["","",""];
+
+    !Persistante value KM0
+    LOCAL PERS num OffsetLaser:=-0.139999;
+    LOCAL PERS num MeasureKM0Value:=509.2;
+
+    !Error
+    CONST errtype ERR_MESURE:=10;
+    CONST errtype ERR_MESURE_OUT_OF_RANGE:=11;
+    CONST errtype ERR_RECALAGE_OUT_OF_RANGE:=12;
+    CONST errtype ERR_RECALAGE:=13;
+    CONST errtype ERR_OBJECT_FOUND:=14;
+    CONST errtype ERR_OBJECT_NOFOUND:=15;
+    CONST errtype ERR_MESURE_KM0:=16;
+    CONST errnum ERR_SUPPORT:=17;
+    CONST errnum ERR_BRIDES:=18;
+
+    LOCAL PERS tooldata ToolCurrent:=[FALSE,[[1832.28,1303.46,1523.26],[0.501194,0.500297,-0.498806,-0.4997]],[150,[3,0,400],[1,0,0,0],4.791,5.093,2.477]];
+    LOCAL PERS wobjdata WobjCurrent:=[TRUE,TRUE,"P1",[[0,0,0],[1,0,0,0]],[[0,0,0],[1,0,0,0]]];
+
+    LOCAL FUNC bool IsDebuggingMode() 
+        RETURN FALSE;
+    ENDFUNC
+    
+    
+    !**************************************************************************************************************************
+    !                                                 RECALAGE 3PTS
+    !**************************************************************************************************************************
+    !--------------------------------------------RECALAGE 3PTS MEASURE X1------------------------------------------------------
+    LOCAL PROC Measure3Pts_X1(INOUT RECALAGEDATA3PT Recalage)
+
+        !Init no measure
+        Recalage.StateMeasureX1:=NOMEASURE;
+
+        !Acquisition measure laser
+        Recalage.MeasureX1:=AcquisitionLaser();
+
+        !Record robot position
+        GetSysData ToolCurrent;
+        GetSysData WobjCurrent;
+        Recalage.X1:=RelTool(CRobT(\Tool:=ToolCurrent\wobj:=WobjCurrent),0,0,Recalage.MeasureX1-LaserKm0-LaserKm0Pointe);
+
+        !Check tolerance measure
+        IF Tolerance(Recalage.Referencex1,Recalage.MeasureX1,Recalage.tolerance) THEN
+            Recalage.StateMeasureX1:=MEASUREOK;
+        ELSE
+            Recalage.StateMeasureX1:=MEASUREERROR;
+        ENDIF
+
+        !Display message
+        TPWrite ArgName(Recalage)+" X1:"+ValToStr(Trunc(Recalage.MeasureX1\Dec:=2))+"mm-D:"+ValToStr(Trunc(Recalage.MeasureX1-Recalage.ReferenceX1\Dec:=2))+"mm";
+        TPWrite ArgName(Recalage)+" Tolerance:"+ValToStr(Trunc(Recalage.Tolerance\Dec:=2))+"mm-State:"+ValToStr(Recalage.StateMeasureX1);
+
+        !Controle de l'erreur en auto
+        IF IsAutoMode() AND Recalage.StateMeasureX1=MEASUREERROR THEN
+
+            TPWrite Message1{Langage}+":"+ArgName(Recalage)+"-X1";
+
+            RAISE ERR_MESURE_OUT_OF_RANGE;
+
+        ENDIF
+    ERROR
+
+        RAISE ;
+
+    ENDPROC
+
+    !------------------------------------------- RECALAGE 3PTS MEASURE X2------------------------------------------------------
+    LOCAL PROC Measure3Pts_X2(INOUT RECALAGEDATA3PT Recalage)
+
+        !Init no measure
+        Recalage.StateMeasureX2:=NOMEASURE;
+
+        !Acquisition measure laser
+        Recalage.MeasureX2:=AcquisitionLaser();
+
+        !Record robot position
+        GetSysData ToolCurrent;
+        GetSysData WobjCurrent;
+        Recalage.X2:=RelTool(CRobT(\Tool:=ToolCurrent\wobj:=WobjCurrent),0,0,Recalage.MeasureX2-LaserKm0-LaserKm0Pointe);
+
+        !Check tolerance measure
+        IF Tolerance(Recalage.Referencex2,Recalage.MeasureX2,Recalage.tolerance) THEN
+            Recalage.StateMeasureX2:=MEASUREOK;
+        ELSE
+            Recalage.StateMeasureX2:=MEASUREERROR;
+        ENDIF
+
+        !Display message
+        TPWrite ArgName(Recalage)+" X2:"+ValToStr(Trunc(Recalage.MeasureX2\Dec:=2))+"mm-D:"+ValToStr(Trunc(Recalage.MeasureX2-Recalage.ReferenceX2\Dec:=2))+"mm";
+        TPWrite ArgName(Recalage)+" Tolerance:"+ValToStr(Trunc(Recalage.Tolerance\Dec:=2))+"mm-State:"+ValToStr(Recalage.StateMeasureX2);
+
+        !Controle de l'erreur en auto
+        IF IsAutoMode() AND Recalage.StateMeasureX2=MEASUREERROR THEN
+
+            TPWrite Message1{Langage}+":"+ArgName(Recalage)+"-X2";
+
+            RAISE ERR_MESURE_OUT_OF_RANGE;
+
+        ENDIF
+    ERROR
+
+        RAISE ;
+
+    ENDPROC
+
+    !--------------------------------------------RECALAGE 3PTS MEASURE Y1------------------------------------------------------
+    LOCAL PROC Measure3Pts_Y1(INOUT RECALAGEDATA3PT Recalage)
+
+        !Init no measure
+        Recalage.StateMeasureY1:=NOMEASURE;
+
+        !Acquisition measure laser
+        Recalage.MeasureY1:=AcquisitionLaser();
+
+        !Record robot position
+        GetSysData ToolCurrent;
+        GetSysData WobjCurrent;
+        Recalage.Y1:=RelTool(CRobT(\Tool:=ToolCurrent\wobj:=WobjCurrent),0,0,Recalage.MeasureY1-LaserKm0-LaserKm0Pointe);
+
+        !Check tolerance measure
+        IF Tolerance(Recalage.ReferenceY1,Recalage.MeasureY1,Recalage.tolerance) THEN
+            Recalage.StateMeasureY1:=MEASUREOK;
+        ELSE
+            Recalage.StateMeasureY1:=MEASUREERROR;
+        ENDIF
+
+        !Display message
+        TPWrite ArgName(Recalage)+" Y1:"+ValToStr(Trunc(Recalage.MeasureY1\Dec:=2))+"mm-D:"+ValToStr(Trunc(Recalage.MeasureY1-Recalage.ReferenceY1\Dec:=2))+"mm";
+        TPWrite ArgName(Recalage)+" Tolerance:"+ValToStr(Trunc(Recalage.Tolerance\Dec:=2))+"mm-State:"+ValToStr(Recalage.StateMeasureY1);
+
+        !Controle de l'erreur en auto
+        IF IsAutoMode() AND Recalage.StateMeasureY1=MEASUREERROR THEN
+
+            TPWrite Message1{Langage}+":"+ArgName(Recalage)+"-Y1";
+
+            RAISE ERR_MESURE_OUT_OF_RANGE;
+
+        ENDIF
+    ERROR
+
+        RAISE ;
+
+    ENDPROC
+
+    !-------------------------------------------------RECALAGE 3PTS------------------------------------------------------------
+    PROC Measure3Pts(INOUT RECALAGEDATA3PT Recalage,\switch X1|switch X2|switch Y1\switch NoWait)
+        VAR num RetryCount:=1;
+
+        !Wait open shutter
+        Shutter_Laser\Open\NoCheck;
+
+        !Attente que le robot soit en position et la stabilisation du capteur laser
+        IF Present(NoWait)=FALSE WaitTime\inpos,1.5;
+
+        IF IsDebuggingMode() OR IsRobVC() THEN
+            RETURN ;
+        ENDIF
+
+        !Tolerance par défaut à 10mm
+        IF Recalage.tolerance=0 Recalage.tolerance:=DefaultTolerance;
+
+        IF Present(X1) THEN
+            Measure3Pts_X1 Recalage;
+
+        ELSEIF Present(X2) THEN
+            Measure3Pts_X2 Recalage;
+
+        ELSEIF Present(Y1) THEN
+            Measure3Pts_Y1 Recalage;
+        ENDIF
+
+    ERROR
+        IF ERRNO=ERR_MESURE_OUT_OF_RANGE THEN
+
+            IF RetryCount>0 THEN
+
+                !Display message error
+                TPWrite Message3{Langage};
+
+                !Send  fault signal to Plc
+                !PlcFaultExchange DEF_MEASURE_OUT_TOLERANCE;
+
+                RetryCount:=RetryCount-1;
+
+                RETRY;
+
+            ELSE
+                !Display message error
+                TPWrite Message2{Langage};
+
+                RETURN ;
+
+            ENDIF
+
+        ENDIF
+
+        RAISE ;
+
+    ENDPROC
+
+    !--------------------------------------------RECALAGE 3PTS CALCULATE-------------------------------------------------------
+    FUNC wobjdata GetResultMeasure3pts(INOUT RECALAGEDATA3PT RECALAGE,wobjdata WobjPart)
+        VAR wobjdata Wobj;
+        VAR string fileName;
+        VAR pose decalage;
+
+        !Debugging mode
+        IF IsDebuggingMode() OR IsRobVC() THEN
+            RETURN WobjPart;
+        ENDIF
+
+        !Calculate the frame
+        RECALAGE.FrameRecalage:=DefFrame(RECALAGE.X1,RECALAGE.X2,RECALAGE.y1\Origin:=3);
+
+        !Si on est en mode manuel ou si la référence n'a jamais été défini on propose d'enregistrer les mesures en référence
+        IF (IsManMode() OR RECALAGE.FrameReference.trans=[0,0,0]) AND UIYesNo([Message4{Langage}+" :",ArgName(RECALAGE),"?"]) THEN
+
+            !Class measure
+            RECALAGE.Class:="REFERENCE";
+
+            !Record the frame to reférence
+            RECALAGE.FrameReference:=RECALAGE.FrameRecalage;
+
+            !Record  mesures to référence
+            RECALAGE.ReferenceX1:=RECALAGE.MeasureX1;
+            RECALAGE.ReferenceX2:=RECALAGE.MeasureX2;
+            RECALAGE.ReferenceY1:=RECALAGE.MeasureY1;
+
+            !Change state measure to measure OK
+            RECALAGE.StateMeasureX1:=MEASUREOK;
+            RECALAGE.StateMeasureX2:=MEASUREOK;
+            RECALAGE.StateMeasureY1:=MEASUREOK;
+
+            !Return the frame origine
+            Wobj:=WobjPart;
+
+        ELSE
+            !Class measure
+            RECALAGE.Class:="RECALAGE";
+
+            !Calculate the frame readjusted
+            Wobj:=WobjPart;
+            Wobj.oframe:=PoseMult(Wobj.oframe,PoseMult(RECALAGE.FrameRecalage,PoseInv(RECALAGE.FrameReference)));
+
+        ENDIF
+
+        !Display of the offset on the flexpendant
+        decalage:=PoseMult(PoseInv(WobjPart.oframe),Wobj.oframe);
+        TPWrite ArgName(RECALAGE)+":X:"+ValToStr(Trunc(decalage.trans.x,\Dec:=2))+"-Y:"+ValToStr(Trunc(decalage.trans.y,\Dec:=2))+"-Z:"+ValToStr(Trunc(decalage.trans.z,\Dec:=2))+"";
+        TPWrite ArgName(RECALAGE)+":Rx:"+ValToStr(Trunc(EulerZYX(\X,decalage.rot),\Dec:=2))+"-Ry:"+ValToStr(Trunc(EulerZYX(\Y,decalage.rot),\Dec:=2))+"-Rz:"+ValToStr(Trunc(EulerZYX(\Z,decalage.rot),\Dec:=2))+"";
+
+        !Log measure to file
+        fileName:=ArgName(RECALAGE)+".csv";
+        IF IsFile("HOME:"+fileName)=FALSE THEN
+            Open "HOME:"\File:=fileName,IOfileLog\Write;
+            Write IOfileLog,"Date;"\NoNewLine;
+            Write IOfileLog,"Time;"\NoNewLine;
+            Write IOfileLog,"Type;"\NoNewLine;
+            Write IOfileLog,"Class;"\NoNewLine;
+            Write IOfileLog,"Name;"\NoNewLine;
+            Write IOfileLog,"ReferenceX1;"\NoNewLine;
+            Write IOfileLog,"ReferenceX2;"\NoNewLine;
+            Write IOfileLog,"ReferenceY1;"\NoNewLine;
+            Write IOfileLog,"MeasureX1;"\NoNewLine;
+            Write IOfileLog,"MeasureX2;"\NoNewLine;
+            Write IOfileLog,"MeasureY1;"\NoNewLine;
+            Write IOfileLog,"Tolerance;"\NoNewLine;
+            Write IOfileLog,"StateMeasureX1;"\NoNewLine;
+            Write IOfileLog,"StateMeasureX2;"\NoNewLine;
+            Write IOfileLog,"StateMeasureY1;"\NoNewLine;
+            Write IOfileLog,"FrameReference.X;"\NoNewLine;
+            Write IOfileLog,"FrameReference.Y;"\NoNewLine;
+            Write IOfileLog,"FrameReference.Z;"\NoNewLine;
+            Write IOfileLog,"FrameReference.Rx;"\NoNewLine;
+            Write IOfileLog,"FrameReference.Ry;"\NoNewLine;
+            Write IOfileLog,"FrameReference.Rz;"\NoNewLine;
+            Write IOfileLog,"FrameRecalage.X;"\NoNewLine;
+            Write IOfileLog,"FrameRecalage.Y;"\NoNewLine;
+            Write IOfileLog,"FrameRecalage.Z;"\NoNewLine;
+            Write IOfileLog,"FrameRecalage.Rx;"\NoNewLine;
+            Write IOfileLog,"FrameRecalage.Ry;"\NoNewLine;
+            Write IOfileLog,"FrameRecalage.Rz;";
+            Close IOfileLog;
+        ENDIF
+
+        Open "HOME:"\File:=fileName,IOfileLog\Append;
+        Write IOfileLog,CDate()+";"\NoNewLine;
+        Write IOfileLog,CTime()+";"\NoNewLine;
+        Write IOfileLog,"RECALAGE3PT"+";"\NoNewLine;
+        Write IOfileLog,RECALAGE.Class+";"\NoNewLine;
+        Write IOfileLog,ArgName(RECALAGE)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(RECALAGE.ReferenceX1)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(RECALAGE.ReferenceX2)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(RECALAGE.ReferenceY1)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(RECALAGE.MeasureX1)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(RECALAGE.MeasureX2)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(RECALAGE.MeasureY1)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(RECALAGE.Tolerance)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(RECALAGE.StateMeasureX1)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(RECALAGE.StateMeasureX2)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(RECALAGE.StateMeasureY1)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(WobjPart.oframe.trans.X)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(WobjPart.oframe.trans.Y)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(WobjPart.oframe.trans.Z)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(EulerZYX(\X,WobjPart.oframe.rot))+";"\NoNewLine;
+        Write IOfileLog,ValToStr(EulerZYX(\Y,WobjPart.oframe.rot))+";"\NoNewLine;
+        Write IOfileLog,ValToStr(EulerZYX(\Z,WobjPart.oframe.rot))+";"\NoNewLine;
+        Write IOfileLog,ValToStr(Wobj.oframe.trans.X)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(Wobj.oframe.trans.Y)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(Wobj.oframe.trans.Z)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(EulerZYX(\X,Wobj.oframe.rot))+";"\NoNewLine;
+        Write IOfileLog,ValToStr(EulerZYX(\Y,Wobj.oframe.rot))+";"\NoNewLine;
+        Write IOfileLog,ValToStr(EulerZYX(\Z,Wobj.oframe.rot))+";";
+        Close IOfileLog;
+
+        !Check tolerance measure
+        IF RECALAGE.StateMeasureX1<>MEASUREOK OR RECALAGE.StateMeasureX2<>MEASUREOK OR RECALAGE.StateMeasureY1<>MEASUREOK THEN
+            RAISE ERR_RECALAGE_OUT_OF_RANGE;
+        ENDIF
+
+        !Check distance frame
+        IF Distance(RECALAGE.FrameReference.trans,RECALAGE.FrameRecalage.trans)>50 THEN
+            TPWrite Message5{Langage};
+            RAISE ERR_RECALAGE_OUT_OF_RANGE;
+        ENDIF
+
+        !Return the frame readjusted
+        RETURN Wobj;
+
+    ERROR
+        TEST ERRNO
+
+        CASE ERR_FRAME:
+            RAISE ERR_RECALAGE;
+
+        CASE ERR_RECALAGE_OUT_OF_RANGE:
+            RAISE ERR_RECALAGE_OUT_OF_RANGE;
+
+        CASE ERR_FILEOPEN:
+
+            Close IOfileLog;
+
+            TPWrite "Write of log "+fileName+" failed";
+
+        ENDTEST
+
+    UNDO
+        Close IOfileLog;
+
+    ENDFUNC
+
+    !**************************************************************************************************************************
+    !                                                 RECALAGE 2PTS
+    !**************************************************************************************************************************
+    !--------------------------------------------RECALAGE 2PTS MEASURE X1------------------------------------------------------
+    LOCAL PROC Measure2Pts_X1(INOUT RECALAGEDATA2PT Recalage)
+
+        !Init no measure
+        Recalage.StateMeasureX1:=NOMEASURE;
+
+        !Acquisition measure laser
+        Recalage.MeasureX1:=AcquisitionLaser();
+
+        !Record robot position
+        GetSysData ToolCurrent;
+        GetSysData WobjCurrent;
+        Recalage.X1:=RelTool(CRobT(\Tool:=ToolCurrent\wobj:=WobjCurrent),0,0,Recalage.MeasureX1-LaserKm0-LaserKm0Pointe);
+
+        !Check tolerance measure
+        IF Tolerance(Recalage.Referencex1,Recalage.MeasureX1,Recalage.tolerance) THEN
+            Recalage.StateMeasureX1:=MEASUREOK;
+        ELSE
+            Recalage.StateMeasureX1:=MEASUREERROR;
+        ENDIF
+
+        !Display message
+        TPWrite ArgName(Recalage)+" X1:"+ValToStr(Trunc(Recalage.MeasureX1\Dec:=2))+"mm-D:"+ValToStr(Trunc(Recalage.MeasureX1-Recalage.ReferenceX1\Dec:=2))+"mm";
+        TPWrite ArgName(Recalage)+" Tolerance:"+ValToStr(Trunc(Recalage.Tolerance\Dec:=2))+"mm-State:"+ValToStr(Recalage.StateMeasureX1);
+
+        !Controle de l'erreur en auto
+        IF IsAutoMode() AND Recalage.StateMeasureX1=MEASUREERROR THEN
+
+            TPWrite Message1{Langage}+":"+ArgName(Recalage)+"-X1";
+
+            RAISE ERR_MESURE_OUT_OF_RANGE;
+
+        ENDIF
+    ERROR
+
+        RAISE ;
+
+    ENDPROC
+
+    !--------------------------------------------RECALAGE 2PTS MEASURE X2------------------------------------------------------
+    LOCAL PROC Measure2Pts_X2(INOUT RECALAGEDATA2PT Recalage)
+
+        !Init no measure
+        Recalage.StateMeasureX2:=NOMEASURE;
+
+        !Acquisition measure laser
+        Recalage.MeasureX2:=AcquisitionLaser();
+
+        !Record robot position
+        GetSysData ToolCurrent;
+        GetSysData WobjCurrent;
+        Recalage.X2:=RelTool(CRobT(\Tool:=ToolCurrent\wobj:=WobjCurrent),0,0,Recalage.MeasureX2-LaserKm0-LaserKm0Pointe);
+
+        !Check tolerance measure
+        IF Tolerance(Recalage.Referencex2,Recalage.MeasureX2,Recalage.tolerance) THEN
+            Recalage.StateMeasureX2:=MEASUREOK;
+        ELSE
+            Recalage.StateMeasureX2:=MEASUREERROR;
+        ENDIF
+
+        !Display message
+        TPWrite ArgName(Recalage)+" X2:"+ValToStr(Trunc(Recalage.MeasureX2\Dec:=2))+"mm-D:"+ValToStr(Trunc(Recalage.MeasureX2-Recalage.ReferenceX2\Dec:=2))+"mm";
+        TPWrite ArgName(Recalage)+" Tolerance:"+ValToStr(Trunc(Recalage.Tolerance\Dec:=2))+"mm-State:"+ValToStr(Recalage.StateMeasureX2);
+
+        !Controle de l'erreur en auto
+        IF IsAutoMode() AND Recalage.StateMeasureX2=MEASUREERROR THEN
+
+            TPWrite Message1{Langage}+":"+ArgName(Recalage)+"-X2";
+
+            RAISE ERR_MESURE_OUT_OF_RANGE;
+
+        ENDIF
+    ERROR
+
+        RAISE ;
+
+    ENDPROC
+
+    !--------------------------------------------------RECALAGE 2PTS-----------------------------------------------------------
+    PROC Measure2Pts(INOUT RECALAGEDATA2PT Recalage,\switch X1|switch X2\switch NoWait)
+        VAR num RetryCount:=1;
+
+        !Wait open shutter
+        Shutter_Laser\Open\NoCheck;
+
+        !Attente que le robot soit en position et la stabilisation du capteur laser
+        IF Present(NoWait)=FALSE WaitTime\inpos,1.5;
+
+        IF IsDebuggingMode() OR IsRobVC() THEN
+            RETURN ;
+        ENDIF
+
+        !Tolerance par défaut à 10mm
+        IF Recalage.tolerance=0 Recalage.tolerance:=DefaultTolerance;
+
+        IF Present(X1) THEN
+            Measure2Pts_X1 Recalage;
+
+        ELSEIF Present(X2) THEN
+            Measure2Pts_X2 Recalage;
+
+        ENDIF
+
+    ERROR
+
+        IF ERRNO=ERR_MESURE_OUT_OF_RANGE THEN
+
+            IF RetryCount>0 THEN
+
+                !Display message error
+                TPWrite Message3{Langage};
+
+                !Send  fault signal to Plc
+                !PlcFaultExchange DEF_MEASURE_OUT_TOLERANCE;
+
+                RetryCount:=RetryCount-1;
+
+                RETRY;
+
+            ELSE
+                !Display message error
+                TPWrite Message2{Langage};
+
+                RETURN ;
+
+            ENDIF
+
+        ENDIF
+
+        RAISE ;
+
+    ENDPROC
+
+    !---------------------------------------------RECALAGE 2PTS CALCULATE------------------------------------------------------
+    FUNC wobjdata GetResultMeasure2pts(INOUT RECALAGEDATA2PT RECALAGE,wobjdata WobjPart)
+        VAR wobjdata Wobj;
+        VAR string fileName;
+        VAR pose decalage;
+
+        !Debugging mode
+        IF IsDebuggingMode() OR IsRobVC() THEN
+            RETURN WobjPart;
+        ENDIF
+
+        !Calculate the frame
+        RECALAGE.FrameRecalage:=DefFrame(RECALAGE.X1,RECALAGE.X2,RelTool(RECALAGE.X1,0,0,100)\Origin:=1);
+
+        !Si on est en mode manuel ou si la référence n'a jamais été défini on propose d'enregistrer les mesures en référence
+        IF (IsManMode() OR RECALAGE.FrameReference.trans=[0,0,0]) AND UIYesNo([Message4{Langage}+" :",ArgName(RECALAGE),"?"]) THEN
+
+            !Class measure
+            RECALAGE.Class:="REFERENCE";
+
+            !Record the frame to reférence
+            RECALAGE.FrameReference:=RECALAGE.FrameRecalage;
+
+            !Record  mesures to référence
+            RECALAGE.ReferenceX1:=RECALAGE.MeasureX1;
+            RECALAGE.ReferenceX2:=RECALAGE.MeasureX2;
+
+            !Change state measure to measure OK
+            RECALAGE.StateMeasureX1:=MEASUREOK;
+            RECALAGE.StateMeasureX2:=MEASUREOK;
+
+            !Return the frame origine
+            Wobj:=WobjPart;
+
+        ELSE
+            !Class measure
+            RECALAGE.Class:="RECALAGE";
+
+            !Calculate the frame readjusted
+            Wobj:=WobjPart;
+            Wobj.oframe:=PoseMult(Wobj.oframe,PoseMult(RECALAGE.FrameRecalage,PoseInv(RECALAGE.FrameReference)));
+
+        ENDIF
+
+        !Display of the offset on the flexpendant
+        decalage:=PoseMult(PoseInv(WobjPart.oframe),Wobj.oframe);
+        TPWrite ArgName(RECALAGE)+":X:"+ValToStr(Trunc(decalage.trans.x,\Dec:=2))+"-Y:"+ValToStr(Trunc(decalage.trans.y,\Dec:=2))+"-Z:"+ValToStr(Trunc(decalage.trans.z,\Dec:=2))+"";
+        TPWrite ArgName(RECALAGE)+":Rx:"+ValToStr(Trunc(EulerZYX(\X,decalage.rot),\Dec:=2))+"-Ry:"+ValToStr(Trunc(EulerZYX(\Y,decalage.rot),\Dec:=2))+"-Rz:"+ValToStr(Trunc(EulerZYX(\Z,decalage.rot),\Dec:=2))+"";
+
+        !Log measure to file
+        fileName:=ArgName(RECALAGE)+".csv";
+        IF IsFile("HOME:"+fileName)=FALSE THEN
+            Open "HOME:"\File:=fileName,IOfileLog\Write;
+            Write IOfileLog,"Date;"\NoNewLine;
+            Write IOfileLog,"Time;"\NoNewLine;
+            Write IOfileLog,"Type;"\NoNewLine;
+            Write IOfileLog,"Class;"\NoNewLine;
+            Write IOfileLog,"Name;"\NoNewLine;
+            Write IOfileLog,"ReferenceX1;"\NoNewLine;
+            Write IOfileLog,"ReferenceX2;"\NoNewLine;
+            Write IOfileLog,"MeasureX1;"\NoNewLine;
+            Write IOfileLog,"MeasureX2;"\NoNewLine;
+            Write IOfileLog,"Tolerance;"\NoNewLine;
+            Write IOfileLog,"StateMeasureX1;"\NoNewLine;
+            Write IOfileLog,"StateMeasureX2;"\NoNewLine;
+            Write IOfileLog,"FrameReference.X;"\NoNewLine;
+            Write IOfileLog,"FrameReference.Y;"\NoNewLine;
+            Write IOfileLog,"FrameReference.Z;"\NoNewLine;
+            Write IOfileLog,"FrameReference.Rx;"\NoNewLine;
+            Write IOfileLog,"FrameReference.Ry;"\NoNewLine;
+            Write IOfileLog,"FrameReference.Rz;"\NoNewLine;
+            Write IOfileLog,"FrameRecalage.X;"\NoNewLine;
+            Write IOfileLog,"FrameRecalage.Y;"\NoNewLine;
+            Write IOfileLog,"FrameRecalage.Z;"\NoNewLine;
+            Write IOfileLog,"FrameRecalage.Rx;"\NoNewLine;
+            Write IOfileLog,"FrameRecalage.Ry;"\NoNewLine;
+            Write IOfileLog,"FrameRecalage.Rz;";
+            Close IOfileLog;
+        ENDIF
+
+        Open "HOME:"\File:=fileName,IOfileLog\Append;
+        Write IOfileLog,CDate()+";"\NoNewLine;
+        Write IOfileLog,CTime()+";"\NoNewLine;
+        Write IOfileLog,"RECALAGE2PT"+";"\NoNewLine;
+        Write IOfileLog,RECALAGE.Class+";"\NoNewLine;
+        Write IOfileLog,ArgName(RECALAGE)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(RECALAGE.ReferenceX1)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(RECALAGE.ReferenceX2)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(RECALAGE.MeasureX1)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(RECALAGE.MeasureX2)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(RECALAGE.Tolerance)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(RECALAGE.StateMeasureX1)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(RECALAGE.StateMeasureX2)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(WobjPart.oframe.trans.X)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(WobjPart.oframe.trans.Y)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(WobjPart.oframe.trans.Z)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(EulerZYX(\X,WobjPart.oframe.rot))+";"\NoNewLine;
+        Write IOfileLog,ValToStr(EulerZYX(\Y,WobjPart.oframe.rot))+";"\NoNewLine;
+        Write IOfileLog,ValToStr(EulerZYX(\Z,WobjPart.oframe.rot))+";"\NoNewLine;
+        Write IOfileLog,ValToStr(Wobj.oframe.trans.X)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(Wobj.oframe.trans.Y)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(Wobj.oframe.trans.Z)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(EulerZYX(\X,Wobj.oframe.rot))+";"\NoNewLine;
+        Write IOfileLog,ValToStr(EulerZYX(\Y,Wobj.oframe.rot))+";"\NoNewLine;
+        Write IOfileLog,ValToStr(EulerZYX(\Z,Wobj.oframe.rot))+";";
+        Close IOfileLog;
+
+        !Check tolerance measure
+        IF RECALAGE.StateMeasureX1<>MEASUREOK OR RECALAGE.StateMeasureX2<>MEASUREOK THEN
+            RAISE ERR_RECALAGE_OUT_OF_RANGE;
+        ENDIF
+
+        !Check distance frame
+        IF Distance(RECALAGE.FrameReference.trans,RECALAGE.FrameRecalage.trans)>30 THEN
+            TPWrite Message5{Langage};
+            RAISE ERR_RECALAGE_OUT_OF_RANGE;
+        ENDIF
+
+        !Return the frame readjusted
+        RETURN Wobj;
+
+    ERROR
+        TEST ERRNO
+
+        CASE ERR_FRAME:
+            RAISE ERR_RECALAGE;
+
+        CASE ERR_RECALAGE_OUT_OF_RANGE:
+            RAISE ERR_RECALAGE_OUT_OF_RANGE;
+
+        CASE ERR_FILEOPEN:
+
+            Close IOfileLog;
+
+            TPWrite "Write of log "+fileName+" failed";
+
+        ENDTEST
+
+    UNDO
+        Close IOfileLog;
+
+    ENDFUNC
+
+    !**************************************************************************************************************************
+    !                                                  RECALAGE 1PT
+    !**************************************************************************************************************************
+    !--------------------------------------------RECALAGE 1 PT MEASURE X1-----------------------------------------------------
+    LOCAL PROC Measure1Pt_X1(INOUT RECALAGEDATA1PT RECALAGE)
+        VAR num NbTentative:=0;
+
+        !Init no measure
+        RECALAGE.StateMeasureX1:=NOMEASURE;
+
+        !Acquisition measure laser
+        RECALAGE.MeasureX1:=AcquisitionLaser();
+
+        !Record robot position
+        GetSysData ToolCurrent;
+        GetSysData WobjCurrent;
+        RECALAGE.X1:=RelTool(CRobT(\Tool:=ToolCurrent\wobj:=WobjCurrent),0,0,RECALAGE.MeasureX1-LaserKm0-LaserKm0Pointe);
+
+        !Check tolerance measure
+        IF Tolerance(RECALAGE.Referencex1,RECALAGE.MeasureX1,RECALAGE.tolerance) THEN
+            RECALAGE.StateMeasureX1:=MEASUREOK;
+        ELSE
+            RECALAGE.StateMeasureX1:=MEASUREERROR;
+        ENDIF
+
+        !Display message
+        TPWrite ArgName(RECALAGE)+" X1:"+ValToStr(Trunc(RECALAGE.MeasureX1\Dec:=2))+"mm-D:"+ValToStr(Trunc(RECALAGE.MeasureX1-RECALAGE.ReferenceX1\Dec:=2))+"mm";
+        TPWrite ArgName(RECALAGE)+" Tolerance:"+ValToStr(Trunc(RECALAGE.Tolerance\Dec:=2))+"mm-State:"+ValToStr(RECALAGE.StateMeasureX1);
+
+        !Controle de l'erreur en auto
+        IF IsAutoMode() AND RECALAGE.StateMeasureX1=MEASUREERROR THEN
+
+            TPWrite Message1{Langage}+":"+ArgName(RECALAGE)+"-X1";
+
+            RAISE ERR_MESURE_OUT_OF_RANGE;
+
+        ENDIF
+    ERROR
+
+        RAISE ;
+
+    ENDPROC
+
+    !-------------------------------------------------RECALAGE 1 PTS-----------------------------------------------------------
+    PROC Measure1Pt(INOUT RECALAGEDATA1PT Recalage\switch NoWait)
+        VAR num RetryCount:=1;
+
+        !Wait open shutter
+        Shutter_Laser\Open\NoCheck;
+
+        !Attente que le robot soit en position et la stabilisation du capteur laser
+        IF Present(NoWait)=FALSE WaitTime\inpos,1.5;
+
+        IF IsDebuggingMode() OR IsRobVC() THEN
+            RETURN ;
+        ENDIF
+
+        !Tolerance par défaut
+        IF Recalage.tolerance=0 Recalage.tolerance:=DefaultTolerance;
+
+        Measure1Pt_X1 Recalage;
+
+    ERROR
+        IF ERRNO=ERR_MESURE_OUT_OF_RANGE THEN
+
+            IF RetryCount>0 THEN
+
+                !Display message error
+                TPWrite Message3{Langage};
+
+                !Send  fault signal to Plc
+                !PlcFaultExchange DEF_MEASURE_OUT_TOLERANCE;
+
+                RetryCount:=RetryCount-1;
+
+                RETRY;
+
+            ELSE
+                !Display message error
+                TPWrite Message2{Langage};
+
+                RETURN ;
+
+            ENDIF
+
+        ENDIF
+
+        RAISE ;
+
+    ENDPROC
+
+    !-------------------------------------------RECALAGE 1PTS CALCULATE-------------------------------------------------------
+    FUNC wobjdata GetResultMeasure1pt(INOUT RECALAGEDATA1PT RECALAGE,wobjdata WobjPart)
+        VAR wobjdata Wobj;
+        VAR string fileName;
+        VAR pose Decalage;
+
+        !Debugging mode
+        IF IsDebuggingMode() OR IsRobVC() THEN
+            RETURN WobjPart;
+        ENDIF
+
+        !Calculate the frame
+        RECALAGE.FrameRecalage:=[RECALAGE.X1.trans,RECALAGE.X1.rot];
+
+        !Si on est en mode manuel ou si la référence n'a jamais été défini on propose d'enregistrer les mesures en référence
+        IF (IsManMode() OR RECALAGE.FrameReference.trans=[0,0,0]) AND UIYesNo([Message4{Langage}+" :",ArgName(RECALAGE),"?"]) THEN
+
+            !Class measure
+            RECALAGE.Class:="REFERENCE";
+
+            !Record the frame to reférence
+            RECALAGE.FrameReference:=RECALAGE.FrameRecalage;
+
+            !Record  mesures to référence
+            RECALAGE.ReferenceX1:=RECALAGE.MeasureX1;
+
+            !Change state measure to measure OK
+            RECALAGE.StateMeasureX1:=MEASUREOK;
+
+            !Return the frame origine
+            Wobj:=WobjPart;
+
+        ELSE
+            !Class measure
+            RECALAGE.Class:="RECALAGE";
+
+            !Calculate the frame readjusted
+            Wobj:=WobjPart;
+            Wobj.oframe:=PoseMult(Wobj.oframe,PoseMult(RECALAGE.FrameRecalage,PoseInv(RECALAGE.FrameReference)));
+
+        ENDIF
+
+        !Display of the offset on the flexpendant
+        Decalage:=PoseMult(PoseInv(WobjPart.oframe),Wobj.oframe);
+        TPWrite ArgName(RECALAGE)+":X:"+ValToStr(Trunc(Decalage.trans.x,\Dec:=2))+"-Y:"+ValToStr(Trunc(Decalage.trans.y,\Dec:=2))+"-Z:"+ValToStr(Trunc(Decalage.trans.z,\Dec:=2))+"";
+        TPWrite ArgName(RECALAGE)+":Rx:"+ValToStr(Trunc(EulerZYX(\X,Decalage.rot),\Dec:=2))+"-Ry:"+ValToStr(Trunc(EulerZYX(\Y,Decalage.rot),\Dec:=2))+"-Rz:"+ValToStr(Trunc(EulerZYX(\Z,Decalage.rot),\Dec:=2))+"";
+
+        !Log measure to file
+        fileName:=ArgName(RECALAGE)+".csv";
+        IF IsFile("HOME:"+fileName)=FALSE THEN
+            Open "HOME:"\File:=fileName,IOfileLog\Write;
+            Write IOfileLog,"Date;"\NoNewLine;
+            Write IOfileLog,"Time;"\NoNewLine;
+            Write IOfileLog,"Type;"\NoNewLine;
+            Write IOfileLog,"Class;"\NoNewLine;
+            Write IOfileLog,"Name;"\NoNewLine;
+            Write IOfileLog,"ReferenceX1;"\NoNewLine;
+            Write IOfileLog,"MeasureX1;"\NoNewLine;
+            Write IOfileLog,"Tolerance;"\NoNewLine;
+            Write IOfileLog,"StateMeasureX1;"\NoNewLine;
+            Write IOfileLog,"FrameReference.X;"\NoNewLine;
+            Write IOfileLog,"FrameReference.Y;"\NoNewLine;
+            Write IOfileLog,"FrameReference.Z;"\NoNewLine;
+            Write IOfileLog,"FrameReference.Rx;"\NoNewLine;
+            Write IOfileLog,"FrameReference.Ry;"\NoNewLine;
+            Write IOfileLog,"FrameReference.Rz;"\NoNewLine;
+            Write IOfileLog,"FrameRecalage.X;"\NoNewLine;
+            Write IOfileLog,"FrameRecalage.Y;"\NoNewLine;
+            Write IOfileLog,"FrameRecalage.Z;"\NoNewLine;
+            Write IOfileLog,"FrameRecalage.Rx;"\NoNewLine;
+            Write IOfileLog,"FrameRecalage.Ry;"\NoNewLine;
+            Write IOfileLog,"FrameRecalage.Rz;";
+            Close IOfileLog;
+        ENDIF
+
+        Open "HOME:"\File:=fileName,IOfileLog\Append;
+        Write IOfileLog,CDate()+";"\NoNewLine;
+        Write IOfileLog,CTime()+";"\NoNewLine;
+        Write IOfileLog,"RECALAGE1PT"+";"\NoNewLine;
+        Write IOfileLog,RECALAGE.Class+";"\NoNewLine;
+        Write IOfileLog,ArgName(RECALAGE)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(RECALAGE.ReferenceX1)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(RECALAGE.MeasureX1)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(RECALAGE.Tolerance)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(RECALAGE.StateMeasureX1)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(WobjPart.oframe.trans.X)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(WobjPart.oframe.trans.Y)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(WobjPart.oframe.trans.Z)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(EulerZYX(\X,WobjPart.oframe.rot))+";"\NoNewLine;
+        Write IOfileLog,ValToStr(EulerZYX(\Y,WobjPart.oframe.rot))+";"\NoNewLine;
+        Write IOfileLog,ValToStr(EulerZYX(\Z,WobjPart.oframe.rot))+";"\NoNewLine;
+        Write IOfileLog,ValToStr(Wobj.oframe.trans.X)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(Wobj.oframe.trans.Y)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(Wobj.oframe.trans.Z)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(EulerZYX(\X,Wobj.oframe.rot))+";"\NoNewLine;
+        Write IOfileLog,ValToStr(EulerZYX(\Y,Wobj.oframe.rot))+";"\NoNewLine;
+        Write IOfileLog,ValToStr(EulerZYX(\Z,Wobj.oframe.rot))+";";
+        Close IOfileLog;
+
+        !Check tolerance measure
+        IF RECALAGE.StateMeasureX1<>MEASUREOK THEN
+            RAISE ERR_RECALAGE_OUT_OF_RANGE;
+        ENDIF
+
+        !Check distance frame
+        IF Distance(RECALAGE.FrameReference.trans,RECALAGE.FrameRecalage.trans)>30 THEN
+            TPWrite Message5{Langage};
+            RAISE ERR_RECALAGE_OUT_OF_RANGE;
+        ENDIF
+
+        !Return the frame readjusted
+        RETURN Wobj;
+
+    ERROR
+        TEST ERRNO
+
+        CASE ERR_FRAME:
+            RAISE ERR_RECALAGE;
+
+        CASE ERR_RECALAGE_OUT_OF_RANGE:
+            RAISE ERR_RECALAGE_OUT_OF_RANGE;
+
+        CASE ERR_FILEOPEN:
+
+            Close IOfileLog;
+
+            TPWrite "Write of log "+fileName+" failed";
+
+        ENDTEST
+
+    UNDO
+        Close IOfileLog;
+
+    ENDFUNC
+
+    !**************************************************************************************************************************
+    !                                                RECALAGE CIRCLE
+    !**************************************************************************************************************************
+    !-------------------------------------------RECALAGE CIRCLE MEASURE 1-----------------------------------------------------
+    LOCAL PROC MeasureCircleP1(INOUT RECALAGEDATACIRCLE Recalage)
+
+        !Reset du status de la mesure
+        Recalage.StateMeasureP1:=NOMEASURE;
+
+        !Acquisition measure laser
+        Recalage.MeasureP1:=AcquisitionLaser();
+
+        !Record robot position
+        GetSysData ToolCurrent;
+        GetSysData WobjCurrent;
+        Recalage.P1:=RelTool(CRobT(\Tool:=ToolCurrent\wobj:=WobjCurrent),0,0,Recalage.MeasureP1-LaserKm0-LaserKm0Pointe);
+
+        !Check tolerance measure
+        IF Tolerance(Recalage.ReferenceP1,Recalage.MeasureP1,Recalage.tolerance) THEN
+            Recalage.StateMeasureP1:=MEASUREOK;
+        ELSE
+            Recalage.StateMeasureP1:=MEASUREERROR;
+        ENDIF
+
+        !Display message
+        TPWrite ArgName(Recalage)+" P1:"+ValToStr(Trunc(Recalage.MeasureP1\Dec:=2))+"mm-D:"+ValToStr(Trunc(Recalage.MeasureP1-Recalage.ReferenceP1\Dec:=2))+"mm";
+        TPWrite ArgName(Recalage)+" Tolerance:"+ValToStr(Trunc(Recalage.Tolerance\Dec:=2))+"mm-State:"+ValToStr(Recalage.StateMeasureP1);
+
+        !Controle de l'erreur en auto
+        IF IsAutoMode() AND Recalage.StateMeasureP1=MEASUREERROR THEN
+
+            TPWrite Message1{Langage}+":"+ArgName(Recalage)+"-P1";
+
+            RAISE ERR_MESURE_OUT_OF_RANGE;
+
+        ENDIF
+    ERROR
+
+        RAISE ;
+
+    ENDPROC
+
+    !-------------------------------------------RECALAGE CIRCLE MEASURE 2-----------------------------------------------------
+    LOCAL PROC MeasureCircleP2(INOUT RECALAGEDATACIRCLE Recalage)
+
+        !Reset du status de la mesure
+        Recalage.StateMeasureP2:=NOMEASURE;
+
+        !Acquisition measure laser
+        Recalage.MeasureP2:=AcquisitionLaser();
+
+        !Record robot position
+        GetSysData ToolCurrent;
+        GetSysData WobjCurrent;
+        Recalage.P2:=RelTool(CRobT(\Tool:=ToolCurrent\wobj:=WobjCurrent),0,0,Recalage.MeasureP2-LaserKm0-LaserKm0Pointe);
+
+        !Check tolerance measure
+        IF Tolerance(Recalage.ReferenceP2,Recalage.MeasureP2,Recalage.tolerance) THEN
+            Recalage.StateMeasureP2:=MEASUREOK;
+        ELSE
+            Recalage.StateMeasureP2:=MEASUREERROR;
+        ENDIF
+
+        !Display message
+        TPWrite ArgName(Recalage)+" P2:"+ValToStr(Trunc(Recalage.MeasureP2\Dec:=2))+"mm-D:"+ValToStr(Trunc(Recalage.MeasureP2-Recalage.ReferenceP2\Dec:=2))+"mm";
+        TPWrite ArgName(Recalage)+" Tolerance:"+ValToStr(Trunc(Recalage.Tolerance\Dec:=2))+"mm-State:"+ValToStr(Recalage.StateMeasureP2);
+
+        !Controle de l'erreur en auto
+        IF IsAutoMode() AND Recalage.StateMeasureP2=MEASUREERROR THEN
+
+            TPWrite Message1{Langage}+":"+ArgName(Recalage)+"-P2";
+
+            RAISE ERR_MESURE_OUT_OF_RANGE;
+
+        ENDIF
+    ERROR
+
+        RAISE ;
+
+    ENDPROC
+
+    !-------------------------------------------RECALAGE CIRCLE MEASURE 3-----------------------------------------------------
+    LOCAL PROC MeasureCircleP3(INOUT RECALAGEDATACIRCLE Recalage)
+
+        !Reset du status de la mesure
+        Recalage.StateMeasureP3:=NOMEASURE;
+
+        !Acquisition measure laser
+        Recalage.MeasureP3:=AcquisitionLaser();
+
+        !Record robot position
+        GetSysData ToolCurrent;
+        GetSysData WobjCurrent;
+        Recalage.P3:=RelTool(CRobT(\Tool:=ToolCurrent\wobj:=WobjCurrent),0,0,Recalage.MeasureP3-LaserKm0-LaserKm0Pointe);
+
+        !Check tolerance measure
+        IF Tolerance(Recalage.ReferenceP3,Recalage.MeasureP3,Recalage.tolerance) THEN
+            Recalage.StateMeasureP3:=MEASUREOK;
+        ELSE
+            Recalage.StateMeasureP3:=MEASUREERROR;
+        ENDIF
+
+        !Display message
+        TPWrite ArgName(Recalage)+" P3:"+ValToStr(Trunc(Recalage.MeasureP3\Dec:=2))+"mm-D:"+ValToStr(Trunc(Recalage.MeasureP3-Recalage.ReferenceP3\Dec:=2))+"mm";
+        TPWrite ArgName(Recalage)+" Tolerance:"+ValToStr(Trunc(Recalage.Tolerance\Dec:=2))+"mm-State:"+ValToStr(Recalage.StateMeasureP3);
+
+        !Controle de l'erreur en auto
+        IF IsAutoMode() AND Recalage.StateMeasureP3=MEASUREERROR THEN
+
+            TPWrite Message1{Langage}+":"+ArgName(Recalage)+"-P3";
+
+            RAISE ERR_MESURE_OUT_OF_RANGE;
+
+        ENDIF
+    ERROR
+
+        RAISE ;
+
+    ENDPROC
+
+    !---------------------------------------RECALAGE CIRCLE MEASURE 4-----------------------------------------------------
+    LOCAL PROC MeasureCircleP4(INOUT RECALAGEDATACIRCLE Recalage)
+
+        !Reset du status de la mesure
+        Recalage.StateMeasureP4:=NOMEASURE;
+
+        !Acquisition measure laser
+        Recalage.MeasureP4:=AcquisitionLaser();
+
+        !Record robot position
+        GetSysData ToolCurrent;
+        GetSysData WobjCurrent;
+        Recalage.P4:=RelTool(CRobT(\Tool:=ToolCurrent\wobj:=WobjCurrent),0,0,Recalage.MeasureP4-LaserKm0-LaserKm0Pointe);
+
+        !Check tolerance measure
+        IF Tolerance(Recalage.ReferenceP4,Recalage.MeasureP4,Recalage.tolerance) THEN
+            Recalage.StateMeasureP4:=MEASUREOK;
+        ELSE
+            Recalage.StateMeasureP4:=MEASUREERROR;
+        ENDIF
+
+        !Display message
+        TPWrite ArgName(Recalage)+" P4:"+ValToStr(Trunc(Recalage.MeasureP4\Dec:=2))+"mm-D:"+ValToStr(Trunc(Recalage.MeasureP4-Recalage.ReferenceP4\Dec:=2))+"mm";
+        TPWrite ArgName(Recalage)+" Tolerance:"+ValToStr(Trunc(Recalage.Tolerance\Dec:=2))+"mm-State:"+ValToStr(Recalage.StateMeasureP4);
+
+        !Controle de l'erreur en auto
+        IF IsAutoMode() AND Recalage.StateMeasureP4=MEASUREERROR THEN
+
+            TPWrite Message1{Langage}+":"+ArgName(Recalage)+"-P4";
+
+            RAISE ERR_MESURE_OUT_OF_RANGE;
+
+        ENDIF
+    ERROR
+
+        RAISE ;
+
+    ENDPROC
+
+    !------------------------------------------------RECALAGE CIRCLE----------------------------------------------------------
+    PROC MeasureCircle(INOUT RECALAGEDATACIRCLE Recalage,\switch P1|switch P2|switch P3|switch P4\switch NoWait)
+        VAR num RetryCount:=1;
+
+        !Wait open shutter
+        Shutter_Laser\Open\NoCheck;
+
+        !Attente que le robot soit en position et la stabilisation du capteur laser
+        IF Present(NoWait)=FALSE WaitTime\inpos,1.5;
+
+        IF IsDebuggingMode() OR IsRobVC() THEN
+            RETURN ;
+        ENDIF
+
+        !Tolerance par défaut à 10mm
+        IF Recalage.tolerance=0 Recalage.tolerance:=DefaultTolerance;
+
+        IF Present(P1) THEN
+            MeasureCircleP1 Recalage;
+
+        ELSEIF Present(P2) THEN
+            MeasureCircleP2 Recalage;
+
+        ELSEIF Present(P3) THEN
+            MeasureCircleP3 Recalage;
+
+        ELSEIF Present(P4) THEN
+            MeasureCircleP4 Recalage;
+
+        ENDIF
+
+    ERROR
+        IF ERRNO=ERR_MESURE_OUT_OF_RANGE THEN
+
+            IF RetryCount>0 THEN
+
+                !Display message error
+                TPWrite Message3{Langage};
+
+                !Send  fault signal to Plc
+                !PlcFaultExchange DEF_MEASURE_OUT_TOLERANCE;
+
+                RetryCount:=RetryCount-1;
+
+                RETRY;
+
+            ELSE
+                !Display message error
+                TPWrite Message2{Langage};
+
+                RETURN ;
+
+            ENDIF
+
+        ENDIF
+
+        RAISE ;
+
+    ENDPROC
+
+    !-------------------------------------------RECALAGE CIRCULE CALCULATE----------------------------------------------------
+    FUNC wobjdata GetResultCircle(INOUT RECALAGEDATACIRCLE RECALAGE,wobjdata WobjPart)
+        VAR wobjdata Wobj;
+        VAR pos center;
+        VAR num radius;
+        VAR pos normal;
+        VAR num Err_Moy;
+        VAR num Err_Max;
+        VAR string fileName;
+        VAR pose Decalage;
+
+        !Debugging mode
+        IF IsDebuggingMode() OR IsRobVC() THEN
+            RETURN WobjPart;
+        ENDIF
+
+        !Calcul du repère
+        fitcircle [RECALAGE.P1.trans,RECALAGE.P2.trans,RECALAGE.P3.trans,RECALAGE.P4.trans],center,radius,normal\RMS:=Err_Moy\MaxErr:=Err_Max;
+        RECALAGE.FrameRecalage.rot:=[1,0,0,0];
+        RECALAGE.FrameRecalage.trans:=center;
+
+        !Si on est en mode manuel ou si la référence n'a jamais été défini on propose d'enregistrer les mesures en référence
+        IF (IsManMode() OR RECALAGE.FrameReference.trans=[0,0,0]) AND UIYesNo([Message4{Langage}+" :",ArgName(RECALAGE),"?"]) THEN
+
+            !Class measure
+            RECALAGE.Class:="REFERENCE";
+
+            !Record the frame to reférence
+            RECALAGE.FrameReference:=RECALAGE.FrameRecalage;
+
+            !Record  mesures to référence
+            RECALAGE.ReferenceP1:=RECALAGE.MeasureP1;
+            RECALAGE.ReferenceP2:=RECALAGE.MeasureP2;
+            RECALAGE.ReferenceP3:=RECALAGE.MeasureP3;
+            RECALAGE.ReferenceP4:=RECALAGE.MeasureP4;
+
+            !Change state measure to measure OK
+            RECALAGE.StateMeasureP1:=MEASUREOK;
+            RECALAGE.StateMeasureP2:=MEASUREOK;
+            RECALAGE.StateMeasureP3:=MEASUREOK;
+            RECALAGE.StateMeasureP4:=MEASUREOK;
+
+            !Return the frame origine
+            Wobj:=WobjPart;
+
+        ELSE
+            !Class measure
+            RECALAGE.Class:="RECALAGE";
+
+            !Calculate the frame readjusted
+            Wobj:=WobjPart;
+            Wobj.oframe:=PoseMult(Wobj.oframe,PoseMult(RECALAGE.FrameRecalage,PoseInv(RECALAGE.FrameReference)));
+
+        ENDIF
+
+        !Display of the offset on the flexpendant
+        Decalage:=PoseMult(PoseInv(WobjPart.oframe),Wobj.oframe);
+        TPWrite ArgName(RECALAGE)+":X:"+ValToStr(Trunc(Decalage.trans.x,\Dec:=2))+"-Y:"+ValToStr(Trunc(Decalage.trans.y,\Dec:=2))+"-Z:"+ValToStr(Trunc(Decalage.trans.z,\Dec:=2))+"";
+        TPWrite ArgName(RECALAGE)+":Rx:"+ValToStr(Trunc(EulerZYX(\X,Decalage.rot),\Dec:=2))+"-Ry:"+ValToStr(Trunc(EulerZYX(\Y,Decalage.rot),\Dec:=2))+"-Rz:"+ValToStr(Trunc(EulerZYX(\Z,Decalage.rot),\Dec:=2))+"";
+
+        !Log measure to file
+        fileName:=ArgName(RECALAGE)+".csv";
+        IF IsFile("HOME:"+fileName)=FALSE THEN
+            Open "HOME:"\File:=fileName,IOfileLog\Write;
+            Write IOfileLog,"Date;"\NoNewLine;
+            Write IOfileLog,"Time;"\NoNewLine;
+            Write IOfileLog,"Type;"\NoNewLine;
+            Write IOfileLog,"Class;"\NoNewLine;
+            Write IOfileLog,"Name;"\NoNewLine;
+            Write IOfileLog,"ReferenceP1;"\NoNewLine;
+            Write IOfileLog,"ReferenceP2;"\NoNewLine;
+            Write IOfileLog,"ReferenceP3;"\NoNewLine;
+            Write IOfileLog,"ReferenceP4;"\NoNewLine;
+            Write IOfileLog,"MeasureP1;"\NoNewLine;
+            Write IOfileLog,"MeasureP2;"\NoNewLine;
+            Write IOfileLog,"MeasureP3;"\NoNewLine;
+            Write IOfileLog,"MeasureP4;"\NoNewLine;
+            Write IOfileLog,"Tolerance;"\NoNewLine;
+            Write IOfileLog,"StateMeasureP1;"\NoNewLine;
+            Write IOfileLog,"StateMeasureP2;"\NoNewLine;
+            Write IOfileLog,"StateMeasureP3;"\NoNewLine;
+            Write IOfileLog,"StateMeasureP4;"\NoNewLine;
+            Write IOfileLog,"FrameReference.X;"\NoNewLine;
+            Write IOfileLog,"FrameReference.Y;"\NoNewLine;
+            Write IOfileLog,"FrameReference.Z;"\NoNewLine;
+            Write IOfileLog,"FrameReference.Rx;"\NoNewLine;
+            Write IOfileLog,"FrameReference.Ry;"\NoNewLine;
+            Write IOfileLog,"FrameReference.Rz;"\NoNewLine;
+            Write IOfileLog,"FrameRecalage.X;"\NoNewLine;
+            Write IOfileLog,"FrameRecalage.Y;"\NoNewLine;
+            Write IOfileLog,"FrameRecalage.Z;"\NoNewLine;
+            Write IOfileLog,"FrameRecalage.Rx;"\NoNewLine;
+            Write IOfileLog,"FrameRecalage.Ry;"\NoNewLine;
+            Write IOfileLog,"FrameRecalage.Rz;";
+            Close IOfileLog;
+        ENDIF
+
+        Open "HOME:"\File:=fileName,IOfileLog\Append;
+        Write IOfileLog,CDate()+";"\NoNewLine;
+        Write IOfileLog,CTime()+";"\NoNewLine;
+        Write IOfileLog,"RECALAGECIRCLE"+";"\NoNewLine;
+        Write IOfileLog,RECALAGE.Class+";"\NoNewLine;
+        Write IOfileLog,ArgName(RECALAGE)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(RECALAGE.ReferenceP1)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(RECALAGE.ReferenceP2)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(RECALAGE.ReferenceP3)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(RECALAGE.ReferenceP4)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(RECALAGE.MeasureP1)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(RECALAGE.MeasureP2)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(RECALAGE.MeasureP3)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(RECALAGE.MeasureP4)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(RECALAGE.Tolerance)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(RECALAGE.StateMeasureP1)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(RECALAGE.StateMeasureP2)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(RECALAGE.StateMeasureP3)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(RECALAGE.StateMeasureP4)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(WobjPart.oframe.trans.X)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(WobjPart.oframe.trans.Y)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(WobjPart.oframe.trans.Z)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(EulerZYX(\X,WobjPart.oframe.rot))+";"\NoNewLine;
+        Write IOfileLog,ValToStr(EulerZYX(\Y,WobjPart.oframe.rot))+";"\NoNewLine;
+        Write IOfileLog,ValToStr(EulerZYX(\Z,WobjPart.oframe.rot))+";"\NoNewLine;
+        Write IOfileLog,ValToStr(Wobj.oframe.trans.X)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(Wobj.oframe.trans.Y)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(Wobj.oframe.trans.Z)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(EulerZYX(\X,Wobj.oframe.rot))+";"\NoNewLine;
+        Write IOfileLog,ValToStr(EulerZYX(\Y,Wobj.oframe.rot))+";"\NoNewLine;
+        Write IOfileLog,ValToStr(EulerZYX(\Z,Wobj.oframe.rot))+";";
+        Close IOfileLog;
+
+        !Check tolerance measure
+        IF RECALAGE.StateMeasureP1<>MEASUREOK OR RECALAGE.StateMeasureP2<>MEASUREOK OR RECALAGE.StateMeasureP3<>MEASUREOK OR RECALAGE.StateMeasureP4<>MEASUREOK THEN
+            RAISE ERR_RECALAGE_OUT_OF_RANGE;
+        ENDIF
+
+        !Check distance frame
+        IF Distance(RECALAGE.FrameReference.trans,RECALAGE.FrameRecalage.trans)>30 THEN
+            TPWrite Message5{Langage};
+            RAISE ERR_RECALAGE_OUT_OF_RANGE;
+        ENDIF
+
+        !Return the frame readjusted
+        RETURN Wobj;
+
+    ERROR
+        TEST ERRNO
+
+        CASE ERR_FRAME:
+            RAISE ERR_RECALAGE;
+
+        CASE ERR_RECALAGE_OUT_OF_RANGE:
+            RAISE ERR_RECALAGE_OUT_OF_RANGE;
+
+        CASE ERR_FILEOPEN:
+
+            Close IOfileLog;
+
+            TPWrite "Write of log "+fileName+" failed";
+
+        ENDTEST
+
+    UNDO
+        Close IOfileLog;
+
+    ENDFUNC
+
+    !**************************************************************************************************************************
+    !                                              MEASURE ANGULAR
+    !**************************************************************************************************************************
+    !------------------------------------------------MEASURE ANGULAR--------------------------------------------------------------
+    FUNC wobjdata MeasureAngular(INOUT RECALAGEDATAANGULAR Recalage,num Precision)
+        VAR string fileName;
+        VAR num DeltaMesure;
+        VAR robtarget Position;
+        VAR num Rayon;
+        VAR num Angle;
+        VAR num d;
+        VAR num nbiteration:=0;
+        VAR num maxIteration:=10;
+        VAR num AngleTotal;
+        VAR robtarget PMesure;
+        VAR robtarget PMesureA;
+        VAR robtarget PMesureB;
+        VAR pos normalZ;
+        VAR num sensCorrection:=1;
+
+        !Recuperer le tool et le wobj courant
+        ToolCurrent:=CTool();
+        WobjCurrent:=CWObj();
+
+        !En simulation  ou en debuggage on return le repère de référence
+        IF IsDebuggingMode() OR IsRobVC() RETURN WobjCurrent;
+
+        IF Recalage.Tolerance=0 Recalage.Tolerance:=DefaultTolerance;
+
+        !Enregistrement de la position actuelle
+        WaitRob\inpos;
+        PMesure:=CRobT(\Tool:=ToolCurrent,\WObj:=WobjCurrent);
+
+        !Détermination du sens de correction de la mesure
+        PMesureA:=RelTool(PMesure,0,0,0);
+        PMesureA.trans.z:=0;
+        PMesureB:=RelTool(PMesure,0,0,100);
+        PMesureB.trans.z:=0;
+        normalZ:=CrossProd(PMesureB.trans,PMesureA.trans);
+        IF normalZ.z<0 sensCorrection:=-1;
+
+        Recalage.MeasureFirst:=AcquisitionLaser();
+
+        Recalage.StateMeasure:=NOMEASURE;
+
+        !Itération de la fonction de calcul de l'angle
+        WHILE maxIteration>nbiteration AND Recalage.StateMeasure=NOMEASURE DO
+
+            !Acquisition de la mesure laser
+            WaitRob\inpos;
+            WaitTime 2;
+            Recalage.Measure:=AcquisitionLaser();
+
+            IF (nbiteration=0 AND IsManMode()) OR Recalage.Reference=0 AND UIYesNo([Message4{Langage}]) THEN
+                Recalage.Class:="REFERENCE";
+
+                Recalage.Reference:=Recalage.MeasureFirst;
+
+                Recalage.StateMeasure:=MEASUREOK;
+
+                Recalage.FrameReference:=WobjCurrent.oframe;
+
+            ELSE
+
+                Recalage.Class:="RECALAGE";
+
+                !Calcul du delta de mesure
+                DeltaMesure:=Recalage.Reference-Recalage.Measure;
+
+                !Calcul de la distance entre le tool laser et le point de contact sur la pièce (150 longueur laser au spot du KM0, 50.85 longueur Point au sport du laser sur le km0)
+                d:=Recalage.Measure-150-50.85;
+
+                !Enregistre la position du point de contact
+                Position:=RelTool(CRobT(\Tool:=ToolCurrent\wobj:=WobjCurrent),0,0,d);
+
+                !Calcul du rayon entre le point de contact et le centre de rotation
+                Rayon:=Sqrt(Pow(Position.trans.x,2)+Pow(Position.trans.y,2));
+
+                !Calcul l'angle de rotation (en fonction du sens de la mesure)
+                Angle:=ATan2(DeltaMesure,Rayon)*sensCorrection;
+                AngleTotal:=AngleTotal+Angle;
+
+                !Affiche de la correction angulaire appliqué
+                TPWrite ArgName(Recalage)+"- Correction :"+ValToStr(Angle);
+
+                !Controle de la tolerance
+                IF Abs(AngleTotal)>Recalage.Tolerance THEN
+                    Recalage.StateMeasure:=MEASUREERROR;
+                ENDIF
+
+                !Controle de la précision
+                IF Abs(Recalage.Measure-Recalage.Reference)<=Precision THEN
+                    Recalage.StateMeasure:=MEASUREOK;
+                ENDIF
+
+                !Application de la correction sur le repere
+                WobjCurrent.oframe:=PoseMult(WobjCurrent.oframe,[[0,0,0],OrientZYX(Angle,0,0)]);
+
+                IF Recalage.StateMeasure=NOMEASURE THEN
+                    !Deplacement du robot dans le repère recalé
+                    MoveJ PMesure,v200,fine,ToolCurrent\WObj:=WobjCurrent;
+                ENDIF
+
+            ENDIF
+
+            !Affichage de l'erreur laser restante
+            TPWrite ArgName(Recalage)+"- Laser delta :"+ValToStr(Recalage.Reference-Recalage.Measure);
+
+            nbiteration:=nbiteration+1;
+        ENDWHILE
+
+        !Affichage de la correction totale
+        TPWrite ArgName(Recalage)+"- Angle corrected :"+ValToStr(AngleTotal);
+
+        Recalage.FrameRecalage:=WobjCurrent.oframe;
+
+        !Log measure to file
+        fileName:=ArgName(Recalage)+".csv";
+        IF IsFile("HOME:"+fileName)=FALSE THEN
+            Open "HOME:"\File:=fileName,IOfileLog\Write;
+            Write IOfileLog,"Date;"\NoNewLine;
+            Write IOfileLog,"Time;"\NoNewLine;
+            Write IOfileLog,"Type;"\NoNewLine;
+            Write IOfileLog,"Class;"\NoNewLine;
+            Write IOfileLog,"Name;"\NoNewLine;
+            Write IOfileLog,"Reference;"\NoNewLine;
+            Write IOfileLog,"Measure;"\NoNewLine;
+            Write IOfileLog,"MeasureFirst;"\NoNewLine;
+            Write IOfileLog,"Tolerance;"\NoNewLine;
+            Write IOfileLog,"StateMeasure;"\NoNewLine;
+            Write IOfileLog,"FrameReference.X;"\NoNewLine;
+            Write IOfileLog,"FrameReference.Y;"\NoNewLine;
+            Write IOfileLog,"FrameReference.Z;"\NoNewLine;
+            Write IOfileLog,"FrameReference.Rx;"\NoNewLine;
+            Write IOfileLog,"FrameReference.Ry;"\NoNewLine;
+            Write IOfileLog,"FrameReference.Rz;"\NoNewLine;
+            Write IOfileLog,"FrameRecalage.X;"\NoNewLine;
+            Write IOfileLog,"FrameRecalage.Y;"\NoNewLine;
+            Write IOfileLog,"FrameRecalage.Z;"\NoNewLine;
+            Write IOfileLog,"FrameRecalage.Rx;"\NoNewLine;
+            Write IOfileLog,"FrameRecalage.Ry;"\NoNewLine;
+            Write IOfileLog,"FrameRecalage.Rz;";
+            Close IOfileLog;
+        ENDIF
+
+        Open "HOME:"\File:=fileName,IOfileLog\Append;
+        Write IOfileLog,CDate()+";"\NoNewLine;
+        Write IOfileLog,CTime()+";"\NoNewLine;
+        Write IOfileLog,"RECALAGEANGULAR"+";"\NoNewLine;
+        Write IOfileLog,Recalage.Class+";"\NoNewLine;
+        Write IOfileLog,ArgName(Recalage)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(Recalage.Reference)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(Recalage.Measure)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(Recalage.MeasureFirst)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(Recalage.StateMeasure)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(Recalage.FrameReference.trans.X)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(Recalage.FrameReference.trans.Y)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(Recalage.FrameReference.trans.Z)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(EulerZYX(\X,Recalage.FrameReference.rot))+";"\NoNewLine;
+        Write IOfileLog,ValToStr(EulerZYX(\Y,Recalage.FrameReference.rot))+";"\NoNewLine;
+        Write IOfileLog,ValToStr(EulerZYX(\Z,Recalage.FrameReference.rot))+";"\NoNewLine;
+        Write IOfileLog,ValToStr(Recalage.FrameRecalage.trans.X)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(Recalage.FrameRecalage.trans.Y)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(Recalage.FrameRecalage.trans.Z)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(EulerZYX(\X,Recalage.FrameRecalage.rot))+";"\NoNewLine;
+        Write IOfileLog,ValToStr(EulerZYX(\Y,Recalage.FrameRecalage.rot))+";"\NoNewLine;
+        Write IOfileLog,ValToStr(EulerZYX(\Z,Recalage.FrameRecalage.rot))+";";
+        Close IOfileLog;
+
+        !Controle de la mesure
+        IF Recalage.StateMeasure<>MEASUREOK THEN
+            RAISE ERR_RECALAGE;
+        ENDIF
+
+        RETURN WobjCurrent;
+
+    ERROR
+
+        TPWrite ArgName(Recalage)+"- Error Tolerance :"+ValToStr(AngleTotal);
+
+        RAISE ;
+
+    ENDFUNC
+
+    !**************************************************************************************************************************
+    !                                                CHECK OBJECT
+    !**************************************************************************************************************************
+    !------------------------------------------------CHECK OBJECT--------------------------------------------------------------
+    PROC MeasureCheckObjet(INOUT CHECKOBJECTDATA Data)
+
+        Shutter_Laser\Open\Check;
+
+        WaitTime\inpos,1.5;
+
+        Data.Measure:=GI_LASER_FIXE_MEASURE/NbDecimal;
+
+    ERROR
+
+        RAISE ;
+
+    ENDPROC
+
+    !------------------------------------------------CHECK OBJECT--------------------------------------------------------------
+    PROC GetResultCheckObjet(INOUT CHECKOBJECTDATA ObjectData\INOUT bool FoundObject\num ToleranceMeasure)
+        VAR string fileName;
+
+        IF Present(ToleranceMeasure) ObjectData.Tolerance:=ToleranceMeasure;
+
+        IF ObjectData.Tolerance=0 ObjectData.Tolerance:=DefaultTolerance;
+
+        ObjectData.StateMeasure:=NOMEASURE;
+
+        !Si on est en mode manuel ou si la référence n'a jamais été défini on propose d'enregistrer les mesures en référence
+        IF (IsManMode() OR ObjectData.Reference=0) AND UIYesNo([Message4{Langage}+" :",ArgName(ObjectData),"?"]) THEN
+
+            ObjectData.Reference:=ObjectData.Measure;
+            ObjectData.Class:="REFERENCE";
+        ELSE
+
+            ObjectData.Class:="CHECK";
+
+            !Measure dans la tolérance
+            IF Tolerance(ObjectData.Reference,ObjectData.Measure,ObjectData.Tolerance) THEN
+                ObjectData.StateMeasure:=MEASUREOK;
+            ELSE
+                ObjectData.StateMeasure:=MEASUREERROR;
+            ENDIF
+
+            !Log measure to file
+            fileName:=ArgName(ObjectData)+".csv";
+            IF IsFile("HOME:"+fileName)=FALSE THEN
+                Open "HOME:"\File:=fileName,IOfileLog\Write;
+                Write IOfileLog,"Date;"\NoNewLine;
+                Write IOfileLog,"Time;"\NoNewLine;
+                Write IOfileLog,"Type;"\NoNewLine;
+                Write IOfileLog,"Class;"\NoNewLine;
+                Write IOfileLog,"Name;"\NoNewLine;
+                Write IOfileLog,"Reference;"\NoNewLine;
+                Write IOfileLog,"Measure;"\NoNewLine;
+                Write IOfileLog,"StateMeasure;";
+                Close IOfileLog;
+            ENDIF
+
+            Open "HOME:"\File:=fileName,IOfileLog\Append;
+            Write IOfileLog,CDate()+";"\NoNewLine;
+            Write IOfileLog,CTime()+";"\NoNewLine;
+            Write IOfileLog,"CHECKOBJECT"+";"\NoNewLine;
+            Write IOfileLog,ObjectData.Class+";"\NoNewLine;
+            Write IOfileLog,ArgName(ObjectData)+";"\NoNewLine;
+            Write IOfileLog,ValToStr(ObjectData.Reference)+";"\NoNewLine;
+            Write IOfileLog,ValToStr(ObjectData.Measure)+";"\NoNewLine;
+            Write IOfileLog,ValToStr(ObjectData.StateMeasure)+";";
+            Close IOfileLog;
+
+            !Measure dans la tolérance
+            IF ObjectData.StateMeasure=MEASUREOK THEN
+
+                IF Present(FoundObject) THEN
+                    FoundObject:=TRUE;
+                    RETURN ;
+                ENDIF
+
+            ELSE
+
+                IF Present(FoundObject) THEN
+                    FoundObject:=FALSE;
+                    RETURN ;
+                ENDIF
+
+                RAISE ERR_OBJECT_NOFOUND;
+
+            ENDIF
+
+        ENDIF
+
+    ERROR
+
+        RAISE ERR_OBJECT_NOFOUND;
+
+    UNDO
+
+        Close IOfileLog;
+    ENDPROC
+
+    !***************************************************************************************************************************
+    !                                                CHECK LASER
+    !***************************************************************************************************************************
+    !---------------------------------------------CHECK LASER VALUE-------------------------------------------------------------
+    PROC CheckLaserValue()
+        VAR num Measure;
+        VAR string fileName;
+
+        !Ouverture du volet laser
+        Shutter_Laser\Open;
+
+        !Lecture de la mesure brut
+        WaitTime 2;
+
+        Measure:=AcquisitionLaser();
+
+        !Affichge sur le flexpendant
+        TPWrite "Measure KM0:"+ValToStr(Measure)+"mm - Delta:"+ValToStr(Measure-MeasureKM0Value)+"mm";
+
+        !Enregistrement de la valeur en référence
+        IF OpMode()=OP_MAN_PROG AND UIYesNo(["Record the value "+ValToStr(Measure)+" mm in référence ?","Measure record :"+ValToStr(MeasureKM0Value)+"mm","Delta :"+ValToStr(Measure-MeasureKM0Value)+"mm"]) THEN
+
+            MeasureKM0Value:=Measure;
+
+        ENDIF
+
+        !Log measure to file
+        fileName:="KM0_LASER.csv";
+        IF IsFile("HOME:"+fileName)=FALSE THEN
+            Open "HOME:"\File:=fileName,IOfileLog\Write;
+            Write IOfileLog,"Date;"\NoNewLine;
+            Write IOfileLog,"Time;"\NoNewLine;
+            Write IOfileLog,"Type;"\NoNewLine;
+            Write IOfileLog,"Reference;"\NoNewLine;
+            Write IOfileLog,"Measure.Rz;";
+            Close IOfileLog;
+        ENDIF
+
+        Open "HOME:"\File:=fileName,IOfileLog\Append;
+        Write IOfileLog,CDate()+";"\NoNewLine;
+        Write IOfileLog,CTime()+";"\NoNewLine;
+        Write IOfileLog,"KM0"+";"\NoNewLine;
+        Write IOfileLog,ValToStr(MeasureKM0Value)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(Measure)+";";
+        Close IOfileLog;
+
+        IF Abs(Measure-MeasureKM0Value)>CheckLaserValueTolerance THEN
+            !Measure hors plage
+            !PlcFaultExchange DEF_LASER;
+        ENDIF
+
+        !Fermeture volet laser
+        Shutter_Laser\Close;
+
+    UNDO
+
+        Close IOfileLog;
+
+    ENDPROC
+
+    !***************************************************************************************************************************
+    !
+    !***************************************************************************************************************************
+    !-----------------------------------------------SHUTTER LASER --------------------------------------------------------------
+    PROC Shutter_Laser(\switch Open|switch Close\switch NoCheck|switch Check)
+
+!        IF Present(Open) THEN
+!            !Ouverture du volet
+!            Set DO_OUVERTURE_VOLET;
+!            Reset DO_FERMETURE_VOLET;
+!        ENDIF
+
+!        IF Present(Close) THEN
+!            !Fermeture du volet
+!            Set DO_FERMETURE_VOLET;
+!            Reset DO_OUVERTURE_VOLET;
+!        ENDIF
+
+    ENDPROC
+
+    !-------------------------------------------ACQUISITION LASER VALUE---------------------------------------------------------
+    LOCAL FUNC num AcquisitionLaser()
+
+        WaitUntil GI_LASER_FIXE_MEASURE/NbDecimal>Laser_low AND GI_LASER_FIXE_MEASURE/NbDecimal<Laser_high\MaxTime:=4;
+
+        !Controle que la valeur du laser est dans la plage
+        IF GI_LASER_FIXE_MEASURE/NbDecimal>Laser_low AND GI_LASER_FIXE_MEASURE/NbDecimal<Laser_high THEN
+            !Retourne la valeur du laser si dans la plage
+            RETURN GI_LASER_FIXE_MEASURE/NbDecimal-OffsetLaser;
+
+        ELSE
+            !Measure hors plage
+            RAISE ERR_MESURE;
+        ENDIF
+
+    ERROR
+        RAISE ERR_MESURE;
+
+    ENDFUNC
+
+    !---------------------------------------CALIBRATION LASER VALUE---------------------------------------------------------
+    PROC CalibOffsetLaser()
+        VAR string fileName;
+        VAR num Measure;
+
+        Measure:=GI_LASER_FIXE_MEASURE/NbDecimal;
+
+        OffsetLaser:=LaserKm0-Measure;
+
+        TPWrite "Measure value :"+ValToStr(Measure)+" mm";
+        TPWrite "Offset value :"+ValToStr(OffsetLaser)+" mm";
+
+        !Log measure to file
+        fileName:="OFFSET_LASER.csv";
+        IF IsFile("HOME:"+fileName)=FALSE THEN
+            Open "HOME:"\File:=fileName,IOfileLog\Write;
+            Write IOfileLog,"Date;"\NoNewLine;
+            Write IOfileLog,"Time;"\NoNewLine;
+            Write IOfileLog,"Type;"\NoNewLine;
+            Write IOfileLog,"Reference;"\NoNewLine;
+            Write IOfileLog,"Measure.Rz;";
+            Close IOfileLog;
+        ENDIF
+
+        Open "HOME:"\File:=fileName,IOfileLog\Append;
+        Write IOfileLog,CDate()+";"\NoNewLine;
+        Write IOfileLog,CTime()+";"\NoNewLine;
+        Write IOfileLog,"KM0"+";"\NoNewLine;
+        Write IOfileLog,ValToStr(OffsetLaser)+";"\NoNewLine;
+        Write IOfileLog,ValToStr(Measure)+";";
+        Close IOfileLog;
+
+    UNDO
+        Close IOfileLog;
+
+    ENDPROC
+
+    !***************************************************************************************************************************
+    !                                                   UTILS
+    !***************************************************************************************************************************
+    !------------------------------------------------TOLERANCE VALUE------------------------------------------------------------
+    LOCAL FUNC bool Tolerance(num Valeur1,num Valeur2,num Tolerance)
+
+        IF Abs(Valeur1-Valeur2)<Tolerance THEN
+            RETURN TRUE;
+
+        ELSE
+            RETURN FALSE;
+        ENDIF
+    ENDFUNC
+
+    !------------------------------------------------MODE MANU ROBOT------------------------------------------------------------
+    LOCAL FUNC bool IsManMode()
+
+        IF OpMode()=OP_MAN_PROG THEN
+            RETURN TRUE;
+
+        ELSE
+            RETURN FALSE;
+        ENDIF
+    ENDFUNC
+
+    !----------------------------------------------- MODE AUTO ROBOT------------------------------------------------------------
+    LOCAL FUNC bool IsAutoMode()
+
+        IF OpMode()=OP_AUTO THEN
+            RETURN TRUE;
+
+        ELSE
+            RETURN FALSE;
+        ENDIF
+    ENDFUNC
+
+    !----------------------------------------------RUN ROBOT VIRTUAL------------------------------------------------------------
+    LOCAL FUNC bool IsRobVC()
+
+        IF RobOS()=FALSE THEN
+            RETURN FALSE;
+
+        ELSE
+            RETURN FALSE;
+        ENDIF
+    ENDFUNC
+
+    !----------------------------------------------UI MESSAGE YES/NO------------------------------------------------------------
+    LOCAL FUNC bool UIYesNo(string Messages{*})
+
+        VAR btnres Reponse;
+        CONST string Boutons{2}:=["Yes","No"];
+
+        Reponse:=UIMessageBox(\Header:="UIMessageBox Header"\MsgArray:=Messages\wrap\BtnArray:=Boutons\Icon:=iconInfo);
+
+        IF Reponse=1 THEN
+            RETURN TRUE;
+
+        ELSEIF Reponse=2 THEN
+            RETURN FALSE;
+        ENDIF
+    ENDFUNC
+
+ENDMODULE
