@@ -7,7 +7,7 @@
     <StartArguments>--folder "%25UserProfile%25\Desktop" --delete 1 --timeout 30 --list "UasRobot.xml"</StartArguments>
   </PropertyGroup>
   <PropertyGroup>
-    <PublishUrlHistory />
+    <PublishUrlHistory>publish\</PublishUrlHistory>
     <InstallUrlHistory />
     <SupportUrlHistory />
     <UpdateUrlHistory />
