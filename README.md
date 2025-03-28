@@ -43,8 +43,8 @@ Ouvrir l'invite de commande Windows et se placer dans le répertoire contenant l
 Un fichier de configuration est automatique créé dans le répertoire "C:\Users\%UserProfile%\AppData\Local" après la première exécution
 
 * conf.xml
-  ```xml
-  <?xml version="1.0" encoding="utf-8"?>
+```xml
+<?xml version="1.0" encoding="utf-8"?>
 <BackupList>
   <DefaultUser>Default User</DefaultUser>
   <DefautlPassword>robotics</DefautlPassword>
@@ -75,7 +75,7 @@ Un fichier de configuration est automatique créé dans le répertoire "C:\Users
     </RobotParams>
   </RobotParamsList>
 </BackupList>
-  ```
+```
 ## 4 - EXEMPLES
 ### Exemple 1
 
