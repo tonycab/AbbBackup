@@ -1,0 +1,79 @@
+MODULE MOD_DEFTOOL(SYSMODULE)
+    RECORD DEFTOOLDATA
+        pos DecalageTrans1;
+        pos DecalageRot1;
+        pos DecalageTrans2;
+        pos DecalageRot2;
+    ENDRECORD
+
+    !Déclaration des tools calculés
+    
+    !Tool sur Motor 2 Diam 500 x5
+    TASK PERS tooldata Tool_M2_D500_S0:=[FALSE,[[1763.37,-1061.16,1036.74],[0.00472346,-0.00401565,0.707096,-0.707091]],[150,[3,0,400],[1,0,0,0],4.791,5.093,2.477]];
+    TASK PERS tooldata Tool_M2_D500_S45:=[FALSE,[[1762.29,-987.943,1213.51],[0.00590062,-0.00190238,0.382679,-0.92386]],[150,[3,0,400],[1,0,0,0],4.791,5.093,2.477]];
+    TASK PERS tooldata Tool_M2_D500_S90:=[FALSE,[[1760.03,-811.181,1286.74],[0.00617948,0.000500494,3.51663E-06,-0.999981]],[150,[3,0,400],[1,0,0,0],4.791,5.093,2.477]];
+    TASK PERS tooldata Tool_M2_D500_S135:=[FALSE,[[1757.92,-634.417,1213.51],[0.00551757,0.00282721,-0.382673,-0.923863]],[150,[3,0,400],[1,0,0,0],4.791,5.093,2.477]];
+    TASK PERS tooldata Tool_M2_D500_S180:=[FALSE,[[1757.2,-561.197,1036.74],[0.00401565,0.00472346,-0.707091,-0.707096]],[150,[3,0,400],[1,0,0,0],4.791,5.093,2.477]];
+    TASK PERS tooldata Tool_M2_D500_S270:=[FALSE,[[1760.54,-811.174,786.736],[0.000500494,-0.00617948,0.999981,3.51663E-06]],[150,[3,0,400],[1,0,0,0],4.791,5.093,2.477]];
+
+    !Caractéristiques des tools
+    
+    !Meule diamant diametre 500 x 5
+    !PERS DEFTOOLDATA MEULE_D500_S0:=[[250,0,-196],[0,-90,180],[0,0,0],[0,0,0]];
+    !PERS DEFTOOLDATA MEULE_D500_S90:=[[0,-250,-196],[-90,-90,180],[0,0,0],[0,0,0]];
+    !PERS DEFTOOLDATA MEULE_D500_S180:=[[-250,0,-196],[-180,-90,180],[0,0,0],[0,0,0]];
+    !PERS DEFTOOLDATA MEULE_D500_S270:=[[0,250,-196],[-270,-90,180],[0,0,0],[0,0,0]];
+    
+    PERS DEFTOOLDATA Tronçonnage_D500_0  :=[[0,0,-196],[0,0,0],  [250,0,0],[0,-90,180]];
+    PERS DEFTOOLDATA Tronçonnage_D500_45 :=[[0,0,-196],[0,0,45], [250,0,0],[0,-90,180]];
+    PERS DEFTOOLDATA Tronçonnage_D500_90 :=[[0,0,-196],[0,0,90], [250,0,0],[0,-90,180]];
+    PERS DEFTOOLDATA Tronçonnage_D500_135:=[[0,0,-196],[0,0,135],[250,0,0],[0,-90,180]];
+    PERS DEFTOOLDATA Tronçonnage_D500_180:=[[0,0,-196],[0,0,180],[250,0,0],[0,-90,180]];
+    PERS DEFTOOLDATA Tronçonnage_D500_190:=[[0,0,-196],[0,0,190],[250,0,0],[0,-90,180]];
+    PERS DEFTOOLDATA Tronçonnage_D500_270:=[[0,0,-196],[0,0,270],[250,0,0],[0,-90,180]];
+    
+    !***************************************************************************************************
+    PROC InitDeftool()
+        !Initiliastion de tool calculés
+
+        !Tool Motor 2 Meule Diam 500 x 5
+        Tool_M2_D500_S0:=DefTool(Tool_M2,Tronçonnage_D500_0);
+        Tool_M2_D500_S45:=DefTool(Tool_M2,Tronçonnage_D500_45);
+        Tool_M2_D500_S90:=DefTool(Tool_M2,Tronçonnage_D500_90);
+        Tool_M2_D500_S135:=DefTool(Tool_M2,Tronçonnage_D500_135);
+        Tool_M2_D500_S180:=DefTool(Tool_M2,Tronçonnage_D500_180);
+        Tool_M2_D500_S270:=DefTool(Tool_M2,Tronçonnage_D500_270);
+        
+    ENDPROC
+
+    !***************************************************************************************************
+    FUNC tooldata DefTool(tooldata Toolbase,DEFTOOLDATA DATATOOL)
+        !Déclaration des variables
+        !Variable declaration
+        VAR tooldata Tool;
+        VAR pose Decalage1;
+        VAR pose Decalage2;
+
+        !InitiaLISATION de l'outil
+        !Tool initiation
+        Tool:=Toolbase;
+
+        !Paramètre de décalage 1
+        !Offset parameter 1
+        Decalage1.trans:=DATATOOL.DecalageTrans1;
+        Decalage1.rot:=OrientZYX(DATATOOL.DecalageRot1.Z,DATATOOL.DecalageRot1.y,DATATOOL.DecalageRot1.x);
+
+        !Paramètre de décalage 2
+        !Offset parameter 2
+        Decalage2.trans:=DATATOOL.DecalageTrans2;
+        Decalage2.rot:=OrientZYX(DATATOOL.DecalageRot2.Z,DATATOOL.DecalageRot2.y,DATATOOL.DecalageRot2.x);
+
+        !Décalage de la position de l'outil
+        !Tool position offset
+        Tool.tFRAME:=PoseMult(PoseMult(Tool.tFRAME,Decalage1),Decalage2);
+
+        RETURN Tool;
+
+    ENDFUNC
+
+ENDMODULE

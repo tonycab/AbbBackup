@@ -1,0 +1,111 @@
+MODULE MOD_CALCWOBJPART(SYSMODULE)
+
+    !Retourne un repere en initialisant l'ObjetFrame à partir des 3 points X1,X2,Y1,du numéro de pièce et du Table situé à l'interrieur de la cellule
+    !Returns a frame by initializing the ObjectFrame from the 3 points X1,X2,Y1, the part number and the Table located inside the cell.
+   
+    FUNC wobjdata InitWobjPart(string Numpiece\wobjdata wobjRef)
+        VAR robtarget X1;
+        VAR robtarget X2;
+        VAR robtarget Y1;
+        VAR wobjdata Wobj;
+        VAR string suffixe;
+
+        IF present(wobjRef) THEN
+            !Initialisation avec le repère CAO
+            !Initialization with CAD coordinate system
+            wobj_part_0:=wobjRef;
+            wobj_part_1:=wobjRef;
+            wobj_part_2:=wobjRef;
+            wobj_part_3:=wobjRef;
+            wobj_part_4:=wobjRef;
+            wobj_part_5:=wobjRef;
+            wobj_part_6:=wobjRef;
+            wobj_part_7:=wobjRef;
+            wobj_part_8:=wobjRef;
+            wobj_part_9:=wobjRef;
+            RETURN wobjRef;
+        ENDIF
+
+        !Différencie les points hors ligne et les points réels
+        !Differentiates between off-line and real points
+        IF RobOS() THEN
+            suffixe:="";
+        ELSE
+            suffixe:="_VC";
+        ENDIF
+
+        !Récupération des points X1,X2 et Y1
+        !Recovery of points X1,X2 and Y1
+        GetDataVal Numpiece+"_X1"+suffixe,X1;
+        GetDataVal Numpiece+"_X2"+suffixe,X2;
+        GetDataVal Numpiece+"_Y1"+suffixe,Y1;
+
+        !Initialisation de repère
+        !Initialization of the frame
+        Wobj:=wobj_tool_0;
+
+        !Calculs du repère pièce
+        !Frame part calculation
+        Wobj.Oframe:=DefFrame(X1,X2,Y1\origin:=3);
+
+        !Ecriture du numéro de pièce dans le champs
+        !Write part number in field
+        Wobj.ufmec:=Numpiece;
+
+        wobj_part_1:=Wobj;
+        wobj_part_2:=Wobj;
+        wobj_part_3:=Wobj;
+        wobj_part_4:=Wobj;
+        wobj_part_5:=Wobj;
+        wobj_part_6:=Wobj;
+        wobj_part_7:=Wobj;
+        wobj_part_8:=Wobj;
+        wobj_part_9:=Wobj;
+
+        RETURN Wobj;
+
+    ERROR
+
+        !Si une erreur de calculs survient on arrête le cycle
+        !If a calculation error occurs, the cycle is stopped.
+        TPWrite "Calculate of frame is not good";
+        Stop;
+        ExitCycle;
+
+    ENDFUNC
+
+    FUNC robtarget Select_Pick_Point(\robtarget PointA|robtarget ArrayPointA{*},\robtarget PointB|robtarget ArrayPointB{*})
+        VAR robtarget Position;
+
+        !Traitement point unique
+        !Single-point treatment
+        IF Present(PointA) AND Present(PointB) THEN
+
+            IF EV_17=1 THEN
+                RETURN PointA;
+            ELSEIF EV_18=1 THEN
+                RETURN PointB;
+            ENDIF
+
+        ENDIF
+
+    ENDFUNC
+    
+    FUNC robtarget Select_Drop_Point(\robtarget PointA|robtarget ArrayPointA{*},\robtarget PointB|robtarget ArrayPointB{*})
+        VAR robtarget Position;
+
+        !Traitement point unique
+        !Single-point treatment
+        IF Present(PointA) AND Present(PointB) THEN
+
+            IF EV_17=1 THEN
+                RETURN PointA;
+            ELSEIF EV_18=1 THEN
+                RETURN PointB;
+            ENDIF
+
+        ENDIF
+
+    ENDFUNC
+    
+ENDMODULE
