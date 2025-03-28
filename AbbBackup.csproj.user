@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
-    <StartArguments>--folder "%25UserProfile%25\Desktop" --delete 1 --timeout 30 --list "UasRobot.xml"</StartArguments>
+    <StartArguments>
+    </StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <StartArguments>--folder "%25UserProfile%25\Desktop" --delete 1 --timeout 30 --list "UasRobot.xml"</StartArguments>
+    <StartArguments>--all</StartArguments>
   </PropertyGroup>
   <PropertyGroup>
     <PublishUrlHistory>publish\</PublishUrlHistory>
@@ -17,9 +18,12 @@
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug CreateXml|AnyCPU'">
-    <StartArguments>--createxml "%25UserProfile%25\Desktop\UasRobot.xml"</StartArguments>
+    <StartArguments>--createlist "%25UserProfile%25\Desktop\UasRobot.xml"</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug Backup list|AnyCPU'">
-    <StartArguments>--delete 360 --timeout 180 --list "%25UserProfile%25\Desktop\UasRobot.xml"</StartArguments>
+    <StartArguments>--list "%25UserProfile%25\Desktop\UasRobot.xml"</StartArguments>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'AddRobot|AnyCPU'">
+    <StartArguments>--addconf</StartArguments>
   </PropertyGroup>
 </Project>

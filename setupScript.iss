@@ -3,7 +3,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "AbbBackup"
-#define MyAppVersion "0.0.1"
+#define MyAppVersion "0.0.2"
 #define MyAppPublisher "SIIF"
 #define MyAppURL "https://www.siif.fr/"
 #define MyAppExeName "AbbBackup.exe"
@@ -62,7 +62,8 @@ Source: {#MyVsProjectRealeasePath}Logo.png; DestDir: "{app}"; Flags: ignoreversi
 
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
-Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon; Parameters: "--folder ""%UserProfile%\Desktop"" --delete 360 --timeout 300"
+;Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon; Parameters: "--folder ""%UserProfile%\Desktop"" --delete 360 --timeout 300"
+Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon; 
 
 ; ne plus utiliser démarrage appli par dossier startup car droits admin requis ou alors startup appelé avant le logon admin
 Name: "{userstartup}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; WorkingDir: "{app}" 
@@ -86,8 +87,9 @@ begin
 end;
 
  [Run]    
-Filename: "schtasks"; Parameters: "/Create /TN ""AbbBackup"" /TR ""'{app}\{#MyAppExeName}' --folder ""'%UserProfile%\Desktop'""  --delete 365 --timeout 180"" /SC DAILY /ST 10:00";Check: AddTask
- 
+;Filename: "schtasks"; Parameters: "/Create /TN ""AbbBackup"" /TR ""'{app}\{#MyAppExeName}' --folder ""'%UserProfile%\Desktop'""  --delete 365 --timeout 180"" /SC DAILY /ST 10:00";Check: AddTask
+Filename: "schtasks"; Parameters: "/Create /TN ""AbbBackup"" /TR ""'{app}\{#MyAppExeName}' --all"" /SC DAILY /ST 10:00";Check: AddTask
+
 ; Suppression de la task 
 [UninstallRun]
 Filename: "schtasks"; Parameters: "/Delete /TN ""AbbBackup"" /F"; Flags: runhidden runascurrentuser

@@ -15,30 +15,26 @@ using ABB.Robotics.Controllers.MotionDomain;
 using Microsoft.Win32;
 using System.Reflection.Emit;
 using AbbBackup.Backup;
+using System.Diagnostics;
 
 namespace AbbBackup
 {
     internal class Program
     {
 
-        static private uint BackupInProgressNumber = 0;
-        static private string FolderBackup;
         static private NetworkScanner scanner;
-        static private uint timeoutBackup = 60;
-        static private string folderBackup = UNCPath(AssemblyDirectory);
-        static private string fileRobot = UNCPath(AssemblyDirectory);
-        static private string user = "";
-        static private string password = "";
-        static private RobotParamsList robots;
+        static private string confFile;
+        static private RobotParamsList robotsParams;
         static private bool allBackup;
 
-        static private  bool ScanReseau(NetworkScanner scanner)
+        static string defaultConfFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "SIIF", "AbbBackup", "conf.xml");
+        static private bool ScanReseau(NetworkScanner scanner, int timeScan)
         {
             //Scan les robots présents sur le réseau
             scanner.Scan();
             Console.WriteLine($"Search robots");
 
-            Thread.Sleep(5000);
+            Thread.Sleep(timeScan);
 
             //Fin du programme si pas de robot détecté
             if (scanner.Controllers.Where(p => !p.IsVirtual).ToList().Count() == 0)
@@ -50,8 +46,6 @@ namespace AbbBackup
 
         static void Main(string[] args)
         {
-
-       
 
             //Pour quitter l'appli
             bool Cancel = false;
@@ -67,81 +61,63 @@ namespace AbbBackup
             {
                 switch (args[i].ToLower())
                 {
-                    //Suppression des anciennes sauvegarde
-                    case "--delete":
-
-                        if (args.Length > i + 1 & int.TryParse(args[i + 1], out int limit)) { }
-
-                        if (Directory.Exists(folderBackup + "/Backup/"))
-                        {
-                            foreach (string dir in Directory.GetDirectories(folderBackup + "/Backup/"))
-                            {
-                                DateTime createdTime = new DirectoryInfo(dir).CreationTime;
-                                if (createdTime < DateTime.Now.AddDays(-limit))
-                                {
-                                    Directory.Delete(dir, true);
-                                }
-                            }
-                        }
-                        break;
-
-
+                    //Sauvegarde de tout les robots présent sur le réseau
                     case "--all":
+
                         allBackup = true;
 
                         break;
-           
 
-                    case "--list":
+                    //Spécifie un fichier de configuration
+                    case "--conf":
 
-                        if (args.Length > i + 1)
+                        try
                         {
-                            fileRobot = UNCPath(Environment.ExpandEnvironmentVariables(args[i + 1]));
-                            
-                            Console.WriteLine($"File configuration : {fileRobot}");
-
-                            try
+                            if (args.Length > i + 1)
                             {
+                                confFile = UNCPath(Environment.ExpandEnvironmentVariables(args[i + 1]));
 
-                                robots = RobotParamsList.LoadToXml(fileRobot);
+                                Console.WriteLine($"File configuration : {confFile}");
 
-                                robots.ForEach((p) => Console.WriteLine($"Robot {p.IP}" ));
-
-                                Console.WriteLine($"Default folder backup :{robots.DefaultFolderBackup }");
-                                Console.WriteLine($"TimeOut :{robots.DefaultTimeoutBackup}");
-
-
-
+                                robotsParams = RobotParamsList.LoadToXml(confFile);
                             }
-                            catch (Exception ex)
-                            {
-                                Console.WriteLine(ex.Message);
-                            }
-
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex.Message);
                         }
                         break;
 
-                    case "--createxml":
-
-                        if (args.Length > i + 1)
+                    //Ajout les robots présents au fichier de configuration
+                    case "--addconf":
+                        try
                         {
-                            fileRobot = UNCPath(Environment.ExpandEnvironmentVariables(args[i + 1]));
-                            Console.WriteLine($"Fichier UAS : {fileRobot}");
-
-
-                            if (File.Exists(fileRobot))
+                            if (args.Length > i + 1)
                             {
-                                robots = RobotParamsList.LoadToXml(fileRobot);
+                                confFile = UNCPath(Environment.ExpandEnvironmentVariables(args[i + 1]));
                             }
                             else
                             {
-                                robots = new RobotParamsList();
+                                confFile = defaultConfFile;
                             }
+
+
+                            if (File.Exists(confFile))
+                            {
+                                robotsParams = RobotParamsList.LoadToXml(confFile);
+                            }
+                            else
+                            {
+                                robotsParams = new RobotParamsList();
+                            }
+                            CopyrigthMenu();
+                            Console.WriteLine($"Search robots for adding to file config.xml");
+
 
                             //Recherche des robots présent sur le réseau
                             scanner = new NetworkScanner();
 
-                            while (!ScanReseau(scanner))
+                            while (!ScanReseau(scanner, robotsParams.TimeScan))
                             {
                                 Console.WriteLine($"No robot deteted, retry");
                                 Thread.Sleep(1000);
@@ -151,15 +127,27 @@ namespace AbbBackup
                             {
                                 if (c.IsVirtual == false & c.Availability == Availability.Available)
                                 {
-                                    robots.Add(robots.GetDefaultRobotParams(c));
+                                    if (robotsParams.Add(robotsParams.GetDefaultRobotParams(c)))
+                                    {
 
-                                    Console.WriteLine($"Robot {c.Name} add in list");
+                                        Console.WriteLine($"Robot {c.Name} add in file conf.xml");
+                                    }
                                 }
+
                             }
-                             if (robots.Count > 0) robots.SaveFromXml(fileRobot);
+                            if (robotsParams.Count > 0) robotsParams.SaveFromXml(confFile);
+
+                            Console.WriteLine($"Custom the file conf.xml with user, password,  folder backup directory");
+
+                            Process.Start("explorer.exe", Directory.GetParent(confFile).FullName);
                         }
 
+                        catch (Exception ex) 
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
                         return;
+
 
 
                     //Aide
@@ -167,51 +155,65 @@ namespace AbbBackup
                         Console.WriteLine($" Backup Robot - Application for save the robots programs");
                         Console.WriteLine($" Option : ");
                         Console.WriteLine($"    --All  : backup all robot");
-                        Console.WriteLine($"    --list <path> : config.xml");
-                        Console.WriteLine($"    --listadd <path> : create config.xml");
+                        Console.WriteLine($"    --conf <path> : config.xml");
+                        Console.WriteLine($"    --addconf  : add robot to default config.xml");
+                        Console.WriteLine($"    --addconf <path> : add robot to path config.xml");
                         Console.ReadLine();
                         return;
 
                     default:
                         break;
                 }
-
             }
 
-            //Console.WriteLine($"------Backup------");
-            Console.WriteLine("-".PadRight(60, '-'));
-            Console.WriteLine("|ABB BACKUP".PadRight(59) + "|");
-            Console.WriteLine("|Copyright © SIIF 2025".PadRight(59) + "|");
-            Console.WriteLine($"|{Assembly.GetExecutingAssembly().GetName().Version.ToString().PadRight(58)}|");
-            Console.WriteLine("|Application for save the robots programs".PadRight(59) + "|");
-            Console.WriteLine("-".PadRight(60, '-'));
+            CopyrigthMenu();
 
-            Console.WriteLine($"Ctrl + c for exit application");
 
+            //Aucun fichier de configuration chargée
+            if (robotsParams == null)
+            {
+
+                if (!File.Exists(defaultConfFile))
+                {
+                    Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "SIIF", "AbbBackup"));
+
+                    robotsParams = new RobotParamsList();
+                    robotsParams.SaveFromXml(defaultConfFile);
+
+                    Console.WriteLine($"Création d'un fichier de configuration : {defaultConfFile}");
+                }
+
+                robotsParams = RobotParamsList.LoadToXml(defaultConfFile);
+
+                Console.WriteLine($"Chargement du fichier de configuration : {defaultConfFile}");
+                
+            }
+
+            Console.WriteLine($"Répertoire de sauvegarde par défaut : {robotsParams.DefaultFolderBackup}");
+           
 
             //Recherche des robots présent sur le réseau
             scanner = new NetworkScanner();
-
-            while (!ScanReseau(scanner) & Cancel == false)
+            while (!ScanReseau(scanner, robotsParams.TimeScan) & Cancel == false)
             {
                 Console.WriteLine($"No robot detected, retry");
                 Thread.Sleep(1000);
             }
 
 
-            //Liste les robot présent sur le réseau et dans le fichier UAS
+            //Liste les robot présent sur le réseau et dans le fichier de configuration
             var robotsasauvegarder = from controller in scanner.Controllers
-                         join paramController in robots on controller.SystemId equals paramController.Id into gj
-                         from Params in gj.DefaultIfEmpty()
-                         select new
-                         {
-                             controller,
-                             Params
-                         };
+                                     join paramController in robotsParams on controller.SystemId equals paramController.Id into gj
+                                     from Params in gj.DefaultIfEmpty()
+                                     select new
+                                     {
+                                         controller,
+                                         Params
+                                     };
+
 
             //Itération des robots détecté pour affichage des robots présent sur le réseau
             Console.WriteLine("-".PadRight(125, '-'));
-
             foreach (var c in robotsasauvegarder)
             {
                 Console.WriteLine(
@@ -220,34 +222,36 @@ namespace AbbBackup
                     $" {c.controller.Id.PadRight(32)} |" +
                     $" {c.controller.VersionName.PadRight(10)} |" +
                     $" {c.controller.Availability.ToString().PadRight(16)}|" +
-                    $" {(c.Params !=null || allBackup ? "Backup" : "No Backup").PadRight(16)}|" +
+                    $" {((c.Params != null || allBackup) && !c.controller.IsVirtual ? "Backup" : "No Backup").PadRight(16)}|" +
                     $"");
             }
             Console.WriteLine("-".PadRight(125, '-'));
-
             Console.WriteLine($"");
 
-
-            BackupCreator backupCreator = new BackupCreator();
-
             //Itération des robots détecté pour la sauvegarde
+            BackupCreator backupCreator = new BackupCreator();
             foreach (var c in robotsasauvegarder)
             {
                 RobotParams param = c.Params;
-                if (allBackup && c.Params ==null)
+                if (allBackup && c.Params == null)
                 {
-                    param = robots.GetDefaultRobotParams();
+                    param = robotsParams.GetDefaultRobotParams(c.controller);
                 }
 
-                if(c.Params == null)
+                if (param == null || c.controller.IsVirtual)
                 {
                     continue;
                 }
 
                 BackupController backupController = backupCreator.Factory(c.controller, param);
                 backupController.BackupStart += (p) => Console.WriteLine($"{p.robotparam.NameFileBackup} - Start backup");
-                backupController.BackupCompleted += (p,e) => Console.WriteLine($"{p.robotparam.NameFileBackup} - Backup completed");
+                backupController.BackupCompleted += (p, e) => Console.WriteLine($"{p.robotparam.NameFileBackup} - Backup completed -> {p.robotparam.FolderBackup}");
                 backupController.StartBackup();
+
+                if (param.DelayDeleteFile != -1)
+                {
+                    RemoveFilesDirectory(param.FolderBackup, param.DelayDeleteFile);
+                }
 
             }
 
@@ -260,7 +264,17 @@ namespace AbbBackup
 
         }
 
-
+        static public void CopyrigthMenu()
+        {
+            //Console.WriteLine($"------Backup------");
+            Console.WriteLine("-".PadRight(60, '-'));
+            Console.WriteLine("|ABB BACKUP".PadRight(59) + "|");
+            Console.WriteLine("|Copyright © SIIF 2025".PadRight(59) + "|");
+            Console.WriteLine($"|{Assembly.GetExecutingAssembly().GetName().Version.ToString().PadRight(58)}|");
+            Console.WriteLine("|Application for save the robots programs".PadRight(59) + "|");
+            Console.WriteLine("-".PadRight(60, '-'));
+            Console.WriteLine($"Ctrl + c for exit application");
+        }
 
         public static string AssemblyDirectory
         {

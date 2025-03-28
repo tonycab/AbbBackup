@@ -56,7 +56,7 @@ namespace AbbBackup
         //Méthode pour obtenir le chemin par défaut
         public static string GetDefaultPath()
         {
-            return Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Backup";
         }
 
     }
@@ -67,6 +67,8 @@ namespace AbbBackup
         public string DefaultFolderBackup { get; set; } = RobotParams.GetDefaultPath();
         public int DefaultTimeoutBackup { get; set; } = 300;
         public int DefaultDelayDeleteFile { get; set; } = 360;
+
+        public int TimeScan { get; set; } = 5000;
 
         public RobotParams GetDefaultRobotParams()
         {
@@ -95,13 +97,15 @@ namespace AbbBackup
             };
         }
 
-        public new void Add(RobotParams robot)
+        public new bool  Add(RobotParams robot)
         {
             if (this.Any(r => r.Id == robot.Id))
             {
-                return;
+                return false;
             }
             base.Add(robot);
+
+            return true;
         }
 
         public XElement ToXmlElement()
@@ -112,6 +116,7 @@ namespace AbbBackup
             XElement xElementFolder = new XElement(nameof(DefaultFolderBackup), DefaultFolderBackup);
             XElement xElementTimeOut = new XElement(nameof(DefaultTimeoutBackup), DefaultTimeoutBackup);
             XElement xElementDelayDeleteFile = new XElement(nameof(DefaultDelayDeleteFile), DefaultDelayDeleteFile);
+            XElement xElementTimeScan = new XElement(nameof(TimeScan), TimeScan);
 
             XElement xElementRobot = new XElement(nameof(RobotParamsList));
 
@@ -124,6 +129,7 @@ namespace AbbBackup
             xmlRoot.Add(xElementFolder);
             xmlRoot.Add(xElementTimeOut);
             xmlRoot.Add(xElementDelayDeleteFile);
+            xmlRoot.Add(xElementTimeScan);
             xmlRoot.Add(xElementRobot);
            
 
@@ -134,9 +140,10 @@ namespace AbbBackup
         {
             RobotParamsList p = new RobotParamsList();
 
-            p.DefaultFolderBackup = xElement.Element(nameof(DefaultFolderBackup))?.Value;
-            p.DefaultTimeoutBackup = int.Parse(xElement.Element(nameof(DefaultTimeoutBackup))?.Value);
-            p.DefaultDelayDeleteFile = int.Parse(xElement.Element(nameof(DefaultDelayDeleteFile))?.Value);
+            p.DefaultFolderBackup = xElement?.Element(nameof(DefaultFolderBackup))?.Value;
+            p.DefaultTimeoutBackup = int.Parse(xElement?.Element(nameof(DefaultTimeoutBackup))?.Value);
+            p.DefaultDelayDeleteFile = int.Parse(xElement?.Element(nameof(DefaultDelayDeleteFile))?.Value);
+            p.TimeScan = int.Parse(xElement?.Element(nameof(TimeScan))?.Value);
 
             xElement = xElement.Element(nameof(RobotParamsList));
 
