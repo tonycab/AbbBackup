@@ -1,4 +1,0 @@
-Date;Time;Type;Class;Name;ReferenceX1;ReferenceX2;MeasureX1;MeasureX2;Tolerance;StateMeasureX1;StateMeasureX2;FrameReference.X;FrameReference.Y;FrameReference.Z;FrameReference.Rx;FrameReference.Ry;FrameReference.Rz;FrameRecalage.X;FrameRecalage.Y;FrameRecalage.Z;FrameRecalage.Rx;FrameRecalage.Ry;FrameRecalage.Rz;
-2024-04-23;15:19:06;RECALAGE2PT;REFERENCE;P1_FRAME_6;250.39;251.68;250.39;251.68;10;1;1;0;0;0;0;0;0;0;0;0;0;0;0;
-2024-04-23;15:21:54;RECALAGE2PT;REFERENCE;P1_FRAME_6;250.36;251.63;250.36;251.63;10;1;1;0;0;0;0;0;0;0;0;0;0;0;0;
-2024-04-23;15:23:38;RECALAGE2PT;RECALAGE;P1_FRAME_6;250.36;251.63;250.37;251.69;10;1;1;0;0;0;0;0;0;0.175265;-0.0136465;-0.0446355;-0.000218629;-0.0126343;0.00283417;
