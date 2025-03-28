@@ -7,10 +7,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbbBackup", "AbbBackup.cspr
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		AddRobot|Any CPU = AddRobot|Any CPU
+		Debug Backup list|Any CPU = Debug Backup list|Any CPU
+		Debug CreateXml|Any CPU = Debug CreateXml|Any CPU
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DA4019FC-BB94-4925-859D-2D138628DD1C}.AddRobot|Any CPU.ActiveCfg = AddRobot|Any CPU
+		{DA4019FC-BB94-4925-859D-2D138628DD1C}.AddRobot|Any CPU.Build.0 = AddRobot|Any CPU
+		{DA4019FC-BB94-4925-859D-2D138628DD1C}.Debug Backup list|Any CPU.ActiveCfg = Debug Backup list|Any CPU
+		{DA4019FC-BB94-4925-859D-2D138628DD1C}.Debug Backup list|Any CPU.Build.0 = Debug Backup list|Any CPU
+		{DA4019FC-BB94-4925-859D-2D138628DD1C}.Debug CreateXml|Any CPU.ActiveCfg = Debug CreateXml|Any CPU
+		{DA4019FC-BB94-4925-859D-2D138628DD1C}.Debug CreateXml|Any CPU.Build.0 = Debug CreateXml|Any CPU
 		{DA4019FC-BB94-4925-859D-2D138628DD1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DA4019FC-BB94-4925-859D-2D138628DD1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA4019FC-BB94-4925-859D-2D138628DD1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
