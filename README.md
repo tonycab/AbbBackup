@@ -28,7 +28,7 @@ comportent de nombreux robots.
 
 Télécharger et installer la dépendance PC SDK ABB ➡️ [PC SDK ABB](https://developercenter.robotstudio.com/pc-sdk/download)
 
-Télécharger➡️ [AbbRobot.exe](https://github.com/tonycab/AbbBackup/releases/download/v1.1.0.0/AbbBackup.exe)
+Télécharger➡️ [SetupAbbRobot.exe]((https://github.com/tonycab/AbbBackup/releases/tag/v2.0.0.0))
 
 ## 2 - COMMENCER
 
@@ -40,7 +40,7 @@ Ouvrir l'invite de commande Windows et se placer dans le répertoire contenant l
 
 ## 3 - FICHIER DE CONFIGURATION
 
-Un fichier de configuration est automatique créé dans le répertoire "C:\Users\%UserProfile%\AppData\Local" après la première exécution
+Un fichier de configuration est automatique créé dans le répertoire "C:\Users\%UserProfile%\AppData\Local" ***après la première exécution***
 
 * conf.xml
 ```xml
