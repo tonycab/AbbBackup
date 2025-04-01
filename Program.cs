@@ -16,6 +16,7 @@ using Microsoft.Win32;
 using System.Reflection.Emit;
 using AbbBackup.Backup;
 using System.Diagnostics;
+using System.Net.NetworkInformation;
 
 namespace AbbBackup
 {
@@ -46,13 +47,12 @@ namespace AbbBackup
 
         static void Main(string[] args)
         {
-
             //Pour quitter l'appli
             bool Cancel = false;
             Console.CancelKeyPress += delegate (object sender, ConsoleCancelEventArgs e)
             {
                 Console.WriteLine($"=>Quit");
-                e.Cancel = true
+                e.Cancel = true;
                 Cancel = true;
             };
 
@@ -142,7 +142,7 @@ namespace AbbBackup
                             Process.Start("explorer.exe", Directory.GetParent(confFile).FullName);
                         }
 
-                        catch (Exception ex) 
+                        catch (Exception ex)
                         {
                             Console.WriteLine(ex.Message);
                         }
@@ -186,23 +186,62 @@ namespace AbbBackup
                 robotsParams = RobotParamsList.LoadToXml(defaultConfFile);
 
                 Console.WriteLine($"Chargement du fichier de configuration : {defaultConfFile}");
-                
+
             }
 
             Console.WriteLine($"Répertoire de sauvegarde par défaut : {robotsParams.DefaultFolderBackup}");
-           
+
+            scanner = new NetworkScanner();
+
+            List<ControllerInfo> controllerInfos = new List<ControllerInfo>();
+
+            //Recherche des robots présent dans le fichier
+            foreach (var robot in robotsParams)
+            {
+                try
+                { 
+                    Console.WriteLine($"Ping : {robot.IP}");
+
+                    Ping pingSender = new Ping();
+                    PingReply reply = pingSender.Send(robot.IP);
+
+                    if (reply.Status != IPStatus.Success)
+                    {
+                        Console.WriteLine($"Ping : { robot.IP}  -> no response )");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Ping : {robot.IP}  -> response OK ");
+                    }
+
+                        Console.WriteLine($"Identification du robot : {robot.IP}");
+                    if (scanner.TryFind(robot.Id, robotsParams.TimeScan, robotsParams.RetryScan, out ControllerInfo cf))
+                    {
+                        Console.WriteLine($"Identification du robot : {robot.IP} | {cf.Name} | {cf.VersionName}");
+                        controllerInfos.Add(cf);
+                    }
+                    else
+                    {
+                        Console.WriteLine(robot.NameFileBackup + "-" + robot.Id + "-" + "no found");
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
 
             //Recherche des robots présent sur le réseau
-            scanner = new NetworkScanner();
-            while (!ScanReseau(scanner, robotsParams.TimeScan) & Cancel == false)
-            {
-                Console.WriteLine($"No robot detected, retry");
-                Thread.Sleep(1000);
-            }
+            //while (!ScanReseau(scanner, robotsParams.TimeScan) & Cancel == false)
+            //{
+            //    Console.WriteLine($"No robot detected, retry");
+            //    Thread.Sleep(1000);
+            //}
 
 
             //Liste les robot présent sur le réseau et dans le fichier de configuration
-            var robotsasauvegarder = from controller in scanner.Controllers
+            var robotsasauvegarder = from controller in controllerInfos
                                      join paramController in robotsParams on controller.SystemId equals paramController.Id into gj
                                      from Params in gj.DefaultIfEmpty()
                                      select new
@@ -242,6 +281,8 @@ namespace AbbBackup
                 {
                     continue;
                 }
+
+                if (!Directory.Exists(param.FolderBackup)) param.FolderBackup = robotsParams.DefaultFolderBackup;
 
                 BackupController backupController = backupCreator.Factory(c.controller, param);
                 backupController.BackupStart += (p) => Console.WriteLine($"{p.robotparam.NameFileBackup} - Start backup");

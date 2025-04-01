@@ -40,7 +40,8 @@ namespace AbbBackup
         {
             RobotParams p = new RobotParams();
 
-            xElement = xElement.Element(nameof(RobotParams));
+            try { 
+
             p.Id = new Guid(xElement.Element(nameof(Guid))?.Value);
             p.IP = xElement.Element(nameof(IP))?.Value;
             p.User = xElement.Element(nameof(User))?.Value;
@@ -49,6 +50,13 @@ namespace AbbBackup
             p.NameFileBackup = xElement.Element(nameof(NameFileBackup))?.Value;
             p.TimeoutBackup = int.Parse(xElement.Element(nameof(TimeoutBackup))?.Value);
             p.DelayDeleteFile = int.Parse(xElement.Element(nameof(DelayDeleteFile))?.Value);
+            
+            }catch (Exception ex) 
+            { 
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+
             return p;
 
         }
@@ -69,6 +77,7 @@ namespace AbbBackup
         public int DefaultDelayDeleteFile { get; set; } = 360;
 
         public int TimeScan { get; set; } = 5000;
+        public int RetryScan { get; set; } = 5;
 
         public RobotParams GetDefaultRobotParams()
         {
@@ -99,6 +108,7 @@ namespace AbbBackup
 
         public new bool  Add(RobotParams robot)
         {
+           
             if (this.Any(r => r.Id == robot.Id))
             {
                 return false;
@@ -117,6 +127,7 @@ namespace AbbBackup
             XElement xElementTimeOut = new XElement(nameof(DefaultTimeoutBackup), DefaultTimeoutBackup);
             XElement xElementDelayDeleteFile = new XElement(nameof(DefaultDelayDeleteFile), DefaultDelayDeleteFile);
             XElement xElementTimeScan = new XElement(nameof(TimeScan), TimeScan);
+            XElement xElementRetryScan = new XElement(nameof(RetryScan), RetryScan);
 
             XElement xElementRobot = new XElement(nameof(RobotParamsList));
 
@@ -130,6 +141,7 @@ namespace AbbBackup
             xmlRoot.Add(xElementTimeOut);
             xmlRoot.Add(xElementDelayDeleteFile);
             xmlRoot.Add(xElementTimeScan);
+            xmlRoot.Add(xElementRetryScan);
             xmlRoot.Add(xElementRobot);
            
 
@@ -144,12 +156,12 @@ namespace AbbBackup
             p.DefaultTimeoutBackup = int.Parse(xElement?.Element(nameof(DefaultTimeoutBackup))?.Value);
             p.DefaultDelayDeleteFile = int.Parse(xElement?.Element(nameof(DefaultDelayDeleteFile))?.Value);
             p.TimeScan = int.Parse(xElement?.Element(nameof(TimeScan))?.Value);
-
+            p.RetryScan = int.Parse(xElement?.Element(nameof(RetryScan))?.Value);
             xElement = xElement.Element(nameof(RobotParamsList));
 
-            foreach(XElement xElement1 in xElement.Elements())
+            foreach(XElement xElementRobotParams in xElement.Elements())
             {
-                p.Add(RobotParams.FromXml(xElement));
+                p.Add(RobotParams.FromXml(xElementRobotParams));
             }
 
             return p;

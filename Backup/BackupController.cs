@@ -22,8 +22,6 @@ namespace AbbBackup.Backup
 
         public UserInfo userInfo;
 
-        public int timeoutBackup { get; set; } = 300;
-
         public bool backupProgress { get; set; }
 
         public BackupCreator backupCreator { get; set; }
@@ -95,7 +93,7 @@ namespace AbbBackup.Backup
 
                     var d = (DateTime.Now - date).TotalSeconds;
 
-                    if (d > timeoutBackup)
+                    if (d > robotparam.TimeoutBackup)
                     {
                         Console.WriteLine($"Timeout backup");
                         controller?.Dispose();
