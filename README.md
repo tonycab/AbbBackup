@@ -28,7 +28,7 @@ comportent de nombreux robots.
 
 Télécharger et installer la dépendance PC SDK ABB ➡️ [PC SDK ABB](https://developercenter.robotstudio.com/pc-sdk/download)
 
-Télécharger➡️ [SetupAbbRobot.exe]((https://github.com/tonycab/AbbBackup/releases/tag/v2.0.0.0))
+Télécharger➡️ [SetupAbbRobot.exe](https://github.com/tonycab/AbbBackup/releases/download/v2.0.0.1/Setup.AbbBackup.2.0.0.1.exe)
 
 ## 2 - COMMENCER
 
@@ -104,14 +104,6 @@ Cet exemple sauvegarde les robots présents sur le réseau en spécifiant un fic
 * cmd
   ```sh
   C:\>AbbBackup.exe --conf "%UserProfile%\Desktop\conf.xml"
-  ```
-
-### Exemple 4
-
-Cet exemple sauvegarde tout les robots présents sur le réseau.
-* cmd
-  ```sh
-  C:\>AbbBackup.exe --all
   ```
 
 
