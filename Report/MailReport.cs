@@ -36,6 +36,8 @@ namespace AbbBackup.Report
 
         }
 
+
+
         public bool Send()
         {
             try
@@ -63,7 +65,8 @@ namespace AbbBackup.Report
                 using (var message = new MailMessage(fromAddress, toAddress)
                 {
                     Subject = Subject,
-                    Body = Content
+                    Body = Content,
+                    IsBodyHtml = true,
                 })
                 {
                     if (Attach != null)

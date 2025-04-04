@@ -21,6 +21,7 @@ using System.Diagnostics.Eventing.Reader;
 using AbbBackup.Params;
 using AbbBackup.Logs;
 using AbbBackup.Report;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 
 namespace AbbBackup
@@ -190,7 +191,7 @@ namespace AbbBackup
                     Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "SIIF", "AbbBackup"));
 
                     robotsParams = new RobotParamsList();
-                    robotsParams.Mails.Add(new Mail ());
+                    robotsParams.Mails.Add(new Mail());
                     robotsParams.SaveFromXml(defaultConfFile);
 
                     LogsManager.Add(EnumCategory.Info, "Configuration", $"Create config file to {defaultConfFile}");
@@ -284,6 +285,8 @@ namespace AbbBackup
 
 
             //Itération des robots détecté pour affichage des robots présent sur le réseau
+
+
             Console.WriteLine($"");
             Console.WriteLine("-".PadRight(120, '-'));
             foreach (var c in robotsasauvegarder)
@@ -296,15 +299,29 @@ namespace AbbBackup
                     $" {c.controller.Availability.ToString().PadRight(12)}|" +
                     $" {((c.Params != null || onlineOnly) && !c.controller.IsVirtual ? "Backup" : "No Backup").PadRight(12)}|" +
                     $"");
+
+
+
             }
             Console.WriteLine("-".PadRight(120, '-'));
             Console.WriteLine($"");
+
+            List<RobotBackup> listerob = new List<RobotBackup>();
 
             //Itération des robots détecté pour la sauvegarde
             BackupCreator backupCreator = new BackupCreator();
             foreach (var c in robotsasauvegarder)
             {
+
                 RobotParams param = c.Params;
+
+                var state = (c.Params != null || onlineOnly) && !c.controller.IsVirtual ? "Echec" : "No Backup";
+
+                var rb = new RobotBackup(c.controller, c.Params, $"{state}");
+
+                listerob.Add(rb);
+
+
                 if (onlineOnly && c.Params == null)
                 {
                     param = robotsParams.GetDefaultRobotParams(c.controller);
@@ -321,7 +338,13 @@ namespace AbbBackup
 
                 backupController.BackupStart += (p) => LogsManager.Add(EnumCategory.Process, "Backup", $"{p.robotparam.NameFileBackup} - Start backup");
                 backupController.BackupCompleted += (p, e) => LogsManager.Add(EnumCategory.Process, "Backup", $"{p.robotparam.NameFileBackup} - Backup completed -> {p.robotparam.FolderBackup}");
-                backupController.StartBackup();
+
+                if (backupController.StartBackup())
+                {
+
+                    rb.State = "Succes";
+
+                }
 
                 if (param.DelayDeleteFile != -1)
                 {
@@ -333,58 +356,58 @@ namespace AbbBackup
 
 
             //Send report to mail
-                foreach (var mail in robotsParams.Mails)
+            foreach (var mail in robotsParams.Mails)
+            {
+                if (!mail.Actived) continue;
+
+                List<Log> logError;
+
+                string subjectMail;
+                if (mail.AllLogs)
                 {
-                    if (!mail.Actived) continue;
+                    logError = LogsManager.GetLogs().ToList();
+                    subjectMail = "Backup logs";
+                }
+                else
+                {
+                    logError = LogsManager.GetLogs().Where((l) => l.Category == EnumCategory.Error).ToList();
+                    subjectMail = "Backup Error logs";
+                }
 
-                    List<Log> logError;
+                if (logError.Count > 0)
+                {
+                    StringBuilder sb = new StringBuilder();
 
-                    string subjectMail;
-                    if (mail.AllLogs) {
-                        logError = LogsManager.GetLogs().ToList();
-                        subjectMail = "Backup logs";
+
+
+                    sb.AppendLine(FormatHTML(listerob, LogsManager.GetLogs().ToList()));
+
+
+                    IReport mr = new MailReport()
+                    {
+                        Mail = mail,
+                        AdressMailFrom = robotsParams.Mails.AdressMailFrom,
+                        NameFrom = robotsParams.Mails.NameFrom,
+                        HostSmtp = robotsParams.Mails.HostSmtp,
+                        PortSmtp = robotsParams.Mails.PortSmtp,
+                        CredentialName = robotsParams.Mails.CredentialName,
+                        Subject = subjectMail,
+                        Content = sb.ToString(),
+                    };
+
+
+                    if (mr.Send())
+                    {
+                        LogsManager.Add(EnumCategory.Process, "Report", $"Send report to mail {mail.AdressMailTo}");
                     }
                     else
                     {
-                        logError = LogsManager.GetLogs().Where((l) => l.Category == EnumCategory.Error).ToList();
-                        subjectMail = "Backup Error logs";
-                    }
-
-                    if (logError.Count > 0)
-                    {
-                        StringBuilder sb = new StringBuilder();
-                        foreach (var l in LogsManager.GetLogs())
-                        {
-                            sb.AppendLine(l.ToString());
-                        }
-                       
-
-
-                        IReport mr = new MailReport()
-                        {
-                            Mail = mail,
-                            AdressMailFrom = robotsParams.Mails.AdressMailFrom,
-                            NameFrom = robotsParams.Mails.NameFrom,
-                            HostSmtp = robotsParams.Mails.HostSmtp,
-                            PortSmtp = robotsParams.Mails.PortSmtp,
-                            CredentialName = robotsParams.Mails.CredentialName,
-                            Subject = subjectMail,
-                            Content = sb.ToString(),
-                        };
-
-
-                        if (mr.Send())
-                        {
-                            LogsManager.Add(EnumCategory.Process, "Report", $"Send report to mail {mail.AdressMailTo}");
-                        }
-                        else
-                        {
-                            LogsManager.Add(EnumCategory.Error, "Report", $"Error Send report to mail {mail.AdressMailTo}");
-                        }
+                        LogsManager.Add(EnumCategory.Error, "Report", $"Error Send report to mail {mail.AdressMailTo}");
                     }
                 }
+            }
 
-            
+
 
             Label:
 
@@ -393,6 +416,68 @@ namespace AbbBackup
             Thread.Sleep(2000);
 
         }
+
+        private static string FormatHTML(List<RobotBackup> rb, List<Log> lm)
+        {
+            string htmlTable = $"<div><h1>Rapport de sauvegarde robots du {DateTime.Now.ToString()}</h1>";
+
+
+            // Génération du tableau robot
+            htmlTable += "<div><h2>Etat des sauvegardes robots</h2><p>Liste des robots :</p><table border='1' cellpadding='5' cellspacing='0'><tr><th>ID</th><th>Identifiant</th><th>Version</th><th>Répertoire de sauvegarde</th><th>Etat</th></tr>";
+
+
+           // htmlTable += "<tr>";
+            foreach (var cell in rb)
+            {
+                string color = "white";
+                if (cell.State == "Echec")
+                {
+                    color = "red";
+                }
+                else if (cell.State == "Succes")
+                {
+                    color = "green";
+                }
+
+                htmlTable += "<tb>";
+                htmlTable += $"<td>{cell.ControllerInfo.Id}</td>";
+                htmlTable += $"<td>{cell.ControllerInfo.Name}</td>";
+                htmlTable += $"<td>{cell.ControllerInfo.VersionName}</td>";
+                htmlTable += $"<td>{cell.robotParams.FolderBackup}</td>";
+                htmlTable += $"<td style='background-color:{color};'>{cell.State}</td>";
+                htmlTable += "</tb>";
+            }
+            //htmlTable += "</tr>";
+
+
+            htmlTable += "</table></div>";
+
+
+            // Génération du tableau robot
+            htmlTable += "<div><h2>Rapport des Logs</h2><p>Liste des logs :</p><table border='1' cellpadding='5' cellspacing='0'><tr><th>Date</th><th>Categorie</th><th>Type</th><th>Description</th></tr>";
+
+            foreach (var cell in lm)
+            {
+                string color = "white";
+                if (cell.Category == EnumCategory.Error)
+                {
+                    color = "red";
+                }
+
+                htmlTable += "<tr style='background-color:" + color + ";'>";
+                htmlTable += $"<td>{cell.Date}</td>";
+                htmlTable += $"<td>{cell.Category}</td>";
+                htmlTable += $"<td>{cell.Type}</td>";
+                htmlTable += $"<td>{cell.Description}</td>";
+                htmlTable += "</tr>";
+            }
+
+            htmlTable += "</table></div>";
+
+            return htmlTable;
+        }
+
+
 
         //Affiche des messages dans la console
         private static void ConsoleWrite(Log log)

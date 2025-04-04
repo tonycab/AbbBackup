@@ -48,7 +48,7 @@ namespace AbbBackup.Backup
             robotparam = robotParam;
         }
 
-        public void StartBackup()
+        public bool StartBackup()
         {
             try
             {
@@ -105,18 +105,19 @@ namespace AbbBackup.Backup
 
                     if (d > robotparam.TimeoutBackup)
                     {
-                        Console.WriteLine($"Timeout backup");
                         controller?.Dispose();
                         backupProgress = false;
-                        break;
+                        throw new Exception($"Timeout backup");
                     }
                 }
+                return true;
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                backupProgress = false;
                 LogsManager.Add(EnumCategory.Error, "backup", e.Message);
                 BackupCompleted?.Invoke(this, null);
+                return false;
             }
         }
 
