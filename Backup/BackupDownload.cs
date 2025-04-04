@@ -8,18 +8,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Win32;
+using AbbBackup.Params;
+using AbbBackup.Logs;
 
 namespace AbbBackup.Backup
 {
 
     internal class BackupDownload
     {
-        public BackupController backupCreator { get; set; }
+        public BackupController BackupController { get; set; }
 
 
         public BackupDownload(BackupController backupCreator)
         {
-            this.backupCreator = backupCreator;
+            this.BackupController = backupCreator;
         }
 
         public async void BackupEnd(object sender, BackupEventArgs e)
@@ -35,32 +37,47 @@ namespace AbbBackup.Backup
 
                         Controller controller = (Controller)sender;
 
-                        controller.Logon(backupCreator.userInfo);
+                        LogsManager.Add(EnumCategory.Info, "backup", $"Connexion to controller : {controller.Name}");
+
+                        controller.Logon(BackupController.userInfo);
 
                         string home = controller.GetEnvironmentVariable("HOME");
+
+                        LogsManager.Add(EnumCategory.Info, "backup", $"Request grant Ftp : {controller.Name}");
 
                         controller.AuthenticationSystem.DemandGrant(Grant.ReadFtp);
 
                         controller.FileSystem.RemoteDirectory = FileSystemPath.Combine(home, "BACKUP");
 
+                        var FolderBackup = UNCPath(BackupController.robotparam.FolderBackup) + "\\" + BackupController.backupCreator.Date.ToString("yyyy_MM_dd HH\\hmmm\\mss\\s");
 
-                        var FolderBackup = UNCPath(backupCreator.robotparam.FolderBackup) + "\\" + DateTime.Now.ToString("yyyy_MM_dd HH\\hmmm\\mss\\s");
+                        LogsManager.Add(EnumCategory.Info, "backup", "Creating backup folder");
 
                         Directory.CreateDirectory(FolderBackup);
 
                         controller.FileSystem.LocalDirectory = FolderBackup;
 
+                        LogsManager.Add(EnumCategory.Info, "backup", "Download backup from robot started");
+
                         controller.FileSystem.GetDirectory(controller.Name);
+
+                        LogsManager.Add(EnumCategory.Info, "backup", "Download backup from robot ended");
 
                         var FolderDownload = FolderBackup + "\\" + controller.Name;
 
+                        var NameFile = BackupController.robotparam.NameFileBackup != "" ? BackupController.robotparam.NameFileBackup : controller.Name;
 
-                        var NameFile = backupCreator.robotparam.NameFileBackup != "" ? backupCreator.robotparam.NameFileBackup : controller.Name;
+                        string PathFolderBackup = FolderBackup + "\\" + NameFile + "_" + BackupController.backupCreator.Date.ToString("yyyy_MM_dd_HH\\hmmm\\mss\\s") + ".zip";
 
-                        string PathFolderBackup = FolderBackup + "\\" + NameFile + "_" + DateTime.Now.ToString("yyyy_MM_dd_HH\\hmmm\\mss\\s") + ".zip";
-
+                        LogsManager.Add(EnumCategory.Info, "backup", "Start folder compressing");
 
                         ZipFile.CreateFromDirectory(FolderDownload, PathFolderBackup);
+
+                        LogsManager.Add(EnumCategory.Info, "backup", "Folder compressing ended");
+
+                        File.SetCreationTime(PathFolderBackup, BackupController.backupCreator.Date);
+
+                        LogsManager.Add(EnumCategory.Info, "backup", "Changing date create time file");
 
                         Directory.Delete(FolderDownload, true);
 
@@ -72,12 +89,12 @@ namespace AbbBackup.Backup
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                LogsManager.Add(EnumCategory.Error,"backup", ex.Message);    
             }
             finally
             {
-                backupCreator.CallEventBackupCompleted(backupCreator, e);
-                backupCreator.backupProgress = false;
+                BackupController.CallEventBackupCompleted(BackupController, e);
+                BackupController.backupProgress = false;
             }
         }
 

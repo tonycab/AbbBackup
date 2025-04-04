@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using AbbBackup.Params;
+using AbbBackup.Logs;
 
 namespace AbbBackup.Backup
 {
@@ -54,6 +56,8 @@ namespace AbbBackup.Backup
 
                 backupProgress = true;
 
+                LogsManager.Add(EnumCategory.Info, "backup", $"Connect to controller : {controllerInfo.Name}");
+
                 controller = Controller.Connect(controllerInfo, ConnectionType.Standalone);
 
                 //Récupération du chemin du répertoire "HOME" sur la baie robot
@@ -64,7 +68,11 @@ namespace AbbBackup.Backup
 
                 controller.BackupCompleted += backupCreatorDownload.BackupEnd;
 
+                LogsManager.Add(EnumCategory.Info, "backup", $"Login to : {controller.Name}");
+
                 controller.Logon(userInfo);
+
+                LogsManager.Add(EnumCategory.Info, "backup", $"Request grant Ftp : {controller.Name}");
 
                 //Demande des droits de lecture FTP
                 controller.AuthenticationSystem.DemandGrant(Grant.ReadFtp);
@@ -75,12 +83,14 @@ namespace AbbBackup.Backup
                 //Suppression de l'ancienne sauvegarde
                 if (controller.FileSystem.DirectoryExists("/BACKUP"))
                 {
+                    LogsManager.Add(EnumCategory.Info, "backup", $"Removing backup folder in robot");
                     controller.FileSystem.RemoveDirectory("/BACKUP/");
                 }
 
                 Thread.Sleep(100);
 
                 //Demande de sauvegarde
+                LogsManager.Add(EnumCategory.Info, "backup", $"Starting backup in folder");
                 controller.Backup(home + "/BACKUP/" + controller.Name);
 
                 BackupStart?.Invoke(this);
@@ -101,13 +111,11 @@ namespace AbbBackup.Backup
                         break;
                     }
                 }
-
-
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-
+                LogsManager.Add(EnumCategory.Error, "backup", e.Message);
                 BackupCompleted?.Invoke(this, null);
             }
         }

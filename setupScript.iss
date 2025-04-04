@@ -3,7 +3,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "AbbBackup"
-#define MyAppVersion "2.0.0.1"
+#define MyAppVersion "2.0.0.2"
 #define MyAppPublisher "SIIF"
 #define MyAppURL "https://www.siif.fr/"
 #define MyAppExeName "AbbBackup.exe"

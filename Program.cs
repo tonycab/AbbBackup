@@ -17,6 +17,11 @@ using System.Reflection.Emit;
 using AbbBackup.Backup;
 using System.Diagnostics;
 using System.Net.NetworkInformation;
+using System.Diagnostics.Eventing.Reader;
+using AbbBackup.Params;
+using AbbBackup.Logs;
+using AbbBackup.Report;
+
 
 namespace AbbBackup
 {
@@ -26,27 +31,23 @@ namespace AbbBackup
         static private NetworkScanner scanner;
         static private string confFile;
         static private RobotParamsList robotsParams;
-        static private bool allBackup;
+        static private bool onlineOnly;
 
         static string defaultConfFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "SIIF", "AbbBackup", "conf.xml");
-        static private bool ScanReseau(NetworkScanner scanner, int timeScan)
-        {
-            //Scan les robots présents sur le réseau
-            scanner.Scan();
-            Console.WriteLine($"Search robots");
+        static string defaultMailsFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "SIIF", "AbbBackup", "mail.xml");
+        static string defaultLogFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "SIIF", "AbbBackup\\Logs");
 
-            Thread.Sleep(timeScan);
 
-            //Fin du programme si pas de robot détecté
-            if (scanner.Controllers.Where(p => !p.IsVirtual).ToList().Count() == 0)
-            {
-                return false;
-            }
-            return true;
-        }
 
         static void Main(string[] args)
         {
+
+            LogsManager.OnLogAdd += ConsoleWrite;
+            LogsManager.OnLogAdd += WriteLogFile;
+
+            LogsManager.Add(EnumCategory.Info, "Start application", "Start application");
+
+
             //Pour quitter l'appli
             bool Cancel = false;
             Console.CancelKeyPress += delegate (object sender, ConsoleCancelEventArgs e)
@@ -61,10 +62,12 @@ namespace AbbBackup
             {
                 switch (args[i].ToLower())
                 {
-                    //Sauvegarde de tout les robots présent sur le réseau
-                    case "--all":
+                    //Sauvegarde uniquement les robots présent sur le réseau
+                    case "--online":
 
-                        allBackup = true;
+                        onlineOnly = true;
+
+                        LogsManager.Add(EnumCategory.Process, "Parameters", "Save online robot only");
 
                         break;
 
@@ -77,18 +80,21 @@ namespace AbbBackup
                             {
                                 confFile = UNCPath(Environment.ExpandEnvironmentVariables(args[i + 1]));
 
-                                Console.WriteLine($"File configuration : {confFile}");
+                                LogsManager.Add(EnumCategory.Info, "Parameters", $"Load config file {confFile}");
 
                                 robotsParams = RobotParamsList.LoadToXml(confFile);
+
+                                LogsManager.Add(EnumCategory.Process, "Parameters", $"Config file loaded {confFile}");
                             }
                         }
                         catch (Exception ex)
                         {
-                            Console.WriteLine(ex.Message);
+                            LogsManager.Add(EnumCategory.Error, "Parameters", $"Config file no loaded {confFile}");
+
                         }
                         break;
 
-                    //Ajout les robots présents au fichier de configuration
+                    //Ajout les robots présents sur le réseau au fichier de configuration
                     case "--addconf":
                         try
                         {
@@ -110,16 +116,20 @@ namespace AbbBackup
                             {
                                 robotsParams = new RobotParamsList();
                             }
-                            CopyrigthMenu();
-                            Console.WriteLine($"Search robots for adding to file config.xml");
 
+                            CopyrigthMenu();
+
+                            LogsManager.Add(EnumCategory.Process, "Parameters", $"Search robots for adding to file config.xml");
 
                             //Recherche des robots présent sur le réseau
                             scanner = new NetworkScanner();
 
+                            Task.Delay(5000).Wait();
+
                             while (!ScanReseau(scanner, robotsParams.TimeScan))
                             {
-                                Console.WriteLine($"No robot deteted, retry");
+                                if (Cancel == true) goto Label;
+                                LogsManager.Add(EnumCategory.Error, "Controller", $"No robot deteted, retry");
                                 Thread.Sleep(1000);
                             }
 
@@ -129,15 +139,15 @@ namespace AbbBackup
                                 {
                                     if (robotsParams.Add(robotsParams.GetDefaultRobotParams(c)))
                                     {
+                                        LogsManager.Add(EnumCategory.Process, "Controller", $"Robot {c.Name} add in file conf.xml");
 
-                                        Console.WriteLine($"Robot {c.Name} add in file conf.xml");
                                     }
                                 }
 
                             }
                             if (robotsParams.Count > 0) robotsParams.SaveFromXml(confFile);
 
-                            Console.WriteLine($"Custom the file conf.xml with user, password,  folder backup directory");
+                            LogsManager.Add(EnumCategory.Process, "Controller", $"Custom the file conf.xml with user, password,  folder backup directory");
 
                             Process.Start("explorer.exe", Directory.GetParent(confFile).FullName);
                         }
@@ -147,8 +157,6 @@ namespace AbbBackup
                             Console.WriteLine(ex.Message);
                         }
                         return;
-
-
 
                     //Aide
                     case "--help":
@@ -166,82 +174,106 @@ namespace AbbBackup
                 }
             }
 
+            //Affichage du menu copyrigth
             CopyrigthMenu();
 
 
-            //Aucun fichier de configuration chargée
+            //Chargement du fichier de configuration
             if (robotsParams == null)
             {
-
+                //Creation du fichier de configuration par défaut
                 if (!File.Exists(defaultConfFile))
+
                 {
+                    LogsManager.Add(EnumCategory.Info, "Configuration", "no present config file");
+
                     Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "SIIF", "AbbBackup"));
 
                     robotsParams = new RobotParamsList();
+                    robotsParams.Mails.Add(new Mail ());
                     robotsParams.SaveFromXml(defaultConfFile);
 
-                    Console.WriteLine($"Création d'un fichier de configuration : {defaultConfFile}");
+                    LogsManager.Add(EnumCategory.Info, "Configuration", $"Create config file to {defaultConfFile}");
+
                 }
 
+                //Chargement du fichier de configuration
                 robotsParams = RobotParamsList.LoadToXml(defaultConfFile);
 
-                Console.WriteLine($"Chargement du fichier de configuration : {defaultConfFile}");
+                LogsManager.Add(EnumCategory.Process, "Configuration", $"load config file to {defaultConfFile}");
 
             }
 
-            Console.WriteLine($"Répertoire de sauvegarde par défaut : {robotsParams.DefaultFolderBackup}");
 
             scanner = new NetworkScanner();
 
-            List<ControllerInfo> controllerInfos = new List<ControllerInfo>();
+            ControllerInfo[] ci;
 
-            //Recherche des robots présent dans le fichier
-            foreach (var robot in robotsParams)
+            //Sauvegarde uniquement les robots de la listes
+            if (!onlineOnly)
             {
-                try
-                { 
-                    Console.WriteLine($"Ping : {robot.IP}");
 
-                    Ping pingSender = new Ping();
-                    PingReply reply = pingSender.Send(robot.IP);
+                List<ControllerInfo> controllerInfos = new List<ControllerInfo>();
 
-                    if (reply.Status != IPStatus.Success)
-                    {
-                        Console.WriteLine($"Ping : { robot.IP}  -> no response )");
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Ping : {robot.IP}  -> response OK ");
-                    }
-
-                        Console.WriteLine($"Identification du robot : {robot.IP}");
-                    if (scanner.TryFind(robot.Id, robotsParams.TimeScan, robotsParams.RetryScan, out ControllerInfo cf))
-                    {
-                        Console.WriteLine($"Identification du robot : {robot.IP} | {cf.Name} | {cf.VersionName}");
-                        controllerInfos.Add(cf);
-                    }
-                    else
-                    {
-                        Console.WriteLine(robot.NameFileBackup + "-" + robot.Id + "-" + "no found");
-                    }
-
-                }
-                catch (Exception ex)
+                //Recherche des robots présent dans le fichier
+                foreach (var robot in robotsParams)
                 {
-                    Console.WriteLine(ex.Message);
-                }
-            }
+                    try
+                    {
+                        LogsManager.Add(EnumCategory.Process, "Ping", $"Ping : {robot.IP}");
 
-            //Recherche des robots présent sur le réseau
-            //while (!ScanReseau(scanner, robotsParams.TimeScan) & Cancel == false)
-            //{
-            //    Console.WriteLine($"No robot detected, retry");
-            //    Thread.Sleep(1000);
-            //}
+                        Ping pingSender = new Ping();
+                        PingReply reply = pingSender.Send(robot.IP);
+
+                        if (reply.Status != IPStatus.Success)
+                        {
+                            LogsManager.Add(EnumCategory.Error, "Ping", $"Ping : {robot.IP} -> no response");
+
+                            continue;
+                        }
+                        else
+                        {
+                            LogsManager.Add(EnumCategory.Process, "Ping", $"Ping : {robot.IP} -> response ok");
+                        }
+
+                        if (scanner.TryFind(robot.Id, robotsParams.TimeScan, robotsParams.RetryScan, out ControllerInfo cf))
+                        {
+                            LogsManager.Add(EnumCategory.Process, "Identification", $"Robot found : {robot.IP} | {cf.Name} | {cf.VersionName}");
+
+                            controllerInfos.Add(cf);
+                        }
+                        else
+                        {
+                            LogsManager.Add(EnumCategory.Error, "Identification", $"Robot : {robot.IP} no found");
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        LogsManager.Add(EnumCategory.Error, "Exception", $"{ex.Message}");
+
+                    }
+                }
+                ci = controllerInfos.ToArray();
+
+            }
+            //Sauvegarde des robots en ligne
+            else
+            {
+
+                //Recherche des robots présent sur le réseau
+                while (!ScanReseau(scanner, robotsParams.TimeScan) & Cancel == false)
+                {
+                    LogsManager.Add(EnumCategory.Process, "Scan", $"no robot detected, retry");
+                    Thread.Sleep(1000);
+                }
+
+                ci = scanner.GetControllers(NetworkScannerSearchCriterias.Real);
+            }
 
 
             //Liste les robot présent sur le réseau et dans le fichier de configuration
-            var robotsasauvegarder = from controller in controllerInfos
+            var robotsasauvegarder = from controller in ci
                                      join paramController in robotsParams on controller.SystemId equals paramController.Id into gj
                                      from Params in gj.DefaultIfEmpty()
                                      select new
@@ -252,19 +284,20 @@ namespace AbbBackup
 
 
             //Itération des robots détecté pour affichage des robots présent sur le réseau
-            Console.WriteLine("-".PadRight(125, '-'));
+            Console.WriteLine($"");
+            Console.WriteLine("-".PadRight(120, '-'));
             foreach (var c in robotsasauvegarder)
             {
                 Console.WriteLine(
                     $"|{(c.controller.Name.PadRight(16))} |" +
                     $" {c.controller.IPAddress.ToString().PadRight(16)} |" +
-                    $" {c.controller.Id.PadRight(32)} |" +
+                    $" {c.controller.Id.PadRight(28)} |" +
                     $" {c.controller.VersionName.PadRight(10)} |" +
-                    $" {c.controller.Availability.ToString().PadRight(16)}|" +
-                    $" {((c.Params != null || allBackup) && !c.controller.IsVirtual ? "Backup" : "No Backup").PadRight(16)}|" +
+                    $" {c.controller.Availability.ToString().PadRight(12)}|" +
+                    $" {((c.Params != null || onlineOnly) && !c.controller.IsVirtual ? "Backup" : "No Backup").PadRight(12)}|" +
                     $"");
             }
-            Console.WriteLine("-".PadRight(125, '-'));
+            Console.WriteLine("-".PadRight(120, '-'));
             Console.WriteLine($"");
 
             //Itération des robots détecté pour la sauvegarde
@@ -272,7 +305,7 @@ namespace AbbBackup
             foreach (var c in robotsasauvegarder)
             {
                 RobotParams param = c.Params;
-                if (allBackup && c.Params == null)
+                if (onlineOnly && c.Params == null)
                 {
                     param = robotsParams.GetDefaultRobotParams(c.controller);
                 }
@@ -285,17 +318,73 @@ namespace AbbBackup
                 if (!Directory.Exists(param.FolderBackup)) param.FolderBackup = robotsParams.DefaultFolderBackup;
 
                 BackupController backupController = backupCreator.Factory(c.controller, param);
-                backupController.BackupStart += (p) => Console.WriteLine($"{p.robotparam.NameFileBackup} - Start backup");
-                backupController.BackupCompleted += (p, e) => Console.WriteLine($"{p.robotparam.NameFileBackup} - Backup completed -> {p.robotparam.FolderBackup}");
+
+                backupController.BackupStart += (p) => LogsManager.Add(EnumCategory.Process, "Backup", $"{p.robotparam.NameFileBackup} - Start backup");
+                backupController.BackupCompleted += (p, e) => LogsManager.Add(EnumCategory.Process, "Backup", $"{p.robotparam.NameFileBackup} - Backup completed -> {p.robotparam.FolderBackup}");
                 backupController.StartBackup();
 
                 if (param.DelayDeleteFile != -1)
                 {
                     RemoveFilesDirectory(param.FolderBackup, param.DelayDeleteFile);
+
                 }
 
             }
 
+
+            //Send report to mail
+                foreach (var mail in robotsParams.Mails)
+                {
+                    if (!mail.Actived) continue;
+
+                    List<Log> logError;
+
+                    string subjectMail;
+                    if (mail.AllLogs) {
+                        logError = LogsManager.GetLogs().ToList();
+                        subjectMail = "Backup logs";
+                    }
+                    else
+                    {
+                        logError = LogsManager.GetLogs().Where((l) => l.Category == EnumCategory.Error).ToList();
+                        subjectMail = "Backup Error logs";
+                    }
+
+                    if (logError.Count > 0)
+                    {
+                        StringBuilder sb = new StringBuilder();
+                        foreach (var l in LogsManager.GetLogs())
+                        {
+                            sb.AppendLine(l.ToString());
+                        }
+                       
+
+
+                        IReport mr = new MailReport()
+                        {
+                            Mail = mail,
+                            AdressMailFrom = robotsParams.Mails.AdressMailFrom,
+                            NameFrom = robotsParams.Mails.NameFrom,
+                            HostSmtp = robotsParams.Mails.HostSmtp,
+                            PortSmtp = robotsParams.Mails.PortSmtp,
+                            CredentialName = robotsParams.Mails.CredentialName,
+                            Subject = subjectMail,
+                            Content = sb.ToString(),
+                        };
+
+
+                        if (mr.Send())
+                        {
+                            LogsManager.Add(EnumCategory.Process, "Report", $"Send report to mail {mail.AdressMailTo}");
+                        }
+                        else
+                        {
+                            LogsManager.Add(EnumCategory.Error, "Report", $"Error Send report to mail {mail.AdressMailTo}");
+                        }
+                    }
+                }
+
+            
 
             Label:
 
@@ -303,6 +392,47 @@ namespace AbbBackup
             Console.WriteLine($"...Exit...");
             Thread.Sleep(2000);
 
+        }
+
+        //Affiche des messages dans la console
+        private static void ConsoleWrite(Log log)
+        {
+
+            if (log.Category == EnumCategory.Process || log.Category == EnumCategory.Error)
+            {
+                Console.WriteLine(
+                    $"|{(log.Category.ToString().PadRight(10))} |" +
+                    $" {log.Type.PadRight(16)} |" +
+                    $" {log.Description}");
+            }
+        }
+
+        static private bool ScanReseau(NetworkScanner scanner, int timeScan)
+        {
+            //Scan les robots présents sur le réseau
+            scanner.Scan();
+            LogsManager.Add(EnumCategory.Info, "Scan", $"Search robot online");
+
+            Thread.Sleep(timeScan);
+
+            //Fin du programme si pas de robot détecté
+            if (scanner.Controllers.Where(p => !p.IsVirtual).ToList().Count() == 0)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private static void WriteLogFile(Log log)
+        {
+
+            Directory.CreateDirectory(defaultLogFile);
+
+            using (StreamWriter fs = new StreamWriter(defaultLogFile + "\\Logs_" + DateTime.Today.ToString("yyyyMMdd") + ".log", true))
+            {
+                fs.WriteLine(log.ToString());
+            }
         }
 
         static public void CopyrigthMenu()
@@ -355,6 +485,8 @@ namespace AbbBackup
                     if (createdTime < DateTime.Now.AddDays(-delay))
                     {
                         Directory.Delete(dir, true);
+                        LogsManager.Add(EnumCategory.Info, "Delete File", $" Remove folder -> {dir}");
+
                     }
                 }
             }

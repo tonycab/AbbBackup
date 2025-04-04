@@ -1,73 +1,17 @@
 ﻿using ABB.Robotics.Controllers;
+using AbbBackup.Logs;
+using AbbBackup.Report;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using System.Xml.Linq;
 
-namespace AbbBackup
+namespace AbbBackup.Params
 {
-
-    public class RobotParams
-    {
-        public Guid Id { get; set; } //Identification unique du robot
-        public string IP { get; set; } //Adresse IP du robot
-        public string User { get; set; } = "Default User"; //Nom d'utilisateur
-        public string Password { get; set; } = "robotics"; //Mot de passe
-        public string FolderBackup { get; set; } = GetDefaultPath(); //Dossier de sauvegarde
-        public string NameFileBackup { get; set; } //Nom du fichier de sauvegarde
-        public int  TimeoutBackup { get; set; }
-        public int DelayDeleteFile { get; set; }
-
-
-        public XElement ToXmlElement()
-        {
-            XElement xElement = new XElement(nameof(RobotParams));
-            xElement.SetElementValue(nameof(Guid), Id);
-            xElement.SetElementValue(nameof(IP), IP);
-            xElement.SetElementValue(nameof(User), User);
-            xElement.SetElementValue(nameof(Password), Password);
-            xElement.SetElementValue(nameof(FolderBackup), FolderBackup);
-            xElement.SetElementValue(nameof(NameFileBackup), NameFileBackup);
-            xElement.SetElementValue(nameof(TimeoutBackup), TimeoutBackup);
-            xElement.SetElementValue(nameof(DelayDeleteFile), DelayDeleteFile);
-            return xElement;
-        }
-
-        public static RobotParams FromXml(XElement xElement)
-        {
-            RobotParams p = new RobotParams();
-
-            try { 
-
-            p.Id = new Guid(xElement.Element(nameof(Guid))?.Value);
-            p.IP = xElement.Element(nameof(IP))?.Value;
-            p.User = xElement.Element(nameof(User))?.Value;
-            p.Password = xElement.Element(nameof(Password))?.Value;
-            p.FolderBackup = xElement.Element(nameof(FolderBackup))?.Value;
-            p.NameFileBackup = xElement.Element(nameof(NameFileBackup))?.Value;
-            p.TimeoutBackup = int.Parse(xElement.Element(nameof(TimeoutBackup))?.Value);
-            p.DelayDeleteFile = int.Parse(xElement.Element(nameof(DelayDeleteFile))?.Value);
-            
-            }catch (Exception ex) 
-            { 
-                Console.WriteLine(ex.Message);
-                return null;
-            }
-
-            return p;
-
-        }
-
-        //Méthode pour obtenir le chemin par défaut
-        public static string GetDefaultPath()
-        {
-            return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Backup";
-        }
-
-    }
     public class RobotParamsList : List<RobotParams>
     {
         public string DefaultUser { get; set; } = "Default User";
@@ -75,13 +19,14 @@ namespace AbbBackup
         public string DefaultFolderBackup { get; set; } = RobotParams.GetDefaultPath();
         public int DefaultTimeoutBackup { get; set; } = 300;
         public int DefaultDelayDeleteFile { get; set; } = 360;
-
         public int TimeScan { get; set; } = 5000;
         public int RetryScan { get; set; } = 5;
+        public MailManager Mails { get; set; } = new MailManager();
 
         public RobotParams GetDefaultRobotParams()
         {
-            return new RobotParams() { 
+            return new RobotParams()
+            {
                 User = DefaultUser,
                 Password = DefautlPassword,
                 FolderBackup = DefaultFolderBackup,
@@ -91,8 +36,8 @@ namespace AbbBackup
         }
         public RobotParams GetDefaultRobotParams(ControllerInfo controllerInfo)
         {
-    
-          
+
+
             return new RobotParams()
             {
                 Id = controllerInfo.SystemId,
@@ -106,9 +51,9 @@ namespace AbbBackup
             };
         }
 
-        public new bool  Add(RobotParams robot)
+        public new bool Add(RobotParams robot)
         {
-           
+
             if (this.Any(r => r.Id == robot.Id))
             {
                 return false;
@@ -128,6 +73,7 @@ namespace AbbBackup
             XElement xElementDelayDeleteFile = new XElement(nameof(DefaultDelayDeleteFile), DefaultDelayDeleteFile);
             XElement xElementTimeScan = new XElement(nameof(TimeScan), TimeScan);
             XElement xElementRetryScan = new XElement(nameof(RetryScan), RetryScan);
+            XElement xElementMail =  Mails.ToXmlElement();
 
             XElement xElementRobot = new XElement(nameof(RobotParamsList));
 
@@ -142,8 +88,10 @@ namespace AbbBackup
             xmlRoot.Add(xElementDelayDeleteFile);
             xmlRoot.Add(xElementTimeScan);
             xmlRoot.Add(xElementRetryScan);
+            xmlRoot.Add(xElementMail);
             xmlRoot.Add(xElementRobot);
-           
+
+
 
             return xmlRoot;
         }
@@ -151,24 +99,50 @@ namespace AbbBackup
         public static RobotParamsList FromXml(XElement xElement)
         {
             RobotParamsList p = new RobotParamsList();
-
-            p.DefaultFolderBackup = xElement?.Element(nameof(DefaultFolderBackup))?.Value;
-            p.DefaultTimeoutBackup = int.Parse(xElement?.Element(nameof(DefaultTimeoutBackup))?.Value);
-            p.DefaultDelayDeleteFile = int.Parse(xElement?.Element(nameof(DefaultDelayDeleteFile))?.Value);
-            p.TimeScan = int.Parse(xElement?.Element(nameof(TimeScan))?.Value);
-            p.RetryScan = int.Parse(xElement?.Element(nameof(RetryScan))?.Value);
-            xElement = xElement.Element(nameof(RobotParamsList));
-
-            foreach(XElement xElementRobotParams in xElement.Elements())
+            try
             {
-                p.Add(RobotParams.FromXml(xElementRobotParams));
+                p.DefaultFolderBackup = xElement?.Element(nameof(DefaultFolderBackup))?.Value;
+                p.DefaultTimeoutBackup = int.Parse(xElement?.Element(nameof(DefaultTimeoutBackup))?.Value);
+                p.DefaultDelayDeleteFile = int.Parse(xElement?.Element(nameof(DefaultDelayDeleteFile))?.Value);
+                p.DefaultUser = xElement?.Element(nameof(DefaultUser))?.Value;
+                p.DefautlPassword = xElement?.Element(nameof(DefautlPassword))?.Value;
+                p.TimeScan = int.Parse(xElement?.Element(nameof(TimeScan))?.Value);
+                p.RetryScan = int.Parse(xElement?.Element(nameof(RetryScan))?.Value);
+                p.Mails = xElement.Element(nameof(MailManager))!=null ? MailManager.FromXml(xElement.Element(nameof(MailManager))): new MailManager();
+
+
+                xElement = xElement.Element(nameof(RobotParamsList));
+
+                foreach (XElement xElementRobotParams in xElement.Elements())
+                {
+
+                    var r = RobotParams.FromXml(xElementRobotParams);
+
+                    if (r != null)
+                    {
+                        if (r.FolderBackup == null) r.FolderBackup = p.DefaultFolderBackup;
+                        if (r.User == null) r.User = p.DefaultUser;
+                        if (r.Password == null) r.Password = p.DefautlPassword;
+
+                        if (r.DelayDeleteFile == 0) r.DelayDeleteFile = p.DefaultTimeoutBackup;
+                        if (r.DelayDeleteFile == 0) r.DelayDeleteFile = p.DefaultDelayDeleteFile;
+
+                        p.Add(r);
+                    }
+
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                LogsManager.Add(EnumCategory.Error, "Xml RobotParamsList", ex.Message);
+                return null;
             }
 
             return p;
 
         }
-
-
 
         public void SaveFromXml(string path)
         {
