@@ -423,10 +423,9 @@ namespace AbbBackup
 
 
             // Génération du tableau robot
-            htmlTable += "<div><h2>Etat des sauvegardes robots</h2><p>Liste des robots :</p><table border='1' cellpadding='5' cellspacing='0'><tr><th>ID</th><th>Identifiant</th><th>Version</th><th>Répertoire de sauvegarde</th><th>Etat</th></tr>";
+            htmlTable += "<div><h2 style='text-decoration: underline;'>Etat des sauvegardes robots</h2><p>Liste des robots :</p><table border='1' cellpadding='5' cellspacing='0'><tr><th>ID</th><th>Identifiant</th><th>Version</th><th>Répertoire de sauvegarde</th><th>Etat</th></tr>";
 
 
-           // htmlTable += "<tr>";
             foreach (var cell in rb)
             {
                 string color = "white";
@@ -447,16 +446,14 @@ namespace AbbBackup
                 htmlTable += $"<td style='background-color:{color};'>{cell.State}</td>";
                 htmlTable += "</tb>";
             }
-            //htmlTable += "</tr>";
-
 
             htmlTable += "</table></div>";
 
 
             // Génération du tableau robot
-            htmlTable += "<div><h2>Rapport des Logs</h2><p>Liste des logs :</p><table border='1' cellpadding='5' cellspacing='0'><tr><th>Date</th><th>Categorie</th><th>Type</th><th>Description</th></tr>";
+            htmlTable += "<div><h2 style='text-decoration: underline;'>Rapport des Logs</h2><p>Liste des logs :</p><table border='1' cellpadding='5' cellspacing='0'><tr><th>Date</th><th>Categorie</th><th>Type</th><th>Description</th></tr>";
 
-            foreach (var cell in lm)
+            foreach (var cell in lm.Where((l)=> l.Category == EnumCategory.Process || l.Category == EnumCategory.Error))
             {
                 string color = "white";
                 if (cell.Category == EnumCategory.Error)
@@ -472,7 +469,9 @@ namespace AbbBackup
                 htmlTable += "</tr>";
             }
 
-            htmlTable += "</table></div>";
+            htmlTable += $"</table><strong>Rapport édité automatiquement par l'application AbbBackup le {DateTime.Now.ToString()}</strong></div>";
+
+            htmlTable += "<div></div>";
 
             return htmlTable;
         }
