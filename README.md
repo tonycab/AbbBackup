@@ -28,7 +28,7 @@ comportent de nombreux robots.
 
 Télécharger et installer la dépendance PC SDK ABB ➡️ [PC SDK ABB](https://developercenter.robotstudio.com/pc-sdk/download)
 
-Télécharger➡️ [SetupAbbRobot.exe](https://github.com/tonycab/AbbBackup/releases/download/v2.0.0.1/Setup.AbbBackup.2.0.0.1.exe)
+Télécharger➡️ [SetupAbbRobot.exe](https://github.com/tonycab/AbbBackup/releases/download/v2.0.0.2/Setup.AbbBackup.2.0.0.2.exe)
 
 ## 2 - COMMENCER
 
@@ -48,28 +48,40 @@ Un fichier de configuration est automatique créé dans le répertoire "C:\Users
 <BackupList>
   <DefaultUser>Default User</DefaultUser>
   <DefautlPassword>robotics</DefautlPassword>
-  <DefaultFolderBackup>C:\Users\alecabellec\Documents\Backup</DefaultFolderBackup>
+  <DefaultFolderBackup>C:\Users\%UserProfile%\Documents\Backup</DefaultFolderBackup>
   <DefaultTimeoutBackup>300</DefaultTimeoutBackup>
   <DefaultDelayDeleteFile>360</DefaultDelayDeleteFile>
   <TimeScan>5000</TimeScan>
+  <RetryScan>5</RetryScan>
+  <MailManager>
+	  <AdressMailFrom>exemple@server.smtp.fr</AdressMailFrom>
+	<NameFrom>Backup Auto depuis SMTP </NameFrom>
+	  <CredentialName>CredentialName</CredentialName>
+      <HostSmtp>server.smtp.fr</HostSmtp>
+      <PortSmtp>587</PortSmtp>
+<ListMail>  
+  <Mail>
+      <AdressMailTo>Destinataire1@exemple.fr</AdressMailTo>
+      <NameTo>Name Example 1</NameTo>
+	  <AllLogs>TRUE</AllLogs>
+	  <Actived>TRUE</Actived>
+  </Mail>
+  <Mail>
+      <AdressMailTo>Destinataire2@exemple.fr</AdressMailTo>
+      <NameTo>Name Example 2</NameTo>
+	  <AllLogs>FALSE</AllLogs>
+	  <Actived>TRUE</Actived>
+  </Mail>
+  </ListMail>  
+</MailManager>
   <RobotParamsList>
     <RobotParams>
-      <Guid>ae6789fc-300c-4260-940d-c52d85f05f7e</Guid>
+      <Guid>31ecea35-32f9-48ee-af4d-1ef5812a938d</Guid>
       <IP>192.32.98.231</IP>
       <User>Default User</User>
       <Password>robotics</Password>
-      <FolderBackup>C:\Users\alecabellec\Documents\Backup</FolderBackup>
-      <NameFileBackup>6700-138008</NameFileBackup>
-      <TimeoutBackup>300</TimeoutBackup>
-      <DelayDeleteFile>360</DelayDeleteFile>
-    </RobotParams>
-	    <RobotParams>
-      <Guid>ae6789fc-300c-4260-940d-c52d85f0llhg</Guid>
-      <IP>192.32.98.232</IP>
-      <User>Default User</User>
-      <Password>robotics</Password>
-      <FolderBackup>C:\Users\alecabellec\Documents\Backup</FolderBackup>
-      <NameFileBackup>6700-138009</NameFileBackup>
+      <FolderBackup>C:\Users\%UserProfile%\Documents\Backup</FolderBackup>
+      <NameFileBackup>6700-137118</NameFileBackup>
       <TimeoutBackup>300</TimeoutBackup>
       <DelayDeleteFile>360</DelayDeleteFile>
     </RobotParams>
@@ -79,7 +91,7 @@ Un fichier de configuration est automatique créé dans le répertoire "C:\Users
 ## 4 - EXEMPLES
 ### Exemple 1
 
-Cet exemple sauvegarde les robots présents sur le réseau
+Cet exemple sauvegarde les robots présents sur le réseau et répertorié dans le fichier de configuration conf.xml 
 * cmd
   ```sh
   C:\>AbbBackup.exe
@@ -120,6 +132,7 @@ Cet exemple sauvegarde les robots présents sur le réseau en spécifiant un fic
 - [x] Ajout de la gestion de connexion
 - [x] Zip des sauvegardes
 - [x] Sauvegarde uniquement des robots contenu dans une liste
+- [x] Envoi d'un rapport par mail
 - [ ] Amélioration du code
 
 ## 6 - INFORMATIONS
