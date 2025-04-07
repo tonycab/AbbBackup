@@ -54,23 +54,23 @@ Un fichier de configuration est automatique créé dans le répertoire "C:\Users
   <TimeScan>5000</TimeScan>
   <RetryScan>5</RetryScan>
   <MailManager>
-	  <AdressMailFrom>exemple@server.smtp.fr</AdressMailFrom>
+	<AdressMailFrom>exemple@server.smtp.fr</AdressMailFrom>
 	<NameFrom>Backup Auto depuis SMTP </NameFrom>
-	  <CredentialName>CredentialName</CredentialName>
-      <HostSmtp>server.smtp.fr</HostSmtp>
-      <PortSmtp>587</PortSmtp>
+	<CredentialName>CredentialName</CredentialName>
+      	<HostSmtp>server.smtp.fr</HostSmtp>
+      	<PortSmtp>587</PortSmtp>
 <ListMail>  
   <Mail>
-      <AdressMailTo>Destinataire1@exemple.fr</AdressMailTo>
-      <NameTo>Name Example 1</NameTo>
-	  <AllLogs>TRUE</AllLogs>
-	  <Actived>TRUE</Actived>
+      	<AdressMailTo>Destinataire1@exemple.fr</AdressMailTo>
+      	<NameTo>Name Example 1</NameTo>
+	<AllLogs>TRUE</AllLogs>
+	<Actived>TRUE</Actived>
   </Mail>
   <Mail>
-      <AdressMailTo>Destinataire2@exemple.fr</AdressMailTo>
-      <NameTo>Name Example 2</NameTo>
-	  <AllLogs>FALSE</AllLogs>
-	  <Actived>TRUE</Actived>
+      	<AdressMailTo>Destinataire2@exemple.fr</AdressMailTo>
+      	<NameTo>Name Example 2</NameTo>
+	<AllLogs>FALSE</AllLogs>
+	<Actived>TRUE</Actived>
   </Mail>
   </ListMail>  
 </MailManager>
