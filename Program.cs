@@ -423,7 +423,7 @@ namespace AbbBackup
 
 
             // Génération du tableau robot
-            htmlTable += "<div><h2 style='text-decoration: underline;'>Etat des sauvegardes robots</h2><p>Liste des robots :</p><table border='1' cellpadding='5' cellspacing='0'><tr><th>ID</th><th>Identifiant</th><th>Version</th><th>Répertoire de sauvegarde</th><th>Etat</th></tr>";
+            htmlTable += "<div><h2 style='text-decoration: underline;'>Etat des sauvegardes robots :</h2><p>Liste des robots :</p><table border='1' cellpadding='5' cellspacing='0'><tr><th>ID</th><th>Identifiant</th><th>Version</th><th>Folder directory</th><th>Link</th><th>State</th></tr>";
 
 
             foreach (var cell in rb)
@@ -442,16 +442,17 @@ namespace AbbBackup
                 htmlTable += $"<td>{cell.ControllerInfo.Id}</td>";
                 htmlTable += $"<td>{cell.ControllerInfo.Name}</td>";
                 htmlTable += $"<td>{cell.ControllerInfo.VersionName}</td>";
-                htmlTable += $"<td>{cell.robotParams.FolderBackup}</td>";
+                htmlTable += $"<td>{cell.robotParams.FolderBackup}</a></td>";
+                htmlTable += $"<td><a href=\"{cell.robotParams.FolderBackup}\">&#128190;</a></td>";
                 htmlTable += $"<td style='background-color:{color};'>{cell.State}</td>";
                 htmlTable += "</tb>";
             }
-
+           
             htmlTable += "</table></div>";
 
 
             // Génération du tableau robot
-            htmlTable += "<div><h2 style='text-decoration: underline;'>Rapport des Logs</h2><p>Liste des logs :</p><table border='1' cellpadding='5' cellspacing='0'><tr><th>Date</th><th>Categorie</th><th>Type</th><th>Description</th></tr>";
+            htmlTable += "<div><h2 style='text-decoration: underline;'>Rapport des Logs :</h2><p>Liste des logs :</p><table border='1' cellpadding='5' cellspacing='0'><tr><th>Date</th><th>Categorie</th><th>Type</th><th>Description</th></tr>";
 
             foreach (var cell in lm.Where((l)=> l.Category == EnumCategory.Process || l.Category == EnumCategory.Error))
             {
@@ -469,9 +470,12 @@ namespace AbbBackup
                 htmlTable += "</tr>";
             }
 
-            htmlTable += $"</table><strong>Rapport édité automatiquement par l'application AbbBackup le {DateTime.Now.ToString()}</strong></div>";
+            htmlTable += $"</table></div>";
 
-            htmlTable += "<div></div>";
+
+            htmlTable += $"<div><p>Détails des logs -><a href=\"{linkLog}\">&#128190;</a></p></div>";
+
+            htmlTable += $"<div><p><strong>Rapport édité automatiquement par l'application AbbBackup le {DateTime.Now.ToString()}</strong></p></div>";
 
             return htmlTable;
         }
@@ -508,12 +512,16 @@ namespace AbbBackup
             return true;
         }
 
+        static string linkLog = "";
+
         private static void WriteLogFile(Log log)
         {
 
             Directory.CreateDirectory(defaultLogFile);
 
-            using (StreamWriter fs = new StreamWriter(defaultLogFile + "\\Logs_" + DateTime.Today.ToString("yyyyMMdd") + ".log", true))
+            linkLog = defaultLogFile + "\\Logs_" + DateTime.Today.ToString("yyyyMMdd") + ".log";
+
+            using (StreamWriter fs = new StreamWriter(linkLog, true))
             {
                 fs.WriteLine(log.ToString());
             }
