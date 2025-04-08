@@ -438,14 +438,14 @@ namespace AbbBackup
                     color = "green";
                 }
 
-                htmlTable += "<tb>";
+                htmlTable += "<tr>";
                 htmlTable += $"<td>{cell.ControllerInfo.Id}</td>";
                 htmlTable += $"<td>{cell.ControllerInfo.Name}</td>";
                 htmlTable += $"<td>{cell.ControllerInfo.VersionName}</td>";
                 htmlTable += $"<td>{cell.robotParams.FolderBackup}</a></td>";
                 htmlTable += $"<td><a href=\"{cell.robotParams.FolderBackup}\">&#128190;</a></td>";
                 htmlTable += $"<td style='background-color:{color};'>{cell.State}</td>";
-                htmlTable += "</tb>";
+                htmlTable += "</tr>";
             }
            
             htmlTable += "</table></div>";
