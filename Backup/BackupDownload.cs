@@ -55,7 +55,9 @@ namespace AbbBackup.Backup
 
                         Directory.CreateDirectory(FolderBackup);
 
-                        controller.FileSystem.LocalDirectory = FolderBackup;
+                        //controller.FileSystem.LocalDirectory = FolderBackup;
+
+                        controller.FileSystem.LocalDirectory = Path.GetTempPath();
 
                         LogsManager.Add(EnumCategory.Info, "backup", "Download backup from robot started");
 
@@ -63,19 +65,24 @@ namespace AbbBackup.Backup
 
                         LogsManager.Add(EnumCategory.Info, "backup", "Download backup from robot ended");
 
-                        var FolderDownload = FolderBackup + "\\" + controller.Name;
+                        var FolderDownload = controller.FileSystem.LocalDirectory + "\\" + controller.Name;
 
                         var NameFile = BackupController.robotparam.NameFileBackup != "" ? BackupController.robotparam.NameFileBackup : controller.Name;
 
                         string PathFolderBackup = FolderBackup + "\\" + NameFile + "_" + BackupController.backupCreator.Date.ToString("yyyy_MM_dd_HH\\hmmm\\mss\\s") + ".zip";
 
+                        string PathFolderBackupZip = controller.FileSystem.LocalDirectory + "\\" + NameFile + "_" + BackupController.backupCreator.Date.ToString("yyyy_MM_dd_HH\\hmmm\\mss\\s") + ".zip";
+
+
                         LogsManager.Add(EnumCategory.Info, "backup", "Start folder compressing");
 
-                        ZipFile.CreateFromDirectory(FolderDownload, PathFolderBackup);
+                        ZipFile.CreateFromDirectory(FolderDownload, PathFolderBackupZip);
 
                         LogsManager.Add(EnumCategory.Info, "backup", "Folder compressing ended");
 
-                        File.SetCreationTime(PathFolderBackup, BackupController.backupCreator.Date);
+                        File.SetCreationTime(PathFolderBackupZip, BackupController.backupCreator.Date);
+
+                        File.Move(PathFolderBackupZip, PathFolderBackup);
 
                         LogsManager.Add(EnumCategory.Info, "backup", "Changing date create time file");
 
