@@ -28,7 +28,7 @@ comportent de nombreux robots.
 
 Télécharger et installer la dépendance PC SDK ABB ➡️ [PC SDK ABB](https://developercenter.robotstudio.com/pc-sdk/download)
 
-Télécharger➡️ [SetupAbbRobot.exe](https://github.com/tonycab/AbbBackup/releases/download/v2.0.0.4/Setup.AbbBackup.2.0.0.4.exe)
+Télécharger➡️ [SetupAbbRobot.exe](https://github.com/tonycab/AbbBackup/releases/download/v2.0.0.5/Setup.AbbBackup.2.0.0.5.exe)
 
 ## 2 - COMMENCER
 
