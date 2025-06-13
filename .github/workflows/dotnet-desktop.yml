@@ -20,12 +20,12 @@ jobs:
         dotnet-version: '8.0.x' # adapte si tu utilises une autre version
 
     - name: Restore dependencies
-      run: dotnet restore AbbBackup.csproj.user
+      run: dotnet restore AbbBackup.csproj
 
     - name: Build project
-      run: dotnet build AbbBackup.csproj.user --configuration Release --no-restore
+      run: dotnet build AbbBackup.csproj --configuration Release --no-restore
     - name: Publish project
-      run: dotnet publish AbbBackup.csproj.user --configuration Release --output ./publish --no-build
+      run: dotnet publish AbbBackup.csproj --configuration Release --output ./publish --no-build
 
     - name: Upload published app as artifact
       uses: actions/upload-artifact@v4
