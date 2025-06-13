@@ -1,0 +1,206 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Release Notes for PC SDK 2024.4 </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Release Notes for PC SDK 2024.4 ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles/docfx.vendor.css">
+    <link rel="stylesheet" href="styles/docfx.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <meta property="docfx:navrel" content="toc">
+    <meta property="docfx:tocrel" content="toc">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="index.html">
+                <img id="logo" class="svg" src="images/ABBLogo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+                
+                <ul class="nav level1 navbar-nav">
+                      <li>
+                          <a href="articles/Introduction/GettingStarted.html" title="Introduction">Introduction</a>
+                      </li>
+                      <li>
+                          <a href="articles/Manual/Manual-Topic.html" title="Manual">Manual</a>
+                      </li>
+                      <li>
+                          <a href="articles/Samples/Samples-Topic.html" title="Samples">Samples</a>
+                      </li>
+                      <li>
+                          <a href="api/index.html" title="API Reference">API Reference</a>
+                      </li>
+                      <li>
+                          <a href="articles/releases/pc-sdk-2024-4.html" title="Releases">Releases</a>
+                      </li>
+                </ul>    </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="release-notes-for-pc-sdk-20244">Release Notes for PC SDK 2024.4</h1>
+
+<h2 id="general">General</h2>
+<p>The release name is PC SDK 2024.4 and the build number is 24.4.11080.0.
+The build date is January 14, 2025.</p>
+<h2 id="new-functionality">New Functionality</h2>
+<ul>
+<li><a href="#pc-sdk-certificate-verification">PC SDK: Certificate verification</a></li>
+</ul>
+<h3 id="pc-sdk-certificate-verification">PC SDK: Certificate verification</h3>
+<p><span style="font-family:Roboto, Helvetica, Arial, sans-serif;font-size:13.7143px;letter-spacing:0.12864px;">There is now a new event Controller.OnCertificateError in PC SDK that allows for certificate handling. When connecting to a controller, the event will trigger for failed certificates and allow for certificate verification through the event arguments.</span><div style="font-family:Roboto, Helvetica, Arial, sans-serif;font-size:13.7143px;letter-spacing:0.12864px;"> </div><font face="Roboto, Helvetica, Arial, sans-serif"><span style="font-size:13.7143px;letter-spacing:0.12864px;"></span></font></p>
+<h2 id="improvements">Improvements</h2>
+<h3 id="improved-performance-of-iosystemgetsignals">Improved performance of IOSystem.GetSignals()</h3>
+<div>Previously, using IOSystem.GetSignals() to retrieve signals from a controller with many signals could take many seconds or even minutes because of an extra roundtrip to the controller for each signal. The number of roundtrips to the controller has been greatly reduced, resulting in a significant performance boost for IOSystem.GetSignals(). </div>
+<h2 id="api-changes-from-pc-sdk-20243">API changes from PC SDK 2024.3</h2>
+<h3 id="added-types">Added Types</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Namespace</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><a class="xref" href="api/ABB.Robotics.Controllers.html">ABB.Robotics.Controllers</a></td>
+<td style="text-align: left;"><a class="xref" href="api/ABB.Robotics.Controllers.RestoreIncludeSafetySettings.html">RestoreIncludeSafetySettings</a></td>
+<td style="text-align: left;">Flags to control what safety settings that shall be included during a restore operation.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><a class="xref" href="api/ABB.Robotics.Controllers.RestoreIncludeUasSettings.html">RestoreIncludeUasSettings</a></td>
+<td style="text-align: left;">Flags to control what UAS settings that shall be included during a restore operation.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><a class="xref" href="api/ABB.Robotics.Controllers.RestoreInfo.html">RestoreInfo</a></td>
+<td style="text-align: left;">Contains information about the result of a check restore operation.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><a class="xref" href="api/ABB.Robotics.Controllers.RestoreMismatches.html">RestoreMismatches</a></td>
+<td style="text-align: left;">Specifies mismatches or inconsistencies in a backup.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><a class="xref" href="api/ABB.Robotics.Controllers.RestoreResult.html">RestoreResult</a></td>
+<td style="text-align: left;">Specifies the result of a check restore operation.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="added-members">Added Members</h3>
+<h4 id="section"><a class="xref" href="api/ABB.Robotics.Controllers.html">ABB.Robotics.Controllers</a></h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Member</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><a class="xref" href="api/ABB.Robotics.Controllers.Controller.html">Controller</a></td>
+<td style="text-align: left;"><a class="xref" href="api/ABB.Robotics.Controllers.Controller.html#ABB_Robotics_Controllers_Controller_CheckRestore2_System_String_ABB_Robotics_Controllers_RestoreIncludes_ABB_Robotics_Controllers_RestoreIgnores_ABB_Robotics_Controllers_RestoreIncludeSafetySettings_ABB_Robotics_Controllers_RestoreIncludeUasSettings_">CheckRestore2(String, RestoreIncludes, RestoreIgnores, RestoreIncludeSafetySettings, RestoreIncludeUasSettings)</a></td>
+<td style="text-align: left;">Checks for possible mismatches and other problems with a backup.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><a class="xref" href="api/ABB.Robotics.Controllers.Controller.html#ABB_Robotics_Controllers_Controller_Restore_System_String_ABB_Robotics_Controllers_RestoreIncludes_ABB_Robotics_Controllers_RestoreIgnores_ABB_Robotics_Controllers_RestoreIncludeSafetySettings_ABB_Robotics_Controllers_RestoreIncludeUasSettings_System_Boolean_">Restore(String, RestoreIncludes, RestoreIgnores, RestoreIncludeSafetySettings, RestoreIncludeUasSettings, Boolean)</a></td>
+<td style="text-align: left;">Performs a Restore operation of a controller system.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="api/ABB.Robotics.Controllers.RestoreIgnores.html">RestoreIgnores</a></td>
+<td style="text-align: left;"><a class="xref" href="api/ABB.Robotics.Controllers.RestoreIgnores.html#ABB_Robotics_Controllers_RestoreIgnores_PassphraseId">PassphraseId</a></td>
+<td style="text-align: left;">Ignore passphrase.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><a class="xref" href="api/ABB.Robotics.Controllers.RestoreIgnores.html#ABB_Robotics_Controllers_RestoreIgnores_TamperedId">TamperedId</a></td>
+<td style="text-align: left;">Ignore file changes.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><a class="xref" href="api/ABB.Robotics.Controllers.RestoreIgnores.html#ABB_Robotics_Controllers_RestoreIgnores_UasId">UasId</a></td>
+<td style="text-align: left;">Ignore user grants.</td>
+</tr>
+</tbody>
+</table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <span>Copyright © 2024 ABB</span>
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="styles/docfx.js"></script>
+    <script type="text/javascript" src="styles/main.js"></script>
+  </body>
+</html>
