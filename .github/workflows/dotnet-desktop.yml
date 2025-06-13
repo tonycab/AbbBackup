@@ -1,4 +1,4 @@
-name: Build AbbBackup (.NET Framework 4.8)
+name: Build AbbBackup Project (.NET Framework 4.8)
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: Build on Windows with MSBuild
+    name: Build AbbBackup.csproj
     runs-on: windows-latest
 
     steps:
@@ -18,8 +18,5 @@ jobs:
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v2
 
-    - name: Locate solution
-      run: dir /s /b
-
-    - name: Build solution
-      run: msbuild AbbBackup.sln /p:Configuration=Release
+    - name: Build AbbBackup.csproj
+      run: msbuild AbbBackup.csproj /p:Configuration=Release
