@@ -1,0 +1,5175 @@
+{
+  "homepages": [],
+  "source_base_path": "C:/agent/_work/1/s/ControllerAPI/Source/PCSDK.DocFX",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.BaseException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.BaseException.html",
+          "hash": "eEPUgcA36DM980MjvYUHf4yb1qwATAod2LyVbC/AU/s="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.BlockUrl.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.BlockUrl.html",
+          "hash": "gRS05UNug9oWEjwH1fwKXvar08Qx3M08trHaYbVqw3Y="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.AuthenticationException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.AuthenticationException.html",
+          "hash": "Gx/xDkvDB1ruygk8N0fsslv5NTtdn2StABOo+JdTo7w="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Availability.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Availability.html",
+          "hash": "gFDju7GCLwdS1F2+IoCL65mAu6wxSIbESEaEvP8JRvs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Backup.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Backup.html",
+          "hash": "VT2C5ii3MYbWgQIui+rwWCAX/+AbXgxmAPJGUuZuAQ8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.BackupEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.BackupEventArgs.html",
+          "hash": "82dqCLBk78guwvxVYFhOkvrPW0Q80k/6JqXdo/fxvSc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.BackupException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.BackupException.html",
+          "hash": "wraxqfAM8brJaec0EwQu52Z3bc+beuUkPjRSrPx+LCE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.BackupManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.BackupManager.html",
+          "hash": "feH1sT9P1ts0k5ssrhxJFAIaUPxtQ6DKNuARZySP+zY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Configuration.AttributeNode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Configuration.AttributeNode.html",
+          "hash": "eRp7tMUqXMC1gzTtlH6PCD+MpAiAyv1qTfqbba2dUMQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Configuration.Cfg10Writer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Configuration.Cfg10Writer.html",
+          "hash": "tXoLO+3OlZeFJNtebr4VWPrRqqjCLmJkEU0GGLb7o/w="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Configuration.Collection-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Configuration.Collection-1.html",
+          "hash": "jdys1Vj2CqJ3+1jXFAKDLVVE/HvUNWEbupbjyR46vu8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Configuration.Document.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Configuration.Document.html",
+          "hash": "Q661+kABkkWvXsrBak9F4OhxQBpPBJaCQjEj1wowSD0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Configuration.DocumentSerializer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Configuration.DocumentSerializer.html",
+          "hash": "go5RqSx8rA3uxpitehzuLI3Zd36jXof0MXs1Noh6lQI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Configuration.INode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Configuration.INode.html",
+          "hash": "iRy3tNlzK0hYoJd54xWBitW8pGzA6y7VK1gPeLBmxlU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Configuration.InstanceNode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Configuration.InstanceNode.html",
+          "hash": "FdHl6Jj8jPWbdbnDa2fcCQRNAC+Ek3Qfs98tGqZrK2Q="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Configuration.Parser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Configuration.Parser.html",
+          "hash": "zqiZLZoFqCGklW9BokCeGDPGA40WwmHuwB6Fo25WbRk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Configuration.Scanner.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Configuration.Scanner.html",
+          "hash": "qLSDyVGQtilEdm8VKeViAyTSDcqdbpGm1VnRJhQwXFs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Configuration.Token.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Configuration.Token.html",
+          "hash": "zOetIrRasuGIPsxpmqBKwt82IYccix+7ToCPT2sSX3U="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Configuration.TokenType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Configuration.TokenType.html",
+          "hash": "M2BnuRDJuGPGwXv3rIHOrazLL6/jnVTFKRqHS+qeAdY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Configuration.TypeNode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Configuration.TypeNode.html",
+          "hash": "FHJ2SCG1m5ugfjkXsZF1rt0D7jOEHHaHdP/5/ylVPQk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Configuration.Writer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Configuration.Writer.html",
+          "hash": "w8zFoCyuf9mY+2b/uRGhmy1hlbg3FThOtud/gim7Mhw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Configuration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Configuration.html",
+          "hash": "wrxGyVaMrgeLyL4YjNvbr71oPBydPWpFtvw7/NAhe/Y="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.ConfigurationDomain.Attribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.ConfigurationDomain.Attribute.html",
+          "hash": "cekZjGXWW0pM5PA9g0WD2AAmwC0ZjV4TZzyVoVSy7hs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.ConfigurationDomain.AttributeCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.ConfigurationDomain.AttributeCollection.html",
+          "hash": "YK2WhgY0Lu6o+C7n9ahPv1TNaBWMnqEyYOQ/lBTxzY0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.ConfigurationDomain.ConfigurationDatabase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.ConfigurationDomain.ConfigurationDatabase.html",
+          "hash": "O3hPXi2nQr5cVkr9dU4Y1DMBUB0pmSwhZYimqgo8sKA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.ConfigurationDomain.Domain.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.ConfigurationDomain.Domain.html",
+          "hash": "TWkvUgP80bFQumoc0CX+MqSvO03/BNOnfB8ugB/tlnc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.ConfigurationDomain.DomainCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.ConfigurationDomain.DomainCollection.html",
+          "hash": "fgNzb9CpzAcOiNTtlB3YVYu6S6lWSw4UvQ2ATkcYqW0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.ConfigurationDomain.IMetadataVisitor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.ConfigurationDomain.IMetadataVisitor.html",
+          "hash": "C+qBbQsn2A2svVnDMgIlxU5SfZ2BJ2Qqivp5dMX0aKI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.ConfigurationDomain.Instance.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.ConfigurationDomain.Instance.html",
+          "hash": "v/lilqwZyFwStyuWKmTdCPXMnW8MhYqmeZrMOTOwS7Y="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.ConfigurationDomain.InstanceCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.ConfigurationDomain.InstanceCollection.html",
+          "hash": "LyUKqkNPYfNB5i9eDQHo4K3F37CJK2qKlzBsXJ1dccQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.ConfigurationDomain.LoadMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.ConfigurationDomain.LoadMode.html",
+          "hash": "3Oz0MyeIeA32pYZuBVBqE5wSc6SlbfXCWEQeig2HtQo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.ConfigurationDomain.Type.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.ConfigurationDomain.Type.html",
+          "hash": "IMJ5HEb/pJ/k+cXbvXSQelbGx6GnDVKQeX5mevQizr8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.ConfigurationDomain.TypeCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.ConfigurationDomain.TypeCollection.html",
+          "hash": "kid1YWFHOlc8RyImI36CE5k8fqxs9KyVXiQ4fwpUPpc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.ConfigurationDomain.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.ConfigurationDomain.html",
+          "hash": "u4uxkThdPTC0g9ucj9VYhL6PGkSdJSQLHyPeFyQ7A8M="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.ConfigurationHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.ConfigurationHandler.html",
+          "hash": "4wC8usmcd0DHh2eMbC0ufl/Qcv5fQVHrj/WrLsDs1O4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.ConnectionChangedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.ConnectionChangedEventArgs.html",
+          "hash": "dZF3J1XZKhS6DAgUwn2zgHa2QHx2TKUAP89iTOplMDc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.ConnectionType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.ConnectionType.html",
+          "hash": "cu9phrtMdo428ushfUYwZkDsQ7gnwDio/FBsANcYMeU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Controller.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Controller.html",
+          "hash": "sSKwtNSxD9HZRtsL89DW/Jq+b0B0MHwu0EKdJU9qJlo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.ControllerBoundStream.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.ControllerBoundStream.html",
+          "hash": "VipuQbampj5eNYpaQCrFF4Dhp6bnbYCek4cMiVguXqo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.ControllerBufferOverflowException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.ControllerBufferOverflowException.html",
+          "hash": "zO6p51dzGGWT39wa5IpYYbjHYZtf0WQDRuiBdFpqR1Y="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.ControllerEnableState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.ControllerEnableState.html",
+          "hash": "h/5TiRsqXhtr/VrWnKHWjLkcbig5i6obcYnAiBlu+IY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.ControllerEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.ControllerEventArgs.html",
+          "hash": "GcwSNR4xt6omLpH4v2Jiq/rBb3bn26CKFVxjvqap5m4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.ControllerFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.ControllerFactory.html",
+          "hash": "PP4KrX7PXhAL/KMc2iZ1mld5jB+jCXHJPYnyeEqmrlg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.ControllerFactoryProperty.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.ControllerFactoryProperty.html",
+          "hash": "22Hiv740B88hk3kPXEZ98psMYm1HZRFvxd1E1QprzFI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.ControllerInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.ControllerInfo.html",
+          "hash": "b85HiWMowZMTuqw/rdJRaayUXTUiwFh5T/tJr64CVPs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.ControllerInfoCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.ControllerInfoCollection.html",
+          "hash": "lavS8Tdu9ppaiMnLaIMtuLz8lB01K5+6qp2Dsn0vNyI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.ControllerInfoComparer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.ControllerInfoComparer.html",
+          "hash": "drelIJ1+XlE2hSAikH33tNxdGbgWkYwzQfmdoX0rYd8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.ControllerLogOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.ControllerLogOptions.html",
+          "hash": "iH13PS6xFCbnxY31JNO1doDtdcspL9NMr78EU3SLgAI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.ControllerMastershipPolicy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.ControllerMastershipPolicy.html",
+          "hash": "k1znPaIDnC+JqfO2mCvgDCbEELxwpA2ZLx8X2rYK2Jc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.ControllerOperatingMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.ControllerOperatingMode.html",
+          "hash": "f6ntp1Fnc7xrU3ANjoz+sackxdW44svtDSEUBVOV+Zo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.ControllerStartMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.ControllerStartMode.html",
+          "hash": "yNjOtbW8E3xxXzp0GRK2/3KvjVfHpY7Ao7FshhsLWTQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.ControllerState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.ControllerState.html",
+          "hash": "sNeonMyjFGWGzrYJHHUsLD6HqkbKRZbTbdIpi9BUeZ4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.DeviceAccess.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.DeviceAccess.html",
+          "hash": "bd/shUHl1xkOof9KSDJfpRJDmm1Y7sxogxt9rZWxHDU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.DeviceDriverStream.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.DeviceDriverStream.html",
+          "hash": "fErJrBmWmkHRWNbsspviAHX2sgVsct4/ZcPUSYJ6XAA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.DeviceManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.DeviceManager.html",
+          "hash": "DdYZolDfG+5bhMoooF5IA9fP4A/KHN7TVKxESAduejo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Discovery.ChangeReasons.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Discovery.ChangeReasons.html",
+          "hash": "Byogaf6myCXsMx6OVb47j3Z96ytr9NDNUPN98BPRUXA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Discovery.ControllerNotFoundException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Discovery.ControllerNotFoundException.html",
+          "hash": "JvjgThzBcB31qMLTz71QbKILOse+NW1VmyVK52nNuIo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Discovery.NetworkScanner.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Discovery.NetworkScanner.html",
+          "hash": "kNFSKVXEd91P7bG80yHdmMhZoIhe6CeB39eH0TnStEU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Discovery.NetworkScannerSearchCriterias.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Discovery.NetworkScannerSearchCriterias.html",
+          "hash": "5AElnwLgoKHlgEafNjxBZ+t4XdzRlqrVPlRXJaAJq/o="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Discovery.NetworkWatcher.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Discovery.NetworkWatcher.html",
+          "hash": "K+4+HkS2T7dhiWvrOuzQLxoD0IM53F30lTMIluTk21A="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Discovery.NetworkWatcherEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Discovery.NetworkWatcherEventArgs.html",
+          "hash": "n1+kYg5qLr6eW9MzyNCWsFONfJiJwHIELZ2d5SN0Wwk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Discovery.NetworkWatcherEventHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Discovery.NetworkWatcherEventHandler.html",
+          "hash": "aUZD1++V1P0oWToWlmDZ93Q5u+7oAWt0wQtnJ9jhHS0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Discovery.SystemStartedEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Discovery.SystemStartedEvent.html",
+          "hash": "5AFU+UT3GsghIoZJFgfVFdqGvmUPFA1EntFvREgF4aM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Discovery.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Discovery.html",
+          "hash": "BgGjZOKFIzubZ6C6/rIk+bDzGOm7nREhIa13WjrD1cU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.EventLogDomain.CategoryType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.EventLogDomain.CategoryType.html",
+          "hash": "AlX7OXOUCPlAyEhvC/NauUXzO69bXH2L9pDmzIVEkuM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.EventLogDomain.EventLog.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.EventLogDomain.EventLog.html",
+          "hash": "C9SP7jnWT0AsE5gLuTTi/cWvPW6UrB2iItaayD9JhcM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.EventLogDomain.EventLogCategory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.EventLogDomain.EventLogCategory.html",
+          "hash": "uYH4JwfUH8RMk23WUr2tx4V7llWS3cIciD5soFZKlqE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.EventLogDomain.EventLogEntryType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.EventLogDomain.EventLogEntryType.html",
+          "hash": "4YsJfwTkp+dVG+i8CprUYUD80sJMWSUCsceLBrSQmBs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.EventLogDomain.EventLogMessage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.EventLogDomain.EventLogMessage.html",
+          "hash": "RgG4Xx0KkbtGhIy120XzhHeQAR9o63FdSREQXTdFZvU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.EventLogDomain.EventLogMessageCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.EventLogDomain.EventLogMessageCollection.html",
+          "hash": "IBdpgCWGLl1+/TD92IWxVT79z75pH5AfxXFlBsVXn80="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.EventLogDomain.MessageWrittenEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.EventLogDomain.MessageWrittenEventArgs.html",
+          "hash": "/uJRfuus3Ts1wVFAQo1RrYaXvKL5DWHRsLzr23Dpdfc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.EventLogDomain.MessageWrittenEventHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.EventLogDomain.MessageWrittenEventHandler.html",
+          "hash": "e+1NprylBSngRJK/hJ7yjBYCvFn9sXKr6q84MhlmYDs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.EventLogDomain.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.EventLogDomain.html",
+          "hash": "ASm5QvigULv0KFdPuu8yLE76mXLQxh+m/twOw/Bcp30="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.EventPriority.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.EventPriority.html",
+          "hash": "SFJTCX1BLlx07CzWAI+8zRRo/6wIaVDGm/GcCfk87lE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.FactoryFailedException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.FactoryFailedException.html",
+          "hash": "TzVqzHkUdUGAaNBUPxpOsQm82BCdaOIrt+13/p1g5f8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.FileSystemDomain.ControllerDirectoryInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.FileSystemDomain.ControllerDirectoryInfo.html",
+          "hash": "qOIr5ut2AXPxpP6uXs+XPTNEPW246EHbdd1ciNl2bG8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.FileSystemDomain.ControllerFileInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.FileSystemDomain.ControllerFileInfo.html",
+          "hash": "xOlBUuf38INHyk4oPK8X8ama8W6O/LmjNIFRK06o3UQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.FileSystemDomain.ControllerFileSystemInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.FileSystemDomain.ControllerFileSystemInfo.html",
+          "hash": "om+VPnilyhIa76w8kTQttXhANtW8XybRHAIc4Kd14o4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.FileSystemDomain.FileSystem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.FileSystemDomain.FileSystem.html",
+          "hash": "EjvOALnjmlYXtMXn96aX3Oy2Q4hKh25WhbAxIMiHaLs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.FileSystemDomain.FileSystemException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.FileSystemDomain.FileSystemException.html",
+          "hash": "ZgbejsRVZOAI1DLLD75Y3Cg9vmyINU0Xl9/5J1Pals4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.FileSystemDomain.FileSystemPath.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.FileSystemDomain.FileSystemPath.html",
+          "hash": "rXXlGaxkaXNqRWVrfqzNYHMPrDmC+R08rWluhBGjpPw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.FileSystemDomain.FileSystemScope.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.FileSystemDomain.FileSystemScope.html",
+          "hash": "LuU5J/qxcS+u/y/xleY0oGKUbby9Apfs5ZGtGoYwehY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.FileSystemDomain.FileType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.FileSystemDomain.FileType.html",
+          "hash": "CiVWIZVSA2q9fcYR/GyVCaP+5ZDrVXe57+/JsMFNpj8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.FileSystemDomain.IFileSystem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.FileSystemDomain.IFileSystem.html",
+          "hash": "CyRqY26+aNm4A9XJ06FEAhUo1Poh8Hc/RdKiHV19vYA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.FileSystemDomain.StorageDeviceInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.FileSystemDomain.StorageDeviceInfo.html",
+          "hash": "8ueWtyALzD72x5+xdu7YxbAjNIWROPSIAkD4ukCGZs8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.FileSystemDomain.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.FileSystemDomain.html",
+          "hash": "GMoSHbGVY3HOQ7MDERp+yuhoOZPk7D/l5Y4070P0EYw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Grant.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Grant.html",
+          "hash": "GwuOcM+C78TIsqS90New9IC0XtOtdKovlwnWI9gA5iw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.GrantDemandRejectedException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.GrantDemandRejectedException.html",
+          "hash": "csEHxU3kVNfhitCVf8ilF4yEo+mmwKcAhHVP9Id4KzU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Hosting.HostingServices.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Hosting.HostingServices.html",
+          "hash": "c5VM2duD46S9U8Hn+O92w3+ydreb1bAof2KQ3VDyPyY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Hosting.IHost.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Hosting.IHost.html",
+          "hash": "7jII1rRfJ0LUF/fkwSngRRyMM4A7+v0pn6jH81FD1Cw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Hosting.IHost2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Hosting.IHost2.html",
+          "hash": "b+/wXzoygbv4whqo0ASY71JJXqsQvs+jB8kCq10RDTA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Hosting.INotify.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Hosting.INotify.html",
+          "hash": "ZeefWKYw2q2NIfaHIbc4Js3l0FWlwab0MVwaMg6xAxw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Hosting.LogoffOperation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Hosting.LogoffOperation.html",
+          "hash": "jD9NXShJS+4TCtxaCimcRaQ3ObCbWvzwe+PuZp5z8w4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Hosting.LogonOperation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Hosting.LogonOperation.html",
+          "hash": "KsqZEv3EOmok0rnKUIEgoSOvst0ly6JYCzMe2WOoavY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Hosting.MastershipReleaseOperation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Hosting.MastershipReleaseOperation.html",
+          "hash": "MwXlm5zk1KxdFKCcuYMatvFtGofZHPsf8dF+WqtuqO0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Hosting.MastershipRequestOperation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Hosting.MastershipRequestOperation.html",
+          "hash": "/8EB6cyEXD6dw7iErCuuN4grbEqwgi6RrzvQ2xOc198="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Hosting.MastershipResources.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Hosting.MastershipResources.html",
+          "hash": "D2u2rJ4Dq1+D1K/7wrvGS0eobD8qNUa2ZJVVlorC8tc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Hosting.NotifyOperation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Hosting.NotifyOperation.html",
+          "hash": "EhG37dkZKFFzKnOJ5JL5oqIK4nqaw8BvX1wI9oiwUdo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Hosting.UasOperation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Hosting.UasOperation.html",
+          "hash": "locgcGrXR3PlsmaxNaJNWqt1ooGNzwNT1g4Bt5+cS6Q="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Hosting.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Hosting.html",
+          "hash": "pIMusVzmUjJacDRpLGhz4J7pPP1oWUSWXuFd7PODaFw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.IController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.IController.html",
+          "hash": "nWhRC0iTPuUkfrp4M7rLfX/7QQdW7hzXljn29m4IuIM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.IDeviceManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.IDeviceManager.html",
+          "hash": "RQ+2FZps7XVlrIwPZH+/fx8QzoZIQSIro8f4k9g7LzY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.IDeviceNode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.IDeviceNode.html",
+          "hash": "ah9xDF6qQ/yoKigwq0HXt5hxnvGMFMY7VOjDXb9K2J0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.IMastershipResource.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.IMastershipResource.html",
+          "hash": "fmacZ6ikA9ZlxhjBDWAdWaPmbT1Qa9nLn2xF58n6rk4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.IMastershipResourceController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.IMastershipResourceController.html",
+          "hash": "KSsn5h2naJlduHG6QiMjNNKl1iWzvA7A8lZXHivS+TI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.INamedObject.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.INamedObject.html",
+          "hash": "DsbFO0+aotNy3Q341VBqwqQ5bJcZxBJlQgZxPQbzweY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.AnalogSignal.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.AnalogSignal.html",
+          "hash": "toLxgwPcku//4pEeloo90Vag2c/QxruIZGFmATf980c="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.Bus.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.Bus.html",
+          "hash": "daIiSTerXb0KLSIl+BgSonJ+r9JgZlRbiLYXhh7BxNw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.BusCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.BusCollection.html",
+          "hash": "hbRYYfnSfwNDD1ZNyDk/FO4GBWI1jI1xV4c9Uxx+uEs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.DigitalSignal.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.DigitalSignal.html",
+          "hash": "PSMWHVBuEfyvLmGL34hhRFBX12+b0v0RHNkQGxDVVGg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.GroupSignal.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.GroupSignal.html",
+          "hash": "hoaD75QxjfrLw7MwJ5M8FYL4ev6dWU4/aSXuj0z6m7c="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.IOBusLogicalState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.IOBusLogicalState.html",
+          "hash": "nGwGQ/BL/ZanwtjFLZtML6gOGi6IpVKs1sJBzYM4TRs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.IOBusPhysicalState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.IOBusPhysicalState.html",
+          "hash": "+dBfh8CmAVZxetFldm4Qeja5eQDIFA35m7806+vzlBU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.IOFilterTypes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.IOFilterTypes.html",
+          "hash": "gtd9b1GqxZb7eAVN79pidXMj79u3HN+nNkM0czXfQDg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.IOSystem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.IOSystem.html",
+          "hash": "+/DCfcAZHcpkTkLRt3KPRUvarSMNNHw/hbkbFlKUrj0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.IOUnitBits.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.IOUnitBits.html",
+          "hash": "vBa9fi3NnBTK5kdy8jc8IEU+8wlJkbIt9zxUN8/ytJg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.IOUnitLogicalState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.IOUnitLogicalState.html",
+          "hash": "5xrdu8EW/74s/guh4T9MImwxiFMCBAge0c2rQhTV2ZI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.IOUnitPhysicalState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.IOUnitPhysicalState.html",
+          "hash": "/Zaqbs9jqN+kmOIAVvn8h6S/3jW2AUpBkAnHLlfJzv0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.Signal.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.Signal.html",
+          "hash": "uRPtu0hFkqVp8H9F6OQ9jxzqdazkiTpFZFQkeuiBMUo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.SignalChangedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.SignalChangedEventArgs.html",
+          "hash": "EiemE3i264VfUw9BJnHyAhXkGOD7qA8upV38ZIaLmKY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.SignalChangedEventHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.SignalChangedEventHandler.html",
+          "hash": "e8b89KIfLiob3/QiGD2FkbqrTBWCXBEhl8bykb9MXDc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.SignalCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.SignalCollection.html",
+          "hash": "0xS8zu+7xJFtbTkhQTkNMZNVNQ/Q8zvqj+voQWVHFDI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.SignalQuality.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.SignalQuality.html",
+          "hash": "9z2sPbqivC1O+Ukwm0thN/Tn2bZk0wtQYguz5xs5nW4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.SignalState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.SignalState.html",
+          "hash": "pLqkJA315astzfY5P0MRKDIGcw8S8YdgzaVPss7tG2s="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.SignalType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.SignalType.html",
+          "hash": "xyBULCEHFFnA4KaLR7qbFEyjM2mzvQULM0yQl1IPI5k="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.Unit.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.Unit.html",
+          "hash": "DNI3B/KxTUdptQ89dGph+o+d6DuHoku129bfIOISqBA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.UnitBitState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.UnitBitState.html",
+          "hash": "w0SzgZhtoArptuzHVyty6d9mRt+Pd6dc5J+BJB6fFUk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.UnitChangedEventHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.UnitChangedEventHandler.html",
+          "hash": "g+9dzIR6BCBLjaSh55BXXQCRc6dXV1O5F3koJ9A4Zlk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.UnitCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.UnitCollection.html",
+          "hash": "rUoHfvPueup/CRHTpIgYhxeAWRDwqMElv6iqsfQc55w="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.UnitSignalChangedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.UnitSignalChangedEventArgs.html",
+          "hash": "4DwrqAE/lissAaxt9yQaQAgigpwbk+hK2BimWC5FPo0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.UnitSignalChangedEventHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.UnitSignalChangedEventHandler.html",
+          "hash": "8juyTimO8mCPp1Q6G8WTfgcX8H5yr+ZgiG1QsHdqADw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.UnitState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.UnitState.html",
+          "hash": "8Y2s/a+L9j1gaXnu6zDgte4Nou9xaaNBu+pRDswAKgY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.UnitStateChangedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.UnitStateChangedEventArgs.html",
+          "hash": "Qh6Cz8/uTOhjkHYMBBjdsdkaH8qE+MPC4kaRIOjM68Q="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.IOSystemDomain.html",
+          "hash": "G4yHp+wEoutNdNlEj6u0GrZRBaiFafIvCDebFyth5ws="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.IPropertyNode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.IPropertyNode.html",
+          "hash": "neqd7KVKWLhuvUnnWHxU9AVUMbFoQX1pzA2aQ+pM8as="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Level.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Level.html",
+          "hash": "x1CJjmy+9Zrn1Fb6UUJCpZfNgU6uGPLXHDTMIRsRCFw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.LinkedListIndex-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.LinkedListIndex-1.html",
+          "hash": "IjCkxLET1DScNp0nOzPOGWaPOaE5an9yzVVLV6la1I8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.LinkedListUtility.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.LinkedListUtility.html",
+          "hash": "a+fdvDPHYWrX06onmgUH+k0jv6KaiWbj2wV7/KjNhiQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.MainComputerServiceInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.MainComputerServiceInfo.html",
+          "hash": "USXyQKEDO828y7hObIaIH2hqnDvS/+MzR3VM0bhYSoU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Mastership.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Mastership.html",
+          "hash": "E7QOk7OVRKSPXXgkN+5v+r82fNRAH2+YUz9NSEPcKwA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.MastershipChangedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.MastershipChangedEventArgs.html",
+          "hash": "3V525swQaktBP3XCsl6T3yN9mswz76mtOmyd/8K19lk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.MastershipChangedEventHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.MastershipChangedEventHandler.html",
+          "hash": "G3Z9LxkVIzr/BEDtQFZe8jdfywLcmE4c3Gd8faIpkfU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.MastershipInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.MastershipInfo.html",
+          "hash": "mYMELEI+Eiwke0On6vF8y8117ay2a+hWI230DF/4Oss="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.MastershipResource.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.MastershipResource.html",
+          "hash": "xuJRqw6TZBH2giCwuakyOJQ9zJx45YoOqm9V2YgugeQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.MastershipStatus.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.MastershipStatus.html",
+          "hash": "R169jUxWV7HUWy/AdpkBXkTLeeR/kn9N0NKVzW54KNw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Messaging.Ipc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Messaging.Ipc.html",
+          "hash": "AGrtoSBoiPm5Zylz6CouoEBWhT5i2rKgpbgJmy3IrCA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Messaging.IpcMessage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Messaging.IpcMessage.html",
+          "hash": "aN6Um3agtcqeTcV2/BoI471PLFVzB9JgSyIMWIHil+0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Messaging.IpcQueue.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Messaging.IpcQueue.html",
+          "hash": "n4fUPQtbfWKr9RlE7wGpQBiPw+TMtwdBDMKPQn5vUxw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Messaging.IpcReturnType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Messaging.IpcReturnType.html",
+          "hash": "ueQ+5F+U0lX5b7TASHwf7qlQngkBhrlSIWOlYW1Ttik="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.Messaging.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.Messaging.html",
+          "hash": "vhDbQHB1j1KnJ9R+QgA+rD2J+SoGGlE2dIwx71oETfs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.MotionDomain.CoordinateSystemType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.MotionDomain.CoordinateSystemType.html",
+          "hash": "yk1ndgADViIfVYIG80lIo9k2EWbLNr4m3yD5Ftr0zHA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.MotionDomain.MechUnitModeChangedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.MotionDomain.MechUnitModeChangedEventArgs.html",
+          "hash": "hnQvrBinghMF4quNVR2rWTA6DxkakU/wU9iCnVvnSTU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.MotionDomain.MechanicalUnit.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.MotionDomain.MechanicalUnit.html",
+          "hash": "UJm1WoQoWsooP66J8tz/sZCV/t6QcjxY9egsejMmFtc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.MotionDomain.MechanicalUnitCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.MotionDomain.MechanicalUnitCollection.html",
+          "hash": "7w87bdGRfI5xXIOTXoS+sbSTqMYNUwJYG0hg8egrhFs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.MotionDomain.MechanicalUnitRapidData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.MotionDomain.MechanicalUnitRapidData.html",
+          "hash": "RMWAlecBklQM+8s/tr+usCvCTVdWahWb70P8q47BZqk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.MotionDomain.MechanicalUnitServiceInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.MotionDomain.MechanicalUnitServiceInfo.html",
+          "hash": "1eQ20r3Itdnc/CLduGev+2rhJFkPTyUIcK23TmnToHA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.MotionDomain.MechanicalUnitServiceInterval.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.MotionDomain.MechanicalUnitServiceInterval.html",
+          "hash": "1anpGdPpLGDJJXQzyhTve1Iqp4+GKJfYwY3VGgyIlJc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.MotionDomain.MechanicalUnitStatus.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.MotionDomain.MechanicalUnitStatus.html",
+          "hash": "8672eDEwVqu4SYZwe6km1ILf+qHmmq5MPyBdhmNUDOw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.MotionDomain.MechanicalUnitType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.MotionDomain.MechanicalUnitType.html",
+          "hash": "TrJVDDcGJZOXq+es1afgMdj8ywqXDpsyIfJWn5xCTUg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.MotionDomain.MechanicalUnitWarningLevel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.MotionDomain.MechanicalUnitWarningLevel.html",
+          "hash": "7qSYGCPmTV/7M5oYZ+tIFTBFZfmm1HGlkvyi1LpiklI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.MotionDomain.MotionSystem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.MotionDomain.MotionSystem.html",
+          "hash": "7tK6WWoe3XAegdeL4+UwgaiuWM7b0g181ZFWTK6jStk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.MotionDomain.PayLoad.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.MotionDomain.PayLoad.html",
+          "hash": "iKiWQXxb5XETzBtniRVzR9uaZLvKf727x6IoyW9CZMc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.MotionDomain.Tool.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.MotionDomain.Tool.html",
+          "hash": "bDDY3Uz5yf6vt/G9wDcpIt1kimayupyWiI/jp6cLvOw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.MotionDomain.WorkObject.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.MotionDomain.WorkObject.html",
+          "hash": "nozxW95yspCxFe6cIgCQKW0EMlqua0Ycd42HSvZyPUk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.MotionDomain.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.MotionDomain.html",
+          "hash": "03tj6N1eAlX+uSUGh0g5MCLdnyhAPumaQBJUBf4mbsQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.NamedObject.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.NamedObject.html",
+          "hash": "X+lzYa4UqWd76gFwWDZ5kX5QZ8PYntDWyTo7OklLlvg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.NetworkSettingsInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.NetworkSettingsInfo.html",
+          "hash": "mpvBzrbCHdNxtknUryJPX3FtpKpOff5mR+iUnB0OgIA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.OperatingModeChangeEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.OperatingModeChangeEventArgs.html",
+          "hash": "XdGIKk1K4VjsIkjKKlqXGFJnweuVC3dKNsxte9iJhA0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.AliasProperties.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.AliasProperties.html",
+          "hash": "LTQNvRFOwoSU/8kFnzmus14ENd6nwCRBSjWmCNkChqc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.ArrayData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.ArrayData.html",
+          "hash": "60rosYafr4fP0VQrXU1aP6Akbr/wVawT6OFgaEf6vP0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.ArrayModes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.ArrayModes.html",
+          "hash": "TQq/5IvPI598jOHhw1ImBu3GAPZrTmSz1+jlnJShEnI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.AtomicProperties.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.AtomicProperties.html",
+          "hash": "mDFXUulxcfxxPdC5QUh19hY7GnsawLJfMw/60FFHm4Y="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.Bool.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.Bool.html",
+          "hash": "MeLYpvTDD50J9u9hOfeJ49CnRzNxgJgR1Nn+8qUpTEk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.Byte.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.Byte.html",
+          "hash": "qcP63Dz45SQ4thTrc2SRnOxsv4RbmvJgSMXxtgJ65AM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.CheckProgramResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.CheckProgramResult.html",
+          "hash": "6t6eyb27AfZGpMY054OvpgLWzRT4vpEVarQ0EC1wqyI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.ConfData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.ConfData.html",
+          "hash": "VIHv5isOt+PAceEiU2hFNRTYojg9cfH/UFNc0nks/8A="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.ConstantProperties.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.ConstantProperties.html",
+          "hash": "qDEa0NTcv04H/T/1AJhVwuT93HzM7SbMCFen8iXDodQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.DataFormatter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.DataFormatter.html",
+          "hash": "yqFxOmeLsEcKnYmeXeJoB5aFsIh2htPmjl73GSscsTY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.DataNode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.DataNode.html",
+          "hash": "jScn0yU2swZhIi/KdvPhpDGfdcHA1d2wPdKg3kxJwA4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.DataParser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.DataParser.html",
+          "hash": "9Myd3PHwiYKzwYi+UmNwCgQYgG03FC/VLJTC2ltb5Xo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.DataValueChangedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.DataValueChangedEventArgs.html",
+          "hash": "TiIyzcbw35t18BvTuEJZekPK8Q2NE9tFPLeyXTGODHc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.DataValueChangedEventHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.DataValueChangedEventHandler.html",
+          "hash": "YqX+pH4ILLiibvP8yKaaKGLsf60HUcO1d+XV3hTgYsc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.Dnum.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.Dnum.html",
+          "hash": "e+YhEV5hUnEnjdOkPwcbbXgX3ZqlS8SRTCTDpoFp+OY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.ExecutionCycle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.ExecutionCycle.html",
+          "hash": "RHt+3AEfA/VJNW1Hs4AgQVNZYQ1CxlrtkGByP0a2xww="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.ExecutionLevel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.ExecutionLevel.html",
+          "hash": "GJQ9XB7kNcDl3uNy58rOWVz7c4/kTY+EPA/18Ozvp/I="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.ExecutionMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.ExecutionMode.html",
+          "hash": "d99N5vaqe/zk3Zh5kjlHPM0zwGpYuJopSDLi5+CLnFo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.ExecutionStatus.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.ExecutionStatus.html",
+          "hash": "ZN+Ohc+Ul4ksP7QWDbq5fA1T+0/3LTBNQI7tQw2IcLo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.ExecutionStatusChangedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.ExecutionStatusChangedEventArgs.html",
+          "hash": "5Hmoup2M07guxDqKV0wzQje3m4uuWHE4rrfzvdp5NWY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.ExecutionStatusChangedEventHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.ExecutionStatusChangedEventHandler.html",
+          "hash": "KpQeICTHLZ1baP/KIXUAkKIMKDlE3hdWt3wVhKu1Brw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.ExecutionType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.ExecutionType.html",
+          "hash": "NubsW4DYQcEn2+ybl6I3fkiTrUrmZs0usc1PIAHtPuk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.ExtJoint.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.ExtJoint.html",
+          "hash": "95P02N0p6tlqN6mtezSHEvh9zMKI7QtmpTnkEiKL49o="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.IDataNodeVisitor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.IDataNodeVisitor.html",
+          "hash": "mIPz+abbwfzQ34MSl4f11sAVARSjDvxVmlEN2thjv8A="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.IRapidData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.IRapidData.html",
+          "hash": "5vhsYqEb6HoGg1V1199cXPqUFZ66Jg4xW7cBREmEGMs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.IRapidSymbol.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.IRapidSymbol.html",
+          "hash": "Fmoa88T1DIwkZVaucQdr3zD4RK5jzFXqNSH1gQMtQ4c="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.JointTarget.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.JointTarget.html",
+          "hash": "oFz7VqPdJloF+wdA6C8QPHHlNBAFsj191ix+OaUZRNI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.LoadData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.LoadData.html",
+          "hash": "4fNQ7p5zbQVUEamA+i/xheBvw2t4iEy/0nHYCITyGcc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.Location.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.Location.html",
+          "hash": "R8WBZ/MjcIlLEqnjG1imp/40Y6NLdJMHwjB7+p8l+PA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.Module.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.Module.html",
+          "hash": "f+6XRvjp8VFOOA4AZTCHv9eNwC3JXbaxVUrtADIcWzI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.ModuleAttributes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.ModuleAttributes.html",
+          "hash": "34bSw48MxEZ8totCScwqyL/3UTPTKQJByEzkYNcs05A="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.Num.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.Num.html",
+          "hash": "TZ1D5fyI4Ap4A68JYaXdLpLiyjHGqX0JQsn2BhiY9xU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.Orient.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.Orient.html",
+          "hash": "6RB+6lDQPBS67G7dd3XuglyIYDr4ZbFme9cvbp6D05M="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.ParameterProperties.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.ParameterProperties.html",
+          "hash": "LSQfTc7gH7/eYEz84bqC8jV54tAZrlfnw213afwp3/0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.PersistentProperties.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.PersistentProperties.html",
+          "hash": "XFXqNvMZQN9yRnwC8+EzV7X16hzVAS9d8hIkrTi00uY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.Pos.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.Pos.html",
+          "hash": "OhICH/eIBxQmYSXGRSoSa5EnjN62KQizd+pin/Dtr2o="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.Pose.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.Pose.html",
+          "hash": "Q/zEbryljXmlIuGz9Wa+0yCFvGrTFk4WjLmVkDMzF3w="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.ProgramError.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.ProgramError.html",
+          "hash": "zitnbhrja01SU+acqOoLFqfeHp13R6qd5shQQ4vI7kg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.ProgramPosition.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.ProgramPosition.html",
+          "hash": "ta1Cim3195xLm785b44IuAtj+cwmSjsRUSeZHmAAhfY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.ProgramPositionEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.ProgramPositionEventArgs.html",
+          "hash": "CEMQKUVwMXa0G6uJJ6644rKHdxSZyax0u7DQBsW+KWs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.Rapid.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.Rapid.html",
+          "hash": "6f81Dh7wLJS3Spj78tul2E+eymIKEUwFLiXwNmRPYHs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.RapidData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.RapidData.html",
+          "hash": "BonoEI6/2E1Qb3bHj6j93d/7JEicNY7psR7T6Z5Agm0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.RapidDataFormatException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.RapidDataFormatException.html",
+          "hash": "67Iirptsnb8bja2QJve6EVGb9+qZGeKXJXDbdq2F0sM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.RapidDataResolveEventHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.RapidDataResolveEventHandler.html",
+          "hash": "lMIpcJRUeb4OlKpMV4MasMiUINJjsXtghQXO8r3jt6w="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.RapidDataType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.RapidDataType.html",
+          "hash": "VA27LdGRrttbw5fpqEJfujFnO6Ksbrf85lTD9lVlMtM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.RapidException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.RapidException.html",
+          "hash": "MsxsOcY4Fdw54CW4WAJXi3ZIjMtJtePh2QtY5+NM+hI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.RapidLoadMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.RapidLoadMode.html",
+          "hash": "uq9ViP5FwyyBF3bsMyzZqlJTXYUIll21gEhHfT4QuhI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.RapidModuleNotFoundException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.RapidModuleNotFoundException.html",
+          "hash": "zulnOMdUBr1D2s1QpF41aDJFkfXd1MmDQ0om/xMMkMI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.RapidRoutineNotFoundException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.RapidRoutineNotFoundException.html",
+          "hash": "hfaDjVXzk8GmCM+wlLIrfk8f4W066bk0PsR/nT8Gceg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.RapidSymbol.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.RapidSymbol.html",
+          "hash": "ikPEfqfRQpzHxCWLerdQnfDLREgxnXTXvsH3qqS3Ey0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.RapidSymbolNotFoundException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.RapidSymbolNotFoundException.html",
+          "hash": "4z/hkcfj53V/xuxGSjfy1QFSXnpn8erO1dmElyEh6cw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.RapidSymbolSearchProperties.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.RapidSymbolSearchProperties.html",
+          "hash": "zpSE+Tt+NYfHeYBuwWlyY/A601M3g0UwAk3fZ7YT6TY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.RapidTaskNotFoundException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.RapidTaskNotFoundException.html",
+          "hash": "a/S+kO3E9sQaWuJASx/wt8+kNmnkbpWPU8oYNBl10Ug="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.RecordComponentProperties.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.RecordComponentProperties.html",
+          "hash": "ZNnKc3mk2coLfaqAuh4ltJFuE180EUyea/iy9GLtOwo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.RecordProperties.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.RecordProperties.html",
+          "hash": "Gv48SETNrWTikPaLIAw8IWcD8wR2HCkQZJsOn8+zBh8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.RegainMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.RegainMode.html",
+          "hash": "0p2fRX92JqqH+7DVAm5Z6TJygzT52YET6DP48rkSmgc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.RobJoint.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.RobJoint.html",
+          "hash": "kQQX6x8+c63yYlKHyz0WnFxHOV4DRr/J2k8w/uBK7fc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.RobTarget.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.RobTarget.html",
+          "hash": "vlQHISKnL54OZ/extEKkqmh4QndXRUOg4uSsgU2QIOE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.Routine.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.Routine.html",
+          "hash": "GmtSgZHaPAFYjU0qpiew+/dgT9OShsxHbx4a/CV6BWg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.StartCheck.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.StartCheck.html",
+          "hash": "pToaBHIUsNjM/sdVM1fzC82pntwH54rDgviabhmO1X0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.StartResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.StartResult.html",
+          "hash": "CThUpkA9m1U0tgueVVsJjYp9rDykFyjgaJQ/caMOzE0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.StopMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.StopMode.html",
+          "hash": "tVFP2mu9aP8/++kdDLavoqwrQPuKnHVnLAfzZhbuxrQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.String.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.String.html",
+          "hash": "LyBH5hawzd4Osaxpc69zYMctlrjlV7XCRivlRmnFd6A="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.SymbolProperties.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.SymbolProperties.html",
+          "hash": "WvwqBEBdBZTVzECvyohm9gXts03b3IT+6TsRsAyr5IU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.SymbolSearchMethod.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.SymbolSearchMethod.html",
+          "hash": "AjQlxqlBr87qp+FZIZT0doqhyC8Duy2VhDGlCF1GIFY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.SymbolTypes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.SymbolTypes.html",
+          "hash": "KbjwRSvsNQi1yJCLUicUtxZSeU1s/BWhRYFWNBwe/oI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.Task.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.Task.html",
+          "hash": "/9AXwMVhif0uwHEDSnCknSwK2d5+lyMMdfJaO4wj0xY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.TaskEnabledChangedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.TaskEnabledChangedEventArgs.html",
+          "hash": "wFLSZ74HMtwHB/Ger21C8y/ta70b85LWw53k8DF5IfM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.TaskExecutionStatus.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.TaskExecutionStatus.html",
+          "hash": "BjIk253MwT9R+827aYIUndoDxCub98b7J/saaMGcfHQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.TaskPanelExecutionMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.TaskPanelExecutionMode.html",
+          "hash": "msPLV1bbkdm84kjknWH6/rDY62GYIZ/9nDv6D/Nb5Fk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.TaskType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.TaskType.html",
+          "hash": "2itTnGATOaEYxUCtiHpVh696QHsPrSzh+pmZ4jIRdrQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.TextRange.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.TextRange.html",
+          "hash": "1ouQHgT5I4DVoIywgThXBjd1QROLDgkXdxc1nHesXGo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.ToolData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.ToolData.html",
+          "hash": "r7JW6mCxnaZq/6U5GQefXHj+wJDuhs+niXodOIV1X4c="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UIAlphaEntryEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UIAlphaEntryEventArgs.html",
+          "hash": "732I1zepHIIx8wVlku4vHXqdfE7hrHBoCNKMuvBaShs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UIButton.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UIButton.html",
+          "hash": "fOOreq0vospc/U6q0oYTkHqp07rQAa8jDKblKIZAWGY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UIButtonResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UIButtonResult.html",
+          "hash": "rRJAfFi8bFJE4aMLrtMgUVyAAWYhDrUVFHo8byaUkT8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UIIcon.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UIIcon.html",
+          "hash": "x1PkbLKATq2ViqoOWlnv+6k5Sxkuwc37kFQ3u68hW54="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UIInstruction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UIInstruction.html",
+          "hash": "qIy3LLU/3kUoT6iy5k2M9GwgrGE7yYYZfQSynfOJYC4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UIInstructionEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UIInstructionEventArgs.html",
+          "hash": "bBuvXukYvnV9rOgT4zt162FtyvxIXqF+arJfuvtMidk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UIInstructionEventHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UIInstructionEventHandler.html",
+          "hash": "C8GdoRrjWkogLGOOl/MQ+tq+E67pADtQkmmEWo5NAvk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UIInstructionEventType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UIInstructionEventType.html",
+          "hash": "VW1ldGp+T8Ph6sGFswCD2No8ichhJYDONb2lqnhlyVM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UIInstructionNotActiveException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UIInstructionNotActiveException.html",
+          "hash": "aUnIRpuPRLlqLTuivgpLxMB5cMfLJBM9QDa2jHpseMI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UIInstructionType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UIInstructionType.html",
+          "hash": "Y83oiefnuGdpdJuPO/JZac2+9ug87VfJli9wCOK8S60="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UIListItem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UIListItem.html",
+          "hash": "NzotF0Npsw7d4Qzr5mRd4pik+3MenTEcNGYDxyQ+PGI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UIListViewEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UIListViewEventArgs.html",
+          "hash": "AW5WuXj4DZHHKL6iPPWZB1NF1KBBLuoGRuCTWGs/J5k="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UIMessageBoxEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UIMessageBoxEventArgs.html",
+          "hash": "+au4kCg3S5doUquvOvrQy0/RO62Rnig9cV5quVnhQho="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UIMsgBoxEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UIMsgBoxEventArgs.html",
+          "hash": "155D+dBM+pzwcr2cCmXl5ZdcDhxyadBTVCeAIXEqYHk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UINumEntryEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UINumEntryEventArgs.html",
+          "hash": "0hdxYUfL12veQpqOhno3V9LQCdz83OeGJEDQDKRaVQM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UINumTuneEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UINumTuneEventArgs.html",
+          "hash": "uawj2QLJc3lnfkwommPrM0RjC0oU7h/onRgUviKHIaw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UITPEraseEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UITPEraseEventArgs.html",
+          "hash": "1Ode7AS+VCkHVcePOClbuQ+FiS8UftUzvdamMR1ZcQg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UITPFunctionKey.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UITPFunctionKey.html",
+          "hash": "pPhFUwppCHS7GFBSQcMIldxd8+2E8epOdKkLRtuclhw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UITPReadFKEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UITPReadFKEventArgs.html",
+          "hash": "iRHQprxdjPzI5SOoyjUFPLyn+X+kOXHkF2dwGiyK398="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UITPReadNumEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UITPReadNumEventArgs.html",
+          "hash": "DuSA62XFzLPwlmbJJ/qfS0+UeU7nSYW/ZFaP8Gty/bI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UITPWriteEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UITPWriteEventArgs.html",
+          "hash": "xNt3HkqdD8Jx0RTMWeEPaEFTI2iU830RIn2e4NnCEqM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UserDefined.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.UserDefined.html",
+          "hash": "AODDT84ARqnWGuhDDhEPVYvh4eD9M0fB8IBkHsPLCr4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.VariableProperties.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.VariableProperties.html",
+          "hash": "OU0gBUc7Vy7Jm1d1hLvPO/B7CnwtHo+R0ToeCYXLZ/8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.WobjData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.WobjData.html",
+          "hash": "GcmmI09ORfHfmIxVS1iullki34AdYLF7CzeyECsg2ZE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidDomain.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidDomain.html",
+          "hash": "PX2I7uAggjZyA7VLAy1WW7q1KHV9919O5qgXxq9Z+ps="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidException.html",
+          "hash": "Y6n3uuZoDhgPhEJIIendfLusZZ4F2TPV7+eIe7EDo3U="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidModuleNotFoundException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidModuleNotFoundException.html",
+          "hash": "PfgNjTCrmtjAAZPDDYX18f0hdxaeJZAA8F+Ol4cIVB4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidRoutineNotFoundException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidRoutineNotFoundException.html",
+          "hash": "5he749mgdKCbcOhfuU5g6n7RsScJnlUfgYTnMotZ3aw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidSymbolNotFoundException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidSymbolNotFoundException.html",
+          "hash": "fF6pl0Ql7L1K2G4edjumPzT06QZO4UmmZuaHlrVyBKA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RapidTaskNotFoundException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RapidTaskNotFoundException.html",
+          "hash": "gY1jo3Pctd20b/Q07MApWPnvyR0nd7Z0V504M+pzIZo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.ReadOnlyObject.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.ReadOnlyObject.html",
+          "hash": "+44ZzQ2tq7NULatfAReSfo8Q+MEkK2Sdoe8GwPDftkM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RegularExpression.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RegularExpression.html",
+          "hash": "ig+uf4KCjaYsUFQIoDIf1WnX7yGPGyXm9tq4fBeRZHY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RemoteLogin.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RemoteLogin.html",
+          "hash": "WQU2dgFtGF6o5I3H1SKzDjx3xti3q6r0CmeV6R4/WDk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RemoteLoginState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RemoteLoginState.html",
+          "hash": "uv5NMsYYlFF3NF1K8cQXNIN40kMqcmRPQB5e9oysZC8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RemoteLoginStateAndChangeCount.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RemoteLoginStateAndChangeCount.html",
+          "hash": "m/JwspYwqaICxLW4GfuPVAD0a5QGt87E17uNWfYf7O4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.ResourceHeldException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.ResourceHeldException.html",
+          "hash": "gHeHH07eGbRpEs8Sp6J0MHPLDFUlIPfFVOlf3StRLAg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RestoreIgnores.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RestoreIgnores.html",
+          "hash": "toL2bXBt8BQdHAvn/UgoQC8IZAy1+d8Z5Ql3sk5WUns="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RestoreIncludeControllerSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RestoreIncludeControllerSettings.html",
+          "hash": "00e67X3mqoiwEiOIbkGUVcNVvrrmyXsmix3/qbAeVEw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RestoreIncludeSafetySettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RestoreIncludeSafetySettings.html",
+          "hash": "6VS8AuCxZKLBaGt15RznCagGJehSlJ+B/0A2b5YEcvU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RestoreIncludeUasSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RestoreIncludeUasSettings.html",
+          "hash": "f7/nLB+b4LcLBKOgisWni0oKoJQnaFtLTowEFOFJ3Us="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RestoreIncludes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RestoreIncludes.html",
+          "hash": "3xweobKldI0wB25huTmxTjafKWE7xbsOYoHFpiLv0DI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RestoreInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RestoreInfo.html",
+          "hash": "Yc3w1Gm1YxTFaJmIg0o4e0EMRT7ayS5ugW/3wMeayQU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RestoreMismatches.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RestoreMismatches.html",
+          "hash": "4dRLOFxsGEWi1ExuBT4QWskYS/dKR8Y9F2rtdvI3FKM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RestoreResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RestoreResult.html",
+          "hash": "ej0nfKtnAAwxohRRIWWgKQjw5nQpxtVgYY1BBCNy+18="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RmmpInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RmmpInfo.html",
+          "hash": "1TaIUfOHq5DQAwgg0BFJYhaqU1o/ukTyfobQFvsmvVo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RmmpStatus.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RmmpStatus.html",
+          "hash": "vg492Ifo0X38ajF3z/eNhVmBho2WI0GGSRjUSOvKurw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RobotWare.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RobotWare.html",
+          "hash": "3GkOCC2EqtC8QBLJhkpjgtVX+pqm9QrKgTA7f/ncFj4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RobotWareCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RobotWareCollection.html",
+          "hash": "haZ/KR3VK4sPyQZQAhkG+iDYs4q66cf5hhg7LlCszMU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RobotWareOption.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RobotWareOption.html",
+          "hash": "VWrtjtbZ2Pwxg6EYvfLJ8iqVuFCfSx081HZq38MRwOs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.RobotWareOptionCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.RobotWareOptionCollection.html",
+          "hash": "3dkozqprgrP1wVnvk52E6nyxEV8TvIQSoguZxbjKNS0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.SDKBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.SDKBase.html",
+          "hash": "7Sl8NATqT3z08cXJT8d1BPGpxhoRwScddJmk/g27Pg8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.SDKControllerBoundBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.SDKControllerBoundBase.html",
+          "hash": "6WZozpdcFBXMkrSDBHHHmX+ESlV8SCtR96G1qGWHxRc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.ServiceInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.ServiceInfo.html",
+          "hash": "+Cj6jY+Fts1ev1mdH+lRio3IKYHNYknTTm8fzQOQ4r4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.ServiceNotSupportedException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.ServiceNotSupportedException.html",
+          "hash": "+RjmhL+MYbzxisdIiJghp4FBOGWbISmKZ2PXJPSIIzE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.StateChangedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.StateChangedEventArgs.html",
+          "hash": "aNWoEmm/5ENIotdGaTXfqbz+Feqt/0rbrRsLqAN6GUI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.SystemDirectoryCorruptException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.SystemDirectoryCorruptException.html",
+          "hash": "LOw/qT5LmaMvuLbB63T/4Fkd68n7/8eVSgT5nz4xA5E="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.SystemRobotWare.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.SystemRobotWare.html",
+          "hash": "fW2vxwmcszcTYF+W7tc4u/DPHhA0kDjSmaHUvmF57OI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.UasCollectionBase-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.UasCollectionBase-1.html",
+          "hash": "cTUh95DWD4oh1LZnbRx5TmL49xLw/tkqO5GceTZVO5Q="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.UasStringCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.UasStringCollection.html",
+          "hash": "OocMm/3fMKDHTdsrYwlDL/PRYnRtj4I6QPMkF3dzCzc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.UserAuthorizationManagement.ApplicationGrantCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.UserAuthorizationManagement.ApplicationGrantCollection.html",
+          "hash": "zhrMhBvee+ULfftIhjnACxMazWVRkCjLIKJJu6koGYA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.UserAuthorizationManagement.ApplicationGrantInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.UserAuthorizationManagement.ApplicationGrantInfo.html",
+          "hash": "0Fp4ulxyby/Om+Ow/1HULDNm1bUV/WsCdcMXgmTQmKo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.UserAuthorizationManagement.GrantCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.UserAuthorizationManagement.GrantCollection.html",
+          "hash": "7KshZ/tmK4zWT6D6jVmk/Uj3hvkpnrlZow2JwpHVyUs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.UserAuthorizationManagement.GrantConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.UserAuthorizationManagement.GrantConfiguration.html",
+          "hash": "iinIASzDXkHvbXknhQFDu0ZmAEvGVtoGS4r6CRIQNGk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.UserAuthorizationManagement.GrantInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.UserAuthorizationManagement.GrantInfo.html",
+          "hash": "AMdgI+JPagSPPwucvSzNS6uCmK8NH7wPE9SBEPEBHk4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.UserAuthorizationManagement.ListValue.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.UserAuthorizationManagement.ListValue.html",
+          "hash": "8k8vyt7rMX3rVnzoE2ZSj1kV4QMRkQ+zYWbPDbx771o="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.UserAuthorizationManagement.UasVersion.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.UserAuthorizationManagement.UasVersion.html",
+          "hash": "hCVzbXxBXS4Pl5BbOkkHFmfLNrAl5x8+m0XRRKYzHrs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.UserAuthorizationManagement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.UserAuthorizationManagement.html",
+          "hash": "4w9gEZZo9IXvlkgOXJn+7qY6jk42aklobny50VvY0PE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.UserAuthorizationSystem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.UserAuthorizationSystem.html",
+          "hash": "q7bGxk/ItqUxpexm0BAhhI4HkA67sr7aIj6g+NwqmS0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.UserInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.UserInfo.html",
+          "hash": "6im5QsVZe3HH5d8ngOwMiWxUFVmbpNE4AZIqfWrtNq4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.VirtualController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.VirtualController.html",
+          "hash": "zlGWU1GdR7vTqFuwnMfiPU6VQ9ZprsqxDX6YW5FmeWA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.VirtualControllersate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.VirtualControllersate.html",
+          "hash": "xGH3zm23houJA9c0iClMNM1LweEQu42pb2RMdCWPck8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.VirtualPanel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.VirtualPanel.html",
+          "hash": "MC2vRC3ly+x/7R0xOQ9mw/cqVMTffnCGfiGDjZ0rECU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.VirtualPanelAttachFailedException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.VirtualPanelAttachFailedException.html",
+          "hash": "Id9ksEn35H+qxfL7R2Mb7fxQI1zRxLzxHlsdy2oPs8k="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Controllers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Controllers.html",
+          "hash": "hWXpYup0omepfbxIF/Uv6uoQv0mR/28i/DFpvpzSKnM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.ExceptionManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.ExceptionManager.html",
+          "hash": "JSYJIoH6ZqMw/ZNHDRubCbQWn45zkPHoK3cY3T8S/wE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.GeneralException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.GeneralException.html",
+          "hash": "AMiflSClQmwNnXsCziDVE2m7h2ZFpW6vJIDpHXEcUuc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.GenericControllerException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.GenericControllerException.html",
+          "hash": "A5D2B4Uggie1NsWEZq2ucjoy9QYKAvgBQ3m1LplOqn4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.MasterRejectException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.MasterRejectException.html",
+          "hash": "5SwZfl/wXJlYLhYE0xjE9QjKi+HoHDsFH+8azbUSA/I="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.ModeRejectException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.ModeRejectException.html",
+          "hash": "NGpgwkjinjch+s2opasWreyK2rUcFCxsfKqlAguFo3I="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.PCounter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.PCounter.html",
+          "hash": "+ZtzZNZevYxHBO5UvhFJjTVl8Lk84yIHLK9ofuM//SY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.SplFunctionAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.SplFunctionAttribute.html",
+          "hash": "NNJGWtqe7fpEsQOko1s1ep6OAluzxYmtWe5PIZHt/sg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.SysFailRejectException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.SysFailRejectException.html",
+          "hash": "AjkRLaIKNFLfAbyRR2Z60T7dA/abVrWfcCPocCYppTU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.TimeoutException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.TimeoutException.html",
+          "hash": "TwpBvZJ1L6PUZgLZi6CVamtfWcINMSSna3fVCZQhvXI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.UasRejectException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.UasRejectException.html",
+          "hash": "DIQDufMb9kg4oe60bHMQQ4q8Xmj1qskw1ZWJ8zwssQ0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.Url.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.Url.html",
+          "hash": "+zGKNgtDbFdAFF0h39hLX1collStJnJLZKXUv4IXCDU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ABB.Robotics.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ABB.Robotics.html",
+          "hash": "QJJtTYyuM4wQ5yddqQakPFpmLjhUmjtmUJ36aVK1jdc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html",
+          "hash": "pKxBDVzeI62zsGmhRWl157M/lIiGkZKZywhhjKfBJjc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Introduction/GettingStarted.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Introduction/GettingStarted.html",
+          "hash": "i7tGq0jW4eiP0GwojRyA+bL6KvejpasC9tp6Ufg2Ny8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Debugging-and-troubleshooting/Debugging-and-troubleshooting-Topic.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Debugging-and-troubleshooting/Debugging-and-troubleshooting-Topic.html",
+          "hash": "MjyAtIoDTbpINKCeZVTkotRoU7GLnJetLfM3yPA5e0o="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Debugging-and-troubleshooting/Debugging.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Debugging-and-troubleshooting/Debugging.html",
+          "hash": "c5Y/PYu33CO3kle4c/exBUHHgRZhru9CGCCIzJF+AyI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Debugging-and-troubleshooting/Troubleshooting.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Debugging-and-troubleshooting/Troubleshooting.html",
+          "hash": "/T0kBCGZIF9qeYxT9D6h62Ox4qjBMjI0EE6o5yr8oTc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Deployment-of-a-PC-SDK-application/Deployment-of-a-PC-SDK-application-Topic.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Deployment-of-a-PC-SDK-application/Deployment-of-a-PC-SDK-application-Topic.html",
+          "hash": "heYg3zSvAtL4WUOkdyK6yxDpyU1PmtMEp2D7M6Sd7ak="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Deployment-of-a-PC-SDK-application/Deployment-of-a-PC-SDK-application-overview.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Deployment-of-a-PC-SDK-application/Deployment-of-a-PC-SDK-application-overview.html",
+          "hash": "BncuLEiowqbiqvKcPR49gi22CW/RKIwv0WZpuZheeuk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Developing-Controller-applications/Analysis-and-design.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Developing-Controller-applications/Analysis-and-design.html",
+          "hash": "5sF50Rs5PPrESvgkt+MxeBMKs5My7eu8/+bbbMhq7Uo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Developing-Controller-applications/Controller-events-and-threads.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Developing-Controller-applications/Controller-events-and-threads.html",
+          "hash": "B1PwWzyykwZi45PHwdLQinJaPjO3T2pfzMw7605/XIU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Developing-Controller-applications/Developing-Controller-applications-Topic.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Developing-Controller-applications/Developing-Controller-applications-Topic.html",
+          "hash": "gCFjoo1sumD90lC71TgxPmDAQaojaMNM38U/RA/W9Bg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Developing-Controller-applications/Developing-Controller-applications-introduction.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Developing-Controller-applications/Developing-Controller-applications-introduction.html",
+          "hash": "GAiSbkc8d4ym6TlJoxghTVmTMtWvu0Y7ITKepFcSgh0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Developing-Controller-applications/Exception-handling.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Developing-Controller-applications/Exception-handling.html",
+          "hash": "1nzW02hptDun8/SVZy+n/E57+QPK8QpJPOpKfpi6WsU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Developing-Controller-applications/How-to-use-the-online-help.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Developing-Controller-applications/How-to-use-the-online-help.html",
+          "hash": "taT2TpSYzNbPq9UMoYczAJi9WPixZplaxQmYX1jTFak="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Developing-Controller-applications/User-Authorization-system.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Developing-Controller-applications/User-Authorization-system.html",
+          "hash": "eyK8SFC81RH41ZRFq1lN5ouqsk5xlzcgEJ53zAGsBW8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Installation-and-development-environment/Development-overview.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Installation-and-development-environment/Development-overview.html",
+          "hash": "hS4GRoE64QHbuZABoA/LHKOmB3cGVtqi1zEPupWNWUs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Installation-and-development-environment/How-to-set-up-your-PC-to-communicate-with-robot.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Installation-and-development-environment/How-to-set-up-your-PC-to-communicate-with-robot.html",
+          "hash": "zp7og7EZFM0P6tHNHZye8i6AU4csTxCSDaDS4gQXAEo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Installation-and-development-environment/Installation-Directory.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Installation-and-development-environment/Installation-Directory.html",
+          "hash": "D0iTi5zWBCrbBWtTUQC9fWlcTbjRjR8NJuGqOrVqAw8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Installation-and-development-environment/Installation-and-development-environment-Topic.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Installation-and-development-environment/Installation-and-development-environment-Topic.html",
+          "hash": "ijJXA1l2qAUCbqyoiqJaH8y+kZWAkkiGE2LNI2HIAYo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Installation-and-development-environment/Installation-overview.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Installation-and-development-environment/Installation-overview.html",
+          "hash": "sT7HzEcYeO+uV0H/+rhytEX80YaacuJY12ZoyttmM98="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Installation-and-development-environment/Two-development-models---virtual-and-real.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Installation-and-development-environment/Two-development-models---virtual-and-real.html",
+          "hash": "Iags+GWXFoGIFIeqFMb0ysJwOiO7C8FUT3ld5UHv1/w="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Introduction/About-creating-controller-applications.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Introduction/About-creating-controller-applications.html",
+          "hash": "1nVBmMM3i4FXaOL4mx2FV9CzLOwLE0i6BFCGwItmwEk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Introduction/Documentation-and-help.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Introduction/Documentation-and-help.html",
+          "hash": "g9MbIdBno84LgeTDVhpg4LRtd3LUs38j76GumUPHKV0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Introduction/Introduction-Topic.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Introduction/Introduction-Topic.html",
+          "hash": "ig4XDMf6DPcavveR+nI6Olr2jkqH54WoRProBLmPOu8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Introduction/Terminology.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Introduction/Terminology.html",
+          "hash": "rmxBzoyZGpPHvXI7aqjvkknEZjGFXsPMmGgryGJ3QPk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Manual-Topic.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Manual-Topic.html",
+          "hash": "FpcNzXqC1PxYpHFPSdhTkocsfyHW5Malxe95kzcgrRE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Run-time-environment/Overview.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Run-time-environment/Overview.html",
+          "hash": "RNSrC/dRfZVJigM3exofVPDdm2xSJpcwpiH3JPbWQyQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Run-time-environment/Release-upgrades-and-compatibility.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Run-time-environment/Release-upgrades-and-compatibility.html",
+          "hash": "lzTnaFuUs/2n9so/9gJAOR4axKMMSNUL6jyLOt1Qmig="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Run-time-environment/Run-time-environment-Topic.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Run-time-environment/Run-time-environment-Topic.html",
+          "hash": "ZKGNifzZqbWTXAyxCsYRMK6dPWrLhLRfGljSIQi24J0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Run-time-environment/Running-PC-SDK-Applications/Communication-between-PC-and-Controller.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Run-time-environment/Running-PC-SDK-Applications/Communication-between-PC-and-Controller.html",
+          "hash": "fo/xH57AtJhRa7277RRga6cXYnALGMUxKeJaJbGgAFg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Run-time-environment/Running-PC-SDK-Applications/Mastership.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Run-time-environment/Running-PC-SDK-Applications/Mastership.html",
+          "hash": "3kzPj/qlJuKbq/Igz4cLcwznOrOpE5Ce985IYwKQ024="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Run-time-environment/Running-PC-SDK-Applications/PC-application-configuration.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Run-time-environment/Running-PC-SDK-Applications/PC-application-configuration.html",
+          "hash": "gPPKWZPe86vnNgUXYWkm24hlCd9x/CgdCNySgzb/yvA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Run-time-environment/Running-PC-SDK-Applications/Running-PC-SDK-Applications-Overview.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Run-time-environment/Running-PC-SDK-Applications/Running-PC-SDK-Applications-Overview.html",
+          "hash": "kcTG29+vmg8L8YfORs/qWkBJ9ZTEqwlTi3Cx+qQit2I="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Run-time-environment/Running-PC-SDK-Applications/Running-PC-SDK-Applications-Topic.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Run-time-environment/Running-PC-SDK-Applications/Running-PC-SDK-Applications-Topic.html",
+          "hash": "DCCPGu9Lr3FUylx6Ztt5PAWO79HDNPR9wHRccFiaxQw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Using-the-PC-SDK/Accessing-the-controller.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Using-the-PC-SDK/Accessing-the-controller.html",
+          "hash": "VmzZ8SlHtf04hQT5deF2axw1K1lDPkPrOOzbR3usXkU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Using-the-PC-SDK/Configuration-domain.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Using-the-PC-SDK/Configuration-domain.html",
+          "hash": "TAxzVZGfEGQdiQxa1S0+8VYk/zY0W437JRGmDzN4qaQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Using-the-PC-SDK/Controller-API.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Using-the-PC-SDK/Controller-API.html",
+          "hash": "r/OC/xnS5ug03nNLjloRAr/MejdbKV/qfP6+BcEIZyI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Using-the-PC-SDK/Create-a-simple-PC-SDK-application.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Using-the-PC-SDK/Create-a-simple-PC-SDK-application.html",
+          "hash": "/JD0H+2EJrKl/wirE2yqhQSpB6SSE1B6po/tYbB6MQw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Using-the-PC-SDK/Discovery-domain.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Using-the-PC-SDK/Discovery-domain.html",
+          "hash": "IdSsb0cXP56Za6HjNeRH+WqR+F9yvYV2S+DRu8RGWys="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Using-the-PC-SDK/Event-log-domain.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Using-the-PC-SDK/Event-log-domain.html",
+          "hash": "tjaebYLzZyMxrEnX/4r0RCpBkNh8GfpYaBN9lbmX8DU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Using-the-PC-SDK/File-system-domain.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Using-the-PC-SDK/File-system-domain.html",
+          "hash": "pk7ABSA9JfjA3RrZ92Z6anGvKcvaI+NgFVYphkcB7H4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Using-the-PC-SDK/IO-system-domain.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Using-the-PC-SDK/IO-system-domain.html",
+          "hash": "xsrvVVQY9efw3vNC/E+geLKXJo/JogNte7ULrx9Zjrs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Using-the-PC-SDK/Messaging-domain.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Using-the-PC-SDK/Messaging-domain.html",
+          "hash": "qdrOt3muPq8sj7nFFplpBkoyLE/Jp1maCMXAi2eDdk4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Using-the-PC-SDK/Motion-domain.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Using-the-PC-SDK/Motion-domain.html",
+          "hash": "UMoX5Yhye/Tt46/QHxQzRPLPHd6tf7DTCjC4WDIak3I="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Using-the-PC-SDK/Rapid-domain/Enable-operator-response-to-RAPID-UI-instructions-from-a-PC.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Using-the-PC-SDK/Rapid-domain/Enable-operator-response-to-RAPID-UI-instructions-from-a-PC.html",
+          "hash": "D8Djb8GiE9nSWy725pD12dxcVqh64AuUZzbeDgpUdak="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Using-the-PC-SDK/Rapid-domain/Handling-arrays.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Using-the-PC-SDK/Rapid-domain/Handling-arrays.html",
+          "hash": "pmUcdTniMiiimpD4Lhf6g2E9wLN2z09xKqj/TcBl3gI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Using-the-PC-SDK/Rapid-domain/RAPID-symbol-search.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Using-the-PC-SDK/Rapid-domain/RAPID-symbol-search.html",
+          "hash": "mUhwoTq/7kryryC31H57TPA2ZJREPNxGUliHyXHdgIE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Using-the-PC-SDK/Rapid-domain/Rapid-domain-Topic.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Using-the-PC-SDK/Rapid-domain/Rapid-domain-Topic.html",
+          "hash": "T9cDBiKe2PannhCu5NidcYu8c+u8r906PSMRAoHgCo8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Using-the-PC-SDK/Rapid-domain/ReadItem-and-WriteItem-methods.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Using-the-PC-SDK/Rapid-domain/ReadItem-and-WriteItem-methods.html",
+          "hash": "ueF2D3Sol+OghDK71CMLQvihylQT1z8eXdqGsjhBeHg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Using-the-PC-SDK/Rapid-domain/UserDefined-data.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Using-the-PC-SDK/Rapid-domain/UserDefined-data.html",
+          "hash": "azvbb9kb7Cdt/rde/kbH6VGupBThmCA/UAbq554Kv94="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Using-the-PC-SDK/Rapid-domain/Working-with-RAPID-data.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Using-the-PC-SDK/Rapid-domain/Working-with-RAPID-data.html",
+          "hash": "H5cKxRvXNaPslfwO8FM02GqqGztOjSj8FmGIda4cwpc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Using-the-PC-SDK/Rapid-domain/Working-with-RAPID-modules-and-programs.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Using-the-PC-SDK/Rapid-domain/Working-with-RAPID-modules-and-programs.html",
+          "hash": "QTZH06syRIMa6km6eFtQUF4TszGF8UiA/4yUTVj3Oo8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Manual/Using-the-PC-SDK/Using-the-PC-SDK-Topic.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Manual/Using-the-PC-SDK/Using-the-PC-SDK-Topic.html",
+          "hash": "c22GwRdkE+dY+NOqFasTeqIAmCl7g8JNPpLzaiVnCrs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Samples/AccessingControllerData.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Samples/AccessingControllerData.html",
+          "hash": "wX8WQHGcEs33LIhbZg+kD/XESQzCLHmiLPjUkk2SYJM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Samples/Loading-a-RAPID-module.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Samples/Loading-a-RAPID-module.html",
+          "hash": "3JVnNUgRiCz8BBM/9B3G29GilXnyBSD5dl3UqJvdiyw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Samples/RapidDataBinding.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Samples/RapidDataBinding.html",
+          "hash": "QY+A+eeeDHLHZ/lVKTTZYR2Mmq0Ruj3XD+JXP5lOgWE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Samples/Samples-Topic.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Samples/Samples-Topic.html",
+          "hash": "AJg4Kn3d8MxNBupOixKvJVbiwKAoHvCzaiHYusiaHjc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/releases/pc-sdk-2020-1.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/releases/pc-sdk-2020-1.html",
+          "hash": "bvvB7ZBYW9se/DVo6weqakjH9NL+kLceSoyVcj3RTyQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/releases/pc-sdk-2020-2.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/releases/pc-sdk-2020-2.html",
+          "hash": "vC/XGXWiEIBN0u6SG645EmGhdVdhmr0oajMQzN+YJN4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/releases/pc-sdk-2020-3.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/releases/pc-sdk-2020-3.html",
+          "hash": "TS6LzKdLWoGnPDS6G6GqpvNP3KEzznLS4T/sTivZR+M="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/releases/pc-sdk-2020-4.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/releases/pc-sdk-2020-4.html",
+          "hash": "Q7yIFamGgjHxxU2J1+JtvGHfecPnwPFj6XMTXc2oWHA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/releases/pc-sdk-2021-1.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/releases/pc-sdk-2021-1.html",
+          "hash": "uzx3m9XB+KjQlGJexQmsw8dk5cZwuasQNSgaUkZaASM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/releases/pc-sdk-2021-2.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/releases/pc-sdk-2021-2.html",
+          "hash": "Op9WV6DRlOgHOKSQUJz8ZgJo+Qe7j8n0yb5kU/Z5E5Y="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/releases/pc-sdk-2021-3.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/releases/pc-sdk-2021-3.html",
+          "hash": "j67LZdQs6Y9prKPNZTytMOWK05XGphggLnGjr7LBk1A="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/releases/pc-sdk-2021-4.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/releases/pc-sdk-2021-4.html",
+          "hash": "mhtD4rslOXJZ7JSruJaR4ehH2kmWG1lmYgIsYJ9O/0o="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/releases/pc-sdk-2022-1.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/releases/pc-sdk-2022-1.html",
+          "hash": "jLYdba0slvqJ3Wcnrv+jADoFXzw2t+YyRtFXBpkrTdQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/releases/pc-sdk-2022-2.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/releases/pc-sdk-2022-2.html",
+          "hash": "terwWBT+e55SnMAuerOLwmYPO7RkC0lF0muDSsddt8c="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/releases/pc-sdk-2022-3.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/releases/pc-sdk-2022-3.html",
+          "hash": "TTvK+WYY9INOU42t3T+ky/xiOAefnhqilmd1NNN0JMc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/releases/pc-sdk-2023-1.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/releases/pc-sdk-2023-1.html",
+          "hash": "YMIkz3T0HbgV6h3KtVgb9oSkIxAdZVpnoeAZZNOPQa8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/releases/pc-sdk-2023-2.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/releases/pc-sdk-2023-2.html",
+          "hash": "f1ASfUKWtIy0P5nUrEe02VodQokNtX6gItu2p9taZs4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/releases/pc-sdk-2023-3.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/releases/pc-sdk-2023-3.html",
+          "hash": "bRQ1S+1zr+KEBSw5lQcHG1yk0towX4YWVAVbpTrM/tU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/releases/pc-sdk-2023-4.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/releases/pc-sdk-2023-4.html",
+          "hash": "Xwe+ksFiNKtdAQmjNDVgV3cpGvedbhSZXB3bp3YOmVY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/releases/pc-sdk-2024-1.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/releases/pc-sdk-2024-1.html",
+          "hash": "QNYtLeeRWpdAHb/sL+cApiFTxYfORe/HBA4zg9ebgdI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/releases/pc-sdk-2024-2.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/releases/pc-sdk-2024-2.html",
+          "hash": "lW1Ji4ht7hlX3OXhHPfmNruNo/7ujejIus3QyId0e+c="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/releases/pc-sdk-2024-3.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/releases/pc-sdk-2024-3.html",
+          "hash": "CphSQMN60gQ9v2X8y2D4Ki92L07Y1JUOY9nbdzObKDs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/releases/pc-sdk-2024-4.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/releases/pc-sdk-2024-4.html",
+          "hash": "U26R6Tin+Tb1IAc8EwVklluW3hO7h5eISl4mrcdCGHU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "downloads/ControllerAPI.zip",
+      "output": {
+        "resource": {
+          "relative_path": "downloads/ControllerAPI.zip"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "downloads/RapidDataBinding.zip",
+      "output": {
+        "resource": {
+          "relative_path": "downloads/RapidDataBinding.zip"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/AddFile.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/AddFile.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/CreateController.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/CreateController.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/CreateIS_1.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/CreateIS_1.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Cust1.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/Cust1.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Cust2.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/Cust2.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/NetDumpRapid.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/NetDumpRapid.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/ProjectAssist.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/ProjectAssist.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/RapidDataBindingCreateRapidData.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/RapidDataBindingCreateRapidData.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/RapidDataBindingCreateRapidMod.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/RapidDataBindingCreateRapidMod.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/RapidDataBindingHowToRun1.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/RapidDataBindingHowToRun1.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/RapidDataBindingHowToRun2.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/RapidDataBindingHowToRun2.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/RapidDataBindingUserInterface.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/RapidDataBindingUserInterface.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Set_up.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/Set_up.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/VirtualControllerEvents.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/VirtualControllerEvents.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/createui.jpg",
+      "output": {
+        "resource": {
+          "relative_path": "images/createui.jpg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/eventargs.jpg",
+      "output": {
+        "resource": {
+          "relative_path": "images/eventargs.jpg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/messaging.jpg",
+      "output": {
+        "resource": {
+          "relative_path": "images/messaging.jpg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/pc_architecture_new.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/pc_architecture_new.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/pcplatform.jpg",
+      "output": {
+        "resource": {
+          "relative_path": "images/pcplatform.jpg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/remote.jpg",
+      "output": {
+        "resource": {
+          "relative_path": "images/remote.jpg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/trial.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/trial.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/uilistview.jpg",
+      "output": {
+        "resource": {
+          "relative_path": "images/uilistview.jpg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "lzyk/RY5AK8GwVJ4QI1FXDyciIXrKK/RGSUJurVZ/Xc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "releasenotes.md",
+      "output": {
+        ".html": {
+          "relative_path": "releasenotes.html",
+          "hash": "l0hhooIm+WpN6yqAGN5p0jnJt42yIIUMfaiBCGZZ/mU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0,
+        "full_build_reason_code": "NoAvailableBuildCache"
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 77,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 327,
+          "skipped_file_count": 0
+        },
+        "ResourceDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: last post processor info is null.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
