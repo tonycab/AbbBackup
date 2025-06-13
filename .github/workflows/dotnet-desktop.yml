@@ -1,4 +1,4 @@
-name: Build AbbBackup Console App
+name: Build AbbBackup (.NET Framework 4.8)
 
 on:
   push:
@@ -8,27 +8,18 @@ on:
 
 jobs:
   build:
-    name: Build and Publish
+    name: Build on Windows with MSBuild
     runs-on: windows-latest
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: '8.0.x' # adapte si tu utilises une autre version
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2
 
-    - name: Restore dependencies
-      run: dotnet restore AbbBackup.csproj
+    - name: Locate solution
+      run: dir /s /b
 
-    - name: Build project
-      run: dotnet build AbbBackup.csproj --configuration Release --no-restore
-    - name: Publish project
-      run: dotnet publish AbbBackup.csproj --configuration Release --output ./publish --no-build
-
-    - name: Upload published app as artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: AbbBackup-published
-        path: ./publish
+    - name: Build solution
+      run: msbuild AbbBackup.sln /p:Configuration=Release
